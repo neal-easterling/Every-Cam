@@ -38,6 +38,7 @@ window.onload = ()=>{
   const elements = {
     video: document.getElementById("video"),
     videoButton: document.getElementById('video-button'),
+    closeVideoButton: document.getElementById('close-video-button'),
     photoButton: document.getElementById('take-photo-button'),
     photoContainer: document.getElementById('photo-container'),
     clearPhotosButton: document.getElementById('clear-photos-button'),

@@ -1,20 +1,21 @@
-
-function setWebCam(videoElement){
-  const constraints = {video: true, audio: true};
-  console.log("cam triggered");
-  videoElement.muted = true;
-  navigator.mediaDevices.getUserMedia(constraints)
-  .then((stream) => {
-
-    // Changing the source of video to current stream.
-    videoElement.srcObject = stream;
-    videoElement.addEventListener("loadedmetadata", () => {
-        videoElement.play();
-    });
-  }).catch(alert); 
+const getCameraStream = async()=>{
+  const constraints = {video:true, audio: false};
+  try{
+    console.log('getting webcam stream ...');
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    return stream;
+  }catch(err){
+    console.log('webcam was not approved by user' + err);
+    alert('webcam was not approved by user' + err);
+  }
 }
 
-const takeScreenshot= (canvas, video)=>{
+const setVideoSourceToStream = async(videoEl)=>{
+  videoEl.srcObject = await getCameraStream();
+  videoEl.addEventListener('loadedmetadata', ()=> videoEl.play());
+}
+
+const takeScreenshot = (canvas, video)=>{
   const context = canvas.getContext('2d');
   const videoBox = video.getBoundingClientRect();
   context.drawImage(video, 0, 0, videoBox.width, videoBox.height);
@@ -51,7 +52,7 @@ window.onload = ()=>{
   
 
   elements.videoButton.addEventListener('click',()=>{
-    setWebCam(elements.video);
+    setVideoSourceToStream(elements.video);
     elements.videoButton.style.display='none';
   });
 

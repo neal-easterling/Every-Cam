@@ -28,8 +28,6 @@ h1, h2{
 
 video{
     width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
 }
 
 .titleheader{
@@ -55,15 +53,26 @@ nav{
     color: #fff;
 }
 
-.camera{
+.video-container{
     position: relative;
-    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 95%;
+    height: auto;
     background-color: #222;
-    aspect-ratio: 16/9;
     margin: 5rem;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: 0 0 15px rgba(20, 20, 20, 0.3);
+}
+
+.video-button{
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 canvas{
@@ -97,14 +106,6 @@ canvas{
     border-radius: 1rem;
 }
 
-.web-cam-but{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100; 
-}
-
 .close-but{
     width: 20px;
     height: 20px;
@@ -129,6 +130,17 @@ canvas{
 
 .sidebar-header{
     color: rgb(211, 62, 62);
+}
+.instructions-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.photo-container a img{
+    width: 200px;
+    height: auto;
 }
 
 

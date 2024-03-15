@@ -17,9 +17,9 @@
                 <button id="toggle-sidebar-button" class="button small-round-button">View Photos</button>
             </nav>
         </header>
-        <section class="camera">
-            <button id="cam-but" class="button large-round-button web-cam-but">Open Camera</button>
-            <video id="cam"></video>
+        <section id="video-container" class="video-container">
+            <button id="video-button" class="button large-round-button video-button">Open Camera</button>
+            <video id="video"></video>
         </section>
         <aside id="sidebar" class="sidebar">
             <section class="sidebar-header">
@@ -30,12 +30,14 @@
                     </svg>
                 </div>
             </section>
-            <section id="screenshot-container" class="screenshot-container">
-                <p>Currently No Images</p>
-                <img id="test-img" width="200" height="150"/>
+            <section id="instructions" class="instructions-container">
+                <button id="clear-photos-button" class="button small-round-button">Clear Photos</button>
+                <p>Click photos to download</p>
             </section>
+            <section id="photo-container" class="photo-container">
+              </section>
         </aside>
         <canvas id="canvas" class="canvas"></canvas>
-        <script src="./doc-cam.js"></script> 
+        <script module src="./doc-cam.js"></script> 
     </body>
 </html>

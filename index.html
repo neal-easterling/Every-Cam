@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Document Camera</title>    
+        <link rel="stylesheet" href="./doc-cam.css">
+        <link rel="icon" href="https://apps4everyone.tech/img/Apps4logo.ico" sizes="any">
+        <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml">
+        
+    </head>
+
+    <body>
+        <header class="titleheader">
+            <h1>Apps4Everyone.tech | Document Camera</h1>
+            <nav>
+                <button id="take-photo-button" class="button small-round-button take-photo-but">Take Photo</button>
+                <button id="toggle-sidebar-button" class="button small-round-button">View Photos</button>
+            </nav>
+        </header>
+        <section class="camera">
+            <button id="cam-but" class="button large-round-button web-cam-but">Open Camera</button>
+            <video id="cam"></video>
+        </section>
+        <aside id="sidebar" class="sidebar">
+            <section class="sidebar-header">
+                <div id="close-sidebar-button" class="svg-button-container">
+                    <svg width="20" height="20" viewBox="0 0 25 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="22" width="30" height="4" rx="2" transform="rotate(-45 0 22)" />
+                        <rect x="3" y="1" width="30" height="4" rx="2" transform="rotate(45 3 1)" />
+                    </svg>
+                </div>
+            </section>
+            <section id="screenshot-container" class="screenshot-container">
+                <p>Currently No Images</p>
+                <img id="test-img" width="200" height="150"/>
+            </section>
+        </aside>
+        <canvas id="canvas" class="canvas"></canvas>
+        <script src="./doc-cam.js"></script> 
+    </body>
+</html>

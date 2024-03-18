@@ -145,7 +145,7 @@ canvas{
 
 
 
-/* @media screen and (max-width: 1280px){
+@media screen and (max-width: 1280px){
     .video-container{
         width: 640px;
     }
@@ -157,7 +157,7 @@ canvas{
     .small-round-button{
         font-size: 1.5rem;
     }
-} */
+}
 
 @media screen and (max-width: 650px){
     body{

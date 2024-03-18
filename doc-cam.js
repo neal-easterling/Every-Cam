@@ -10,8 +10,25 @@ const getCameraStream = async()=>{
   }
 }
 
+const setVideoTrackSize = async (stream) => {
+  const videoConstraints = {
+    width: 1200,
+    height: 720
+  };
+  //Get Video Track from stream
+  const vTrack = stream.getVideoTracks()[0];
+  try{
+    const setVideo = await vTrack.applyConstraints(videoConstraints);
+  }catch(err){
+    console.log('track size was rejected: ' + err);
+  }
+
+}
+
 const setVideoSourceToStream = async(videoEl)=>{
-  videoEl.srcObject = await getCameraStream();
+  const stream = await getCameraStream();
+  const videoSet = await setVideoTrackSize(stream);
+  videoEl.srcObject = stream;
   videoEl.addEventListener('loadedmetadata', ()=> videoEl.play());
 }
 

@@ -110,6 +110,11 @@ h4{
   aspect-ratio: 16/9;
   background-color: var(--clr-dark);
   border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+video{
+  width: 100%;
 }
 
 .assets-bar{
@@ -123,6 +128,10 @@ h4{
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+}
+
+.photo-container a img{
+  width: 100%;
 }
 
 .button{

@@ -6,38 +6,35 @@
         <title>Document Camera</title>    
         <link rel="stylesheet" href="./dc-mobile.css">
         <link rel="icon" href="https://apps4everyone.tech/img/Apps4logo.ico" sizes="any">
-        <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml">
-        
+        <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml"> 
     </head>
-
     <body>
         <header class="titleheader">
-            <h1>Apps4Everyone.tech | Document Camera</h1>
-            <nav>
-                <button id="toggle-video-button" data-state="closed" class="button small-round-button">Close Camera</button>
-                <button id="take-photo-button" class="button small-round-button">Take Photo</button>
-                <button id="toggle-photos-button" class="button small-round-button">View Photos</button>
-            </nav>
+            <h2>Apps4Everyone.tech </h2>
+            <h1>Every Camera</h1>
+            <button id="fullscreen" class="fullscreen"></button>
         </header>
-        <section id="video-container" class="video-container">
-            <video id="video"></video>
-        </section>
-        <aside id="sidebar" class="sidebar">
-            <section class="sidebar-header">
-                <div id="close-sidebar-button" class="svg-button-container">
-                    <svg width="20" height="20" viewBox="0 0 25 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <rect y="22" width="30" height="4" rx="2" transform="rotate(-45 0 22)" />
-                        <rect x="3" y="1" width="30" height="4" rx="2" transform="rotate(45 3 1)" />
-                    </svg>
-                </div>
+        <aside class="toolbar" id="toolbar">
+            <!--All the tools and buttons to operate camera-->
+            <h3>Tools</h3>
+            <section class="tools-container">
+                <button id="toggle-camera" class="button tool-button">Camera</button>
+                <button id="take-photo" class="button tool-button">Take Photo</button>
             </section>
-            <section id="instructions" class="instructions-container">
-                <button id="clear-photos-button" class="button small-round-button">Clear Photos</button>
-                <p>Click photos to download</p>
-            </section>
-            <section id="photo-container" class="photo-container">
-              </section>
         </aside>
+        <main id="main-container" class="main-container">
+            <!--Main display area for camera and screen capture-->\
+            <section id="video-container" class="video-container">
+                <video id="video"></video>
+            </section>
+        </main>
+        <aside id="assets-bar" class="assets-bar">
+            <!--All the photos and  videos captured by camera-->
+            <h3>Captures</h3>
+            <h4>Click image to download</h4>
+            <section id="photo-container" class="photo-container"></section>
+        </aside>
+        <footer class="main-footer">&copy; 2024 by Neal Easterling</footer>
         <canvas id="canvas" class="canvas"></canvas>
         <script module src="./doc-cam.js"></script> 
     </body>

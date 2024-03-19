@@ -11,6 +11,7 @@
   --clr-on-hover: #1b5e9c;
   --clr-danger: #C10940;
   --clr-accent: #D28325;
+  --clr-green: #2da81d;
 
   --gap: 5px;
   --border-radius: 5px;
@@ -83,6 +84,13 @@ h4{
   font-size: 0.8em;
 }
 
+.fullscreen-container{
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: var(--gap);
+}
+
 .toolbar{
   grid-area: tools;
   display: flex;
@@ -122,6 +130,12 @@ video{
   padding: 1rem;
   border-left: var(--border);
 }
+
+.assets-title{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
 .photo-container{
   margin-top: 1rem;
   border-top: var(--border);
@@ -135,6 +149,7 @@ video{
 }
 
 .button{
+  position: relative;
   display: grid;
   place-items: center;
   background-color: var(--clr-button);
@@ -149,6 +164,10 @@ video{
   background-color: var(--clr-lite);
 }
 
+.button:disabled{
+  background-color: var(--clr-lite);
+}
+
 .button.active{
   background-color: var(--clr-on);
   border-color: var(--clr-white);
@@ -158,17 +177,41 @@ video{
   background-color: var(--clr-on-hover);
 }
 
+.fullscreen-button:enabled{
+  background-color: var(--clr-on);
+}
+
 .fullscreen-button::before{
   content: url('./images/fullscreen.svg');
 }
 
-.toggle-camera-button::before{
+.get-camera-button::before{
   content: url('./images/camera-on.svg');
+}
+
+.end-camera-button:enabled{
+  background-color: var(--clr-accent);
+}
+
+.end-camera-button::before{
+  content: url('./images/camera-off.svg');
+}
+
+.take-photo-button:enabled{
+  background-color: var(--clr-green);
 }
 
 .take-photo-button::before{
   content: url('./images/camera-icon.svg');
 }
+
+.clear-photos-button:enabled{
+  background-color: var(--clr-danger);
+}
+
+.clear-photos-button::before{
+  content: url('./images/remove-photo.svg');
+} 
 
 /* ==== Helpers ==== */
 

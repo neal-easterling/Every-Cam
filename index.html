@@ -12,8 +12,8 @@
         <header class="titleheader">
             <h2 class="align-left">Apps4Everyone.tech </h2>
             <h1 class="align-center">Every Cam</h1>
-            <div class="align-right">
-                <button id="fullscreen-button" class="button fullscreen-button active"></button>
+            <div class="fullscreen-container align-right">
+                <button id="fullscreen-button" class="button fullscreen-button" disabled></button>
             </div>
             
         </header>
@@ -21,8 +21,9 @@
             <!--All the tools and buttons to operate camera-->
             <h3>Tools</h3>
             <section class="tools-container">
-                <button id="toggle-camera" class="button toggle-camera-button"></button>
-                <button id="take-photo-button" class="button take-photo-button"></button>
+                <button id="get-camera" class="button get-camera-button"></button>
+                <button id="end-camera" class="button end-camera-button" disabled></button>
+                <button id="take-photo-button" class="button take-photo-button" disabled></button>
             </section>
         </aside>
         <main id="main-container" class="main-container">
@@ -33,8 +34,17 @@
         </main>
         <aside id="assets-bar" class="assets-bar">
             <!--All the photos and  videos captured by camera-->
-            <h3>Captures</h3>
-            <h4>Click image to download</h4>
+            <section class="assets-title">
+                <div class="assets-text-container align-left">
+                    <h3>Captures</h3>
+                    <h4>Click image to download</h4>
+                </div>
+                <div class="clear-container align-right">
+                    <button id="clear-photos-button" class="button clear-photos-button" disabled></button>
+                </div>
+            </section>
+            
+            
             <section id="photo-container" class="photo-container"></section>
         </aside>
         <footer class="main-footer">&copy; 2024 by Neal Easterling</footer>

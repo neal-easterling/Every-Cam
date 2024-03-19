@@ -46,5 +46,12 @@ export const MediaController = {
     downloadLink.download = `screenshot-${Date.now()}.png`;
     downloadLink.appendChild(img);
     elements.photoContainer.appendChild(downloadLink);
+  },
+  enterFullscreen : async(element)=>{
+    try{
+      element.requestFullscreen();
+    }catch(err){
+      console.log(err);
+    }
   }
 }

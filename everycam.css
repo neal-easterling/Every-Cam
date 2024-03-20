@@ -9,9 +9,9 @@
   --clr-white: #d9d9d9;
   --clr-on: #257FD2;
   --clr-on-hover: #1b5e9c;
-  --clr-danger: #C10940;
-  --clr-accent: #D28325;
-  --clr-green: #2da81d;
+  --clr-delete: #C10940;
+  --clr-close: #D28325;
+  --clr-available: #1f7513;
 
   --gap: 5px;
   --border-radius: 5px;
@@ -177,20 +177,12 @@ video{
   background-color: var(--clr-on-hover);
 }
 
-.fullscreen-button:enabled{
-  background-color: var(--clr-on);
-}
-
 .fullscreen-button::before{
   content: url('./images/fullscreen.svg');
 }
 
 .get-camera-button::before{
   content: url('./images/camera-on.svg');
-}
-
-.end-camera-button:enabled{
-  background-color: var(--clr-accent);
 }
 
 .end-camera-button::before{
@@ -209,20 +201,12 @@ video{
   content: url('./images/display-close.svg');
 }
 
-.take-photo-button:enabled{
-  background-color: var(--clr-green);
-}
-
 .take-photo-button::before{
   content: url('./images/camera-icon.svg');
 }
 
 .record-video-button::before{
   content: url('./images/record.svg');
-}
-
-.clear-photos-button:enabled{
-  background-color: var(--clr-danger);
 }
 
 .clear-photos-button::before{
@@ -242,4 +226,24 @@ video{
 .align-left{
   align-self: center;
   justify-self: start;
+}
+
+.on:enabled{
+  background-color: var(--clr-on);
+}
+
+.on:enabled:hover{
+  background-color: var(--clr-on-hover);
+}
+
+.close:enabled{
+  background-color: var(--clr-close);
+}
+
+.available:enabled{
+  background-color: var(--clr-available);
+}
+
+.delete:enabled{
+  background-color: var(--clr-delete);
 }

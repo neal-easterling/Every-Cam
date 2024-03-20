@@ -18,14 +18,13 @@ Current production versions is a simple online view only document camera for des
   - Adjust stylings to familiar graphics applications.
 
   ### v3
+  - switch display to Canvas element & hide video elements.
   - Add camera inverse control.
   - Add video capture and download.
   - Add display capture and download.
-
-  ### v4
   - Add webcam/display overlay stream, record, and download.
 
-  ### v5
+  ### v4
   - Integrate Google Drive.
   - Add ability to share screen between computers with WebRTC.
   

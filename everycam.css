@@ -197,12 +197,28 @@ video{
   content: url('./images/camera-off.svg');
 }
 
+.invert-camera-button::before{
+  content: url('./images/invert-camera.svg');
+}
+
+.get-display-button::before{
+  content: url('./images/display.svg');
+}
+
+.end-display-button::before{
+  content: url('./images/display-close.svg');
+}
+
 .take-photo-button:enabled{
   background-color: var(--clr-green);
 }
 
 .take-photo-button::before{
   content: url('./images/camera-icon.svg');
+}
+
+.record-video-button::before{
+  content: url('./images/record.svg');
 }
 
 .clear-photos-button:enabled{

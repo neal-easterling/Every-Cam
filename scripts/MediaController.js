@@ -39,7 +39,7 @@ export const MediaController = {
   },
   addPhoto : (elements)=>{
     const img = document.createElement('img');
-    const data = MediaController.takeScreenshot(elements.canvas, elements.video);
+    const data = MediaController.takeScreenshot(elements.canvas, elements.videoWeb);
     img.setAttribute('src', data);
     const downloadLink = document.createElement('a');
     downloadLink.href = data;

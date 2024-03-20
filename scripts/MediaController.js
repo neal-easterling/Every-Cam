@@ -13,8 +13,8 @@ export const MediaController = {
   },
   setVideoTrackSize : async (stream) => {
     const videoConstraints = {
-      width: 1200,
-      height: 720
+      width: 640,
+      height: 360
     };
     //Get Video Track from stream
     const vTrack = stream.getVideoTracks()[0];

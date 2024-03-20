@@ -20,7 +20,7 @@ Current production versions is a simple online view only document camera for des
   ### v3
   - Add camera inverse control.
   - Add video capture and download.
-  - Add screen capture (desktop) and download.
+  - Add display capture and download.
 
   ### v4
   - Integrate Google Drive.

@@ -23,6 +23,9 @@ Current production versions is a simple online view only document camera for des
   - Add display capture and download.
 
   ### v4
+  - Add webcam/display overlay stream, record, and download.
+
+  ### v5
   - Integrate Google Drive.
   - Add ability to share screen between computers with WebRTC.
   

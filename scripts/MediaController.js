@@ -7,6 +7,11 @@ export class MediaController{
       width: 1280,
       height: 720
     };
+    this.permissions = {
+      webcam: false,
+      display: false
+    };
+    this.frameRate = 30;
     this.overlayCam = new OverlayCam();
 
     this.displayCanvas = {
@@ -81,7 +86,25 @@ export class MediaController{
     await this.setVideoTrackSize(stream);
     this.webcamStream = stream;
     this.webcamVideoEl.srcObject = this.webcamStream;
-  }  
+    this.permissions.webcam = true;
+  } 
+  
+  async initDisplayShare(){
+    try{
+      let stream = await navigator.mediaDevices.getDisplayMedia();
+      return stream;
+    } catch (err){
+      console.log('user did not allow display share:' + err);
+    }
+  }
+
+  async assignDisplayToVideo(){
+    const stream = await this.initDisplayShare();
+    await this.setVideoTrackSize(stream);
+    this.displayStream = stream;
+    this.displayVideoEl.srcObject = this.displayStream;
+    this.permissions.display = true;
+  }
 
   drawFullFrame(videoSource){
     this.displayCanvas.ctx.drawImage(videoSource, 0, 0, this.videoResolution.width, this.videoResolution.height); 
@@ -90,5 +113,25 @@ export class MediaController{
     this.overlayCam.ctx = this.displayCanvas.ctx;
     this.overlayCam.drawCircle(videoSource);
   
-  } 
+  }
+  drawCanvas(){
+    const ctx = this.displayCanvas.ctx;
+    ctx.clearRect(0, 0, this.displayCanvas.el.width, this.displayCanvas.el.height);
+    if(!this.permissions.webcam && !this.permissions.display){
+      ctx.fillStyle = "red";
+      ctx.fillRect(15, 15, 115, 115);
+      ctx.fillStyle = "#112";
+      ctx.fillRect(25, 25, 125, 125);
+    }
+    if(this.permissions.webcam && !this.permissions.display){
+      this.drawFullFrame(this.webcamVideoEl);
+    }
+    if(!this.permissions.webcam && this.permissions.display){
+      this.drawFullFrame(this.displayVideoEl);
+    }
+    if(this.permissions.webcam && this.permissions.display){
+      this.drawFullFrame(this.displayVideoEl);
+      this.drawBottomLeftCircle(this.webcamVideoEl);
+    } 
+  }
 }

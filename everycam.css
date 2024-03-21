@@ -142,7 +142,7 @@ h4{
   width: 100%;
 }
 
-.button{
+.btn{
   position: relative;
   display: grid;
   place-items: center;
@@ -154,56 +154,56 @@ h4{
   border-radius: var(--border-radius);
 }
 
-.button:hover{
+.btn:hover{
   background-color: var(--clr-lite);
 }
 
-.button:disabled{
+.btn:disabled{
   background-color: var(--clr-lite);
 }
 
-.button.active{
+.btn.active{
   background-color: var(--clr-on);
   border-color: var(--clr-white);
 }
 
-.button.active:hover{
+.btn.active:hover{
   background-color: var(--clr-on-hover);
 }
 
-.fullscreen-button::before{
+.fullscreen-btn::before{
   content: url('./images/fullscreen.svg');
 }
 
-.get-camera-button::before{
+.get-camera-btn::before{
   content: url('./images/camera-on.svg');
 }
 
-.end-camera-button::before{
+.end-camera-btn::before{
   content: url('./images/camera-off.svg');
 }
 
-.invert-camera-button::before{
+.invert-camera-btn::before{
   content: url('./images/invert-camera.svg');
 }
 
-.get-display-button::before{
+.get-display-btn::before{
   content: url('./images/display.svg');
 }
 
-.end-display-button::before{
+.end-display-btn::before{
   content: url('./images/display-close.svg');
 }
 
-.take-photo-button::before{
+.take-photo-btn::before{
   content: url('./images/camera-icon.svg');
 }
 
-.record-video-button::before{
+.record-video-btn::before{
   content: url('./images/record.svg');
 }
 
-.clear-photos-button::before{
+.clear-captures-btn::before{
   content: url('./images/remove-photo.svg');
 } 
 

@@ -1,8 +1,8 @@
 export class OverlayCam{
 
   constructor(){
-    this.x = 0;
-    this.y = 0;
+    this.x = 200;
+    this.y = 520;
     this.radius = 150;
     this.videoRes = {width: 1280, height: 720};
     this.ctx = null;

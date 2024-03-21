@@ -88,7 +88,6 @@ export class MediaController{
   }
   drawBottomLeftCircle(videoSource){
     this.overlayCam.ctx = this.displayCanvas.ctx;
-    this.overlayCam.setCoords({x: 400, y: 300});
     this.overlayCam.drawCircle(videoSource);
   
   } 

@@ -6,10 +6,10 @@ Current production versions is a simple online view only document camera for des
 
 ## Development Road Map
 
-  ### v1 (completed)
+  ### v1.1 (completed)
   - view only webcam in browser as document camera
   
-  ### v2 (completed)
+  ### v1.2 (completed)
   - Add snapshot of camera feature.
   - Add ability to download shapshot.
   - add ability to clear taken photos.
@@ -17,14 +17,14 @@ Current production versions is a simple online view only document camera for des
   - add ability to start and stop camera without reload.
   - Adjust stylings to familiar graphics applications.
 
-  ### v3
+  ### v1.3 (in process)
   - switch display to Canvas element & hide video elements.
   - Add camera inverse control.
   - Add video capture and download.
   - Add display capture and download.
   - Add webcam/display overlay stream, record, and download.
 
-  ### v4
+  ### v1.4
   - Integrate Google Drive.
   - Add ability to share screen between computers with WebRTC.
   

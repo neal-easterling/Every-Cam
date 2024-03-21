@@ -112,8 +112,11 @@ export class MediaController{
   drawBottomLeftCircle(videoSource){
     this.overlayCam.ctx = this.displayCanvas.ctx;
     this.overlayCam.drawCircle(videoSource);
-  
   }
+
+  //Flip camera with ctx.scale(-1, 1) and ctx.translate(?)
+  //Do more canvas documentation research
+
   drawCanvas(){
     const ctx = this.displayCanvas.ctx;
     ctx.clearRect(0, 0, this.displayCanvas.el.width, this.displayCanvas.el.height);

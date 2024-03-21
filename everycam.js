@@ -1,14 +1,12 @@
 import { mediaDictionary } from "./scripts/mediaDictionary.js";
 import { MediaController } from "./scripts/MediaController.js";
 
-function drawFrame(video, canvas){
-  const ctx = canvas.getContext('2d', {alpha: false});
-  ctx.drawImage(video, 0, 0, 640, 360);
-}
-
 window.onload = ()=>{
 
   const controller = new MediaController();
+  setInterval(()=>{
+    controller.drawCanvas();
+  }, 1000 / controller.frameRate);
 
   const buttons = {
     webcamBtn: document.getElementById('get-webcam'),
@@ -20,10 +18,6 @@ window.onload = ()=>{
     displayBtn: document.getElementById('get-display'),
     endDisplayBtn: document.getElementById('end-display'),
   };
-
-  setInterval(()=>{
-    controller.drawCanvas();
-  }, 1000 / controller.frameRate);
 
   buttons.webcamBtn.addEventListener('click', async()=>{
     await controller.assignWebcamToVideo();    

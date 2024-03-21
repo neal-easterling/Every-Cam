@@ -7,22 +7,26 @@ Current production versions is a simple online view only document camera for des
 ## Development Road Map
 
   ### v1.1 (completed)
-  - view only webcam in browser as document camera
+  - ✅view only webcam in browser as document camera
   
   ### v1.2 (completed)
-  - Add snapshot of camera feature.
-  - Add ability to download shapshot.
-  - add ability to clear taken photos.
-  - add ability to fullscreen camera.
-  - add ability to start and stop camera without reload.
-  - Adjust stylings to familiar graphics applications.
+  - ✅Add snapshot of camera feature.
+  - ✅Add ability to download shapshot.
+  - ✅add ability to clear taken photos.
+  - ✅add ability to fullscreen camera.
+  - ✅add ability to start and stop camera without reload.
+  - ✅Adjust stylings to familiar graphics applications.
 
   ### v1.3 (in process)
-  - switch display to Canvas element & hide video elements.
-  - Add camera inverse control.
-  - Add video capture and download.
-  - Add display capture and download.
-  - Add webcam/display overlay stream, record, and download.
+  - ✅switch display to Canvas element & hide video elements.
+  - ✅Add camera inverse control.
+  - ✅Add webcam fullscreen to canvas.
+  - ✅Add webcam overlay to canvas.
+  - Add display share to canvas.
+  - Add canvas photo capture.
+  - Add canvas photo download.
+  - Add canvas recording.
+  - Add canvas recording download.
 
   ### v1.4
   - Integrate Google Drive.

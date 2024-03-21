@@ -32,33 +32,23 @@ window.onload = ()=>{
     buttons.webcamBtn.disabled = true;
     buttons.closeWebcamBtn.disabled = false;
     buttons.photoBtn.disabled = false;
-    buttons.fullscreenBtn.disabled = false;
   });
 
   buttons.closeWebcamBtn.addEventListener('click', ()=>{
     controller.permissions.webcam = false;
-    if(buttons.webcamBtn.disabled == true){
-      buttons.webcamBtn.disabled = false;
-      buttons.webcamBtn.classList.remove('active');
-    }
-    if(buttons.closeWebcamBtn.disabled == false){
-      buttons.closeWebcamBtn.disabled = true;
-    }
-    if(buttons.photoBtn.disabled == false){
-      buttons.photoBtn.disabled = true;
-    }
-    if(buttons.fullscreenBtn.disabled == false){
-      buttons.fullscreenBtn.disabled = true;
-    }
+    buttons.webcamBtn.disabled = false;
+    buttons.webcamBtn.classList.remove('active');
+    buttons.closeWebcamBtn.disabled = true;
+    buttons.photoBtn.disabled = true;
+
   });
 
   buttons.displayBtn.addEventListener('click', async()=>{
     await controller.assignDisplayToVideo();
     controller.permissions.display = true;
     buttons.displayBtn.classList.add('active');
-    if(buttons.endDisplayBtn.disabled == true){
-      buttons. endDisplayBtn.disabled = false;
-    }
+    buttons. endDisplayBtn.disabled = false;
+
   });
 
   buttons.endDisplayBtn.addEventListener('click', ()=>{
@@ -70,20 +60,17 @@ window.onload = ()=>{
   buttons.photoBtn.addEventListener('click', ()=>{
 
     //mediaDictionary.addPhoto(buttons);
-    if(buttons.clearCapsBtn.disabled == true){
-      buttons.clearCapsBtn.disabled = false;
-    }
+    buttons.clearCapsBtn.disabled = false;
   });
 
   buttons.clearCapsBtn.addEventListener('click', ()=>{
     buttons.photoContainer.innerHTML = '';
-    if(buttons.clearCapsBtn.disabled == false){
-      buttons.clearCapsBtn.disabled = true;
-    }
+    buttons.clearCapsBtn.disabled = true;
   });
 
   buttons.fullscreenBtn.addEventListener('click', ()=>{
-    mediaDictionary.enterFullscreen(controller.displayCanvas);
+    let main = document.querySelector('main');
+    mediaDictionary.enterFullscreen(main);
   });
   
 }

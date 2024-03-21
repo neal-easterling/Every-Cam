@@ -41,7 +41,7 @@ window.onload = ()=>{
   elements.webcamButton.addEventListener('click', async()=>{
     await controller.assignWebcamToVideo();    
     setInterval(()=>{
-      controller.drawFullFrame(controller.webcamVideoEl);
+      controller.drawBottomLeftCircle(controller.webcamVideoEl);
      }, 1000/24);
     // MediaController.setVideoSourceToStream(elements.videoWeb);
     // elements.webcamButton.classList.toggle('active');

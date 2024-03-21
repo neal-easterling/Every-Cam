@@ -1,3 +1,5 @@
+import { OverlayCam } from "./OverlayCam.js";
+
 export class MediaController{
 
   constructor(){
@@ -5,6 +7,7 @@ export class MediaController{
       width: 1280,
       height: 720
     };
+    this.overlayCam = new OverlayCam();
 
     this.displayCanvas = {
       el: document.getElementById('display-canvas'),
@@ -23,6 +26,7 @@ export class MediaController{
   }
 
   setDisplayCanvasResolution(){
+    console.log('set display res triggered');
     this.displayCanvas.el.width = this.videoResolution.width;
     this.displayCanvas.el.height = this.videoResolution.height;
   }
@@ -82,4 +86,10 @@ export class MediaController{
   drawFullFrame(videoSource){
     this.displayCanvas.ctx.drawImage(videoSource, 0, 0, this.videoResolution.width, this.videoResolution.height); 
   }
+  drawBottomLeftCircle(videoSource){
+    this.overlayCam.ctx = this.displayCanvas.ctx;
+    this.overlayCam.setCoords({x: 400, y: 300});
+    this.overlayCam.drawCircle(videoSource);
+  
+  } 
 }

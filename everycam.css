@@ -65,13 +65,7 @@ aside{
   background-color: var(--clr-lite);
 }
 
-canvas{
-  width: 640px;
-  height: 360px;
-  border: var(--border);
-  border-radius: var(--border-radius);
-  background-color: var(--clr-dark);
-}
+
 
 h1, h2, h3, h4{
   font-weight: 300;
@@ -88,8 +82,12 @@ h4{
   font-size: 0.8em;
 }
 
-#hidden-storage{
-  display: none;
+.display-canvas{
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--clr-dark);
+    width: 80%;
+    aspect-ratio: 16/9;
 }
 
 .fullscreen-container{
@@ -119,18 +117,6 @@ h4{
   grid-area: main;
   display: grid;
   place-items: center;
-}
-
-.video-container{
-  width: 95%;
-  aspect-ratio: 16/9;
-  background-color: var(--clr-dark);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-}
-
-video{
-  display: hidden;
 }
 
 .assets-bar{
@@ -234,14 +220,6 @@ video{
 .align-left{
   align-self: center;
   justify-self: start;
-}
-
-.on:enabled{
-  background-color: var(--clr-on);
-}
-
-.on:enabled:hover{
-  background-color: var(--clr-on-hover);
 }
 
 .close:enabled{

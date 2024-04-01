@@ -1,12 +1,11 @@
-import { mediaDictionary } from "./scripts/mediaDictionary.js";
-import { MediaController } from "./scripts/MediaController.js";
+import { AppHandler } from "./scripts/AppHandler.js";
 
 window.onload = ()=>{
 
-  const controller = new MediaController();
+  const app = new AppHandler();
   setInterval(()=>{
-    controller.drawCanvas();
-  }, 1000 / controller.frameRate);
+    app.render();
+  }, 1000 / app.framerate);
 
   const buttons = {
     webcamBtn: document.getElementById('get-webcam'),
@@ -18,11 +17,8 @@ window.onload = ()=>{
     endDisplayBtn: document.getElementById('end-display'),
   };
 
-  const captureContainer = document.getElementById('captures-container');
-
   buttons.webcamBtn.addEventListener('click', async()=>{
-    await controller.assignWebcamToVideo();    
-    controller.permissions.webcam = true;
+    await app.initWebcam();    
     buttons.webcamBtn.classList.add('active');
     buttons.webcamBtn.disabled = true;
     buttons.closeWebcamBtn.disabled = false;
@@ -30,7 +26,7 @@ window.onload = ()=>{
   });
 
   buttons.closeWebcamBtn.addEventListener('click', ()=>{
-    controller.permissions.webcam = false;
+    app.permissions.webcam = false;
     buttons.webcamBtn.disabled = false;
     buttons.webcamBtn.classList.remove('active');
     buttons.closeWebcamBtn.disabled = true;
@@ -39,24 +35,20 @@ window.onload = ()=>{
   });
 
   buttons.displayBtn.addEventListener('click', async()=>{
-    await controller.assignDisplayToVideo();
-    controller.permissions.display = true;
+    await app.initDisplay();
     buttons.displayBtn.classList.add('active');
     buttons. endDisplayBtn.disabled = false;
 
   });
 
   buttons.endDisplayBtn.addEventListener('click', ()=>{
-    controller.permissions.display = false;
+    app.permissions.display = false;
     buttons.displayBtn.classList.remove('active');
     buttons.endDisplayBtn.disabled = true;
   });
 
   buttons.photoBtn.addEventListener('click', ()=>{
-    const data = controller.takePhoto();
-    const img = controller.returnDownloadImgEl(data);
-    captureContainer.appendChild(img);
-    //mediaDictionary.addPhoto(buttons);
+    app.takeScreenshot();
     buttons.clearCapsBtn.disabled = false;
   });
 
@@ -66,8 +58,7 @@ window.onload = ()=>{
   });
 
   buttons.fullscreenBtn.addEventListener('click', ()=>{
-    let main = document.querySelector('main');
-    mediaDictionary.enterFullscreen(main);
+    app.requestFullScreen();
   });
   
 }

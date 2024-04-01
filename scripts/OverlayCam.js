@@ -13,6 +13,9 @@ export class OverlayCam{
     this.y = cordsObj.y;
   }
 
+  //Flip camera with ctx.scale(-1, 1) and ctx.translate(?)
+  //Do more canvas documentation research
+
   drawCircle(videoSource){
     this.ctx.save();
     this.ctx.beginPath();

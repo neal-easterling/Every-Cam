@@ -82,7 +82,7 @@ h4{
   font-size: 0.8em;
 }
 
-.display-canvas{
+.main-canvas{
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: var(--clr-dark);

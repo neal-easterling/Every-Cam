@@ -14,11 +14,11 @@ export class MediaController{
     this.frameRate = 30;
     this.overlayCam = new OverlayCam();
 
-    this.displayCanvas = {
-      el: document.getElementById('display-canvas'),
-      ctx: document.getElementById('display-canvas').getContext('2d', {alpha: false}),
+    this.mainCanvas = {
+      el: document.getElementById('main-canvas'),
+      ctx: document.getElementById('main-canvas').getContext('2d', {alpha: false}),
     };
-    this.setDisplayCanvasResolution();
+    this.setMainCanvasResolution();
     this.offscreenCanvas = null;
     this.webcamStream = null;
     this.displayStream = null;
@@ -30,12 +30,7 @@ export class MediaController{
     this.displayVideoEl = this.createHiddenVideoEl('display-video');
   }
 
-  setDisplayCanvasResolution(){
-    console.log('set display res triggered');
-    this.displayCanvas.el.width = this.videoResolution.width;
-    this.displayCanvas.el.height = this.videoResolution.height;
-  }
-
+  //===== HIDDEN STORAGE METHODS=================================
   createHiddenStorageEl(){
     let hidden = document.createElement('div');
     hidden.style.display = 'none';
@@ -55,40 +50,28 @@ export class MediaController{
     return el; 
   }
 
+  //===== WEBCAM METHODS ===========================================
   async initWebcamStream(){
-      const constraints = {video:true, audio: false};
-      try{
-        console.log('getting webcam stream ...');
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        return stream;
-      }catch(err){
-        console.log('webcam was not approved by user' + err);
-        alert('webcam was not approved by user' + err);
-      }
-  }
-
-  async setVideoTrackSize(stream){
-    const videoConstraints = {
-      width: this.videoResolution.width,
-      height: this.videoResolution.height
-    };
-    //Get Video Track from stream
-    const vTrack = stream.getVideoTracks()[0];
+    const constraints = {video:true, audio: false};
     try{
-      await vTrack.applyConstraints(videoConstraints);
+      console.log('getting webcam stream ...');
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      return stream;
     }catch(err){
-      console.log('track size was rejected: ' + err);
+      console.log('webcam was not approved by user' + err);
+      alert('webcam was not approved by user' + err);
     }
   }
-
+  
   async assignWebcamToVideo(){
     const stream = await this.initWebcamStream();
     await this.setVideoTrackSize(stream);
     this.webcamStream = stream;
     this.webcamVideoEl.srcObject = this.webcamStream;
     this.permissions.webcam = true;
-  } 
-  
+  }
+
+  //===== DISPLAY METHODS ===========================================
   async initDisplayShare(){
     try{
       let stream = await navigator.mediaDevices.getDisplayMedia();
@@ -106,11 +89,33 @@ export class MediaController{
     this.permissions.display = true;
   }
 
+  //===== STREAM METHODS ===========================================
+  async setVideoTrackSize(stream){
+    const videoConstraints = {
+      width: this.videoResolution.width,
+      height: this.videoResolution.height
+    };
+    //Get Video Track from stream
+    const vTrack = stream.getVideoTracks()[0];
+    try{
+      await vTrack.applyConstraints(videoConstraints);
+    }catch(err){
+      console.log('track size was rejected: ' + err);
+    }
+  }
+
+  //===== CANVAS METHODS ===========================================
+  setMainCanvasResolution(){
+    console.log('set display res triggered');
+    this.mainCanvas.el.width = this.videoResolution.width;
+    this.mainCanvas.el.height = this.videoResolution.height;
+  }
+  
   drawFullFrame(videoSource){
-    this.displayCanvas.ctx.drawImage(videoSource, 0, 0, this.videoResolution.width, this.videoResolution.height); 
+    this.mainCanvas.ctx.drawImage(videoSource, 0, 0, this.videoResolution.width, this.videoResolution.height); 
   }
   drawBottomLeftCircle(videoSource){
-    this.overlayCam.ctx = this.displayCanvas.ctx;
+    this.overlayCam.ctx = this.mainCanvas.ctx;
     this.overlayCam.drawCircle(videoSource);
   }
 
@@ -118,8 +123,8 @@ export class MediaController{
   //Do more canvas documentation research
 
   drawCanvas(){
-    const ctx = this.displayCanvas.ctx;
-    ctx.clearRect(0, 0, this.displayCanvas.el.width, this.displayCanvas.el.height);
+    const ctx = this.mainCanvas.ctx;
+    ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
     if(!this.permissions.webcam && !this.permissions.display){
       ctx.fillStyle = "red";
       ctx.fillRect(15, 15, 115, 115);

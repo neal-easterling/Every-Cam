@@ -26,6 +26,8 @@ export class CanvasController{
   }
 
   drawBlank(){
+    this.ctx.fillStyle = "#c9c9c9";
+    this.ctx.fillRect(0, 0, this.width, this.height);
     const centerx = Math.floor(this.width/2);
     const centery = Math.floor(this.height/2);
     this.ctx.drawImage(this.logo, centerx - 125, centery - 125);

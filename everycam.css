@@ -85,7 +85,7 @@ h4{
 .main-canvas{
     border: var(--border);
     border-radius: var(--border-radius);
-    background-color: var(--clr-dark);
+    background-color: var(--clr-white);
     width: 80%;
     aspect-ratio: 16/9;
 }

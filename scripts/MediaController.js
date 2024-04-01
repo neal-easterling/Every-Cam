@@ -104,6 +104,22 @@ export class MediaController{
     }
   }
 
+  //===== PHOTO METHODS ============================================
+  takePhoto(){
+    const data = this.mainCanvas.el.toDataURL('image/png');
+    return data;
+  }
+
+  returnDownloadImgEl(data){
+    const img = document.createElement('img');
+    img.setAttribute('src', data);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = data;
+    downloadLink.download = `screenshot-${Date.now()}.png`;
+    downloadLink.appendChild(img);
+    return downloadLink;
+  }
+
   //===== CANVAS METHODS ===========================================
   setMainCanvasResolution(){
     console.log('set display res triggered');

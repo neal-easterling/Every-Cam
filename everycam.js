@@ -12,12 +12,13 @@ window.onload = ()=>{
     webcamBtn: document.getElementById('get-webcam'),
     closeWebcamBtn: document.getElementById('end-webcam'),
     photoBtn: document.getElementById('take-photo'),
-    captureContainer: document.getElementById('captures-container'),
     clearCapsBtn: document.getElementById('clear-captures-btn'),
     fullscreenBtn: document.getElementById('fullscreen-btn'),
     displayBtn: document.getElementById('get-display'),
     endDisplayBtn: document.getElementById('end-display'),
   };
+
+  const captureContainer = document.getElementById('captures-container');
 
   buttons.webcamBtn.addEventListener('click', async()=>{
     await controller.assignWebcamToVideo();    
@@ -52,7 +53,9 @@ window.onload = ()=>{
   });
 
   buttons.photoBtn.addEventListener('click', ()=>{
-
+    const data = controller.takePhoto();
+    const img = controller.returnDownloadImgEl(data);
+    captureContainer.appendChild(img);
     //mediaDictionary.addPhoto(buttons);
     buttons.clearCapsBtn.disabled = false;
   });

@@ -24,13 +24,22 @@ Current production versions is a simple online view only document camera for des
   - ✅Add webcam overlay to canvas.
   - Add ability to drag webcam overlay to desired position.
   - ✅Add display share to canvas.
-  - Add canvas photo capture.
-  - Add canvas photo download.
+  - ✅Add canvas photo capture.
+  - ✅Add canvas photo download.
   - Add canvas recording.
   - Add canvas recording download.
 
   ### v1.4
-  - Integrate upload to YouTube.
-  - Integrate upload to Google Drive.
+  - add whiteboarding / annotation to canvas
+
+  ### v1.5
+  - Integrate direct upload to YouTube.
+  - Integrate direct upload to Google Drive.
+  
+  ### v1.6
+  - Integrate YouTube Streaming
+
+  ### v1.7
+  - Integrate Twitch Streaming
   
     

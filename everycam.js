@@ -27,7 +27,7 @@ window.onload = ()=>{
   });
 
   buttons.closeWebcamBtn.addEventListener('click', ()=>{
-    app.permissions.webcam = false;
+    app.webcam.available = false;
     buttons.webcamBtn.disabled = false;
     buttons.webcamBtn.classList.remove('active');
     buttons.closeWebcamBtn.disabled = true;
@@ -42,7 +42,7 @@ window.onload = ()=>{
   });
 
   buttons.endDisplayBtn.addEventListener('click', ()=>{
-    app.permissions.display = false;
+    app.display.available = false;
     buttons.displayBtn.classList.remove('active');
     buttons.endDisplayBtn.disabled = true;
   });

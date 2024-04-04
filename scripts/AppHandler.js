@@ -21,11 +21,6 @@ export class AppHandler {
 
     this.framerate = 30;
 
-    this.permissions = {
-      webcam: false,
-      display: false
-    };
-
     //Setup Objects
     this.storage.initStorage(this.resolution);
     this.mainCanvas.setMainCanvasResolution(this.resolution.width, this.resolution.height);
@@ -35,14 +30,12 @@ export class AppHandler {
     const stream = await this.webcam.init();
     await this.setVideoTrackSize(stream);
     this.storage.assignWebcamToVideo(stream);
-    this.permissions.webcam = true;
   }
 
   async initDisplay(){
     const stream = await this.display.init();
     await this.setVideoTrackSize(stream);
     this.storage.assignDisplayToVideo(stream);
-    this.permissions.display = true;
   }
 
   async setVideoTrackSize(stream){
@@ -74,16 +67,16 @@ export class AppHandler {
   render(){
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
-    if(!this.permissions.webcam && !this.permissions.display){
+    if(!this.webcam.available && !this.display.available){
       this.mainCanvas.drawBlank();
     }
-    if(this.permissions.webcam && !this.permissions.display){
+    if(this.webcam.available && !this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.webcamVideoEl);
     }
-    if(!this.permissions.webcam && this.permissions.display){
+    if(!this.webcam.available && this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
     }
-    if(this.permissions.webcam && this.permissions.display){
+    if(this.webcam.available && this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
       this.mainCanvas.drawBottomLeftCircle(this.storage.webcamVideoEl);
     } 

@@ -146,7 +146,7 @@ h4{
   position: relative;
   display: grid;
   place-items: center;
-  background-color: var(--clr-button);
+  background-color: var(--clr-available);
   color: var(--clr-white);
   border: var(--border);
   aspect-ratio: 1;

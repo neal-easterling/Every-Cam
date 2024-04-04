@@ -17,12 +17,13 @@ window.onload = ()=>{
     endDisplayBtn: document.getElementById('end-display'),
   };
 
+  const capsContainer = document.querySelector('#captures-container');
+
   buttons.webcamBtn.addEventListener('click', async()=>{
     await app.initWebcam();    
     buttons.webcamBtn.classList.add('active');
     buttons.webcamBtn.disabled = true;
     buttons.closeWebcamBtn.disabled = false;
-    buttons.photoBtn.disabled = false;
   });
 
   buttons.closeWebcamBtn.addEventListener('click', ()=>{
@@ -30,7 +31,6 @@ window.onload = ()=>{
     buttons.webcamBtn.disabled = false;
     buttons.webcamBtn.classList.remove('active');
     buttons.closeWebcamBtn.disabled = true;
-    buttons.photoBtn.disabled = true;
 
   });
 
@@ -53,7 +53,7 @@ window.onload = ()=>{
   });
 
   buttons.clearCapsBtn.addEventListener('click', ()=>{
-    buttons.photoContainer.innerHTML = '';
+    capsContainer.innerHTML = '';
     buttons.clearCapsBtn.disabled = true;
   });
 

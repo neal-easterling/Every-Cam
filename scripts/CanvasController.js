@@ -2,9 +2,9 @@ import { OverlayCam } from "./OverlayCam.js";
 
 export class CanvasController{
 
-  constructor(){
-      this.width = 1280;
-      this.height = 720;
+  constructor(width=1280, height=720){
+      this.width = width;
+      this.height = height;
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.overlayCam = new OverlayCam();
@@ -37,9 +37,18 @@ export class CanvasController{
     this.ctx.drawImage(videoSource, 0, 0, this.width, this.height); 
   }
 
-  drawBottomLeftCircle(videoSource){
-    this.overlayCam.ctx = this.ctx;
-    this.overlayCam.drawCircle(videoSource);
+  drawCircle(videoSource, camObj = this.overlayCam){
+    let {x, y, radius} = camObj;
+    this.ctx.save();
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    this.ctx.clip()
+    let videoWidth = radius * 4;
+    let videoHeight = (videoWidth * this.height) / this.width;
+    let startX = x - videoWidth / 2;
+    let startY = y - videoHeight / 2;
+    this.ctx.drawImage(videoSource, startX, startY, videoWidth, videoHeight);
+    this.ctx.restore();
   }
 
   captureCanvasStream(){

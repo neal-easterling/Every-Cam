@@ -78,7 +78,7 @@ export class AppHandler {
     }
     if(this.webcam.available && this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-      this.mainCanvas.drawBottomLeftCircle(this.storage.webcamVideoEl);
+      this.mainCanvas.drawCircle(this.storage.webcamVideoEl);
     } 
   }
 

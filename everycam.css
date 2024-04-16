@@ -163,7 +163,7 @@ h4{
 }
 
 .btn.active{
-  background-color: var(--clr-on);
+  background-color: var(--clr-on) !important;
   border-color: var(--clr-white);
 }
 

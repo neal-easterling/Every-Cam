@@ -16,7 +16,8 @@ window.onload = ()=>{
     fullscreenBtn: document.getElementById('fullscreen-btn'),
     displayBtn: document.getElementById('get-display'),
     endDisplayBtn: document.getElementById('end-display'),
-    recordBtn: document.getElementById('record-video')
+    recordBtn: document.getElementById('record-video'),
+    micBtn: document.getElementById('get-mic')
   };
 
   const capsContainer = document.querySelector('#captures-container');
@@ -62,6 +63,16 @@ window.onload = ()=>{
   buttons.photoBtn.addEventListener('click', ()=>{
     app.takeScreenshot();
     buttons.clearCapsBtn.disabled = false;
+  });
+
+  buttons.micBtn.addEventListener('click', async()=>{
+    if(app.microphone.available){
+      app.microphone.available = false;
+    } else {
+      await app.initMicrophone();
+      app.microphone.available = true;
+    }
+    buttons.micBtn.classList.toggle('active');
   });
 
   buttons.recordBtn.addEventListener('click', ()=>{

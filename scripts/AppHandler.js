@@ -72,15 +72,23 @@ export class AppHandler {
       console.log(err);
     }
   }
-  startRecording(){
-    const audioTrack = this.webcam.getAudioTrack();
-    const videoTrack = this.mainCanvas.captureCanvasStream().getVideoTracks()[0];
-    const stream = this.recorder.combineTracksToStream(videoTrack, audioTrack);
-    this.recorder.createRecorder(stream);
+
+  async getCombinedStream(){
+    const videoTracks = await this.mainCanvas.captureCanvasStream().getVideoTracks();
+    let audioTracks = null;
+    if(this.mainContainer.available){
+      audioTracks = await this.microphone.stream.getAudioTracks();
+    }
+    const newStream = await this.recorder.combineTracksToStream({videoTracks, audioTracks});
+    return newStream;
+  }
+
+  async startRecording(){
+    const stream = await this.getCombinedStream();
     console.log(stream);
-    this.recorder.active.ondataavailable = async(e) => {
-      const data = await this.recorder.active.requestData();
-      this.storage.returnDownloadVideoEl(data);
+    const record = this.recorder.createRecorder(stream);
+    record.ondataavailable = (e) => {
+      this.storage.returnDownloadVideoEl(e.data);
     }
     this.recorder.active.start();
     console.log('recording started');

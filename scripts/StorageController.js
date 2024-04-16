@@ -44,7 +44,6 @@ export class StorageController{
   assignWebcamToVideo(stream){
     this.webcamStream = stream;
     this.webcamVideoEl.srcObject = this.webcamStream;
-    //this.webcamVideoEl.volume = 0;
   }
 
   assignDisplayToVideo(stream){
@@ -66,18 +65,21 @@ export class StorageController{
   }
 
   returnDownloadVideoEl(data){
+    console.log(data);
     const container = document.createElement('div');
     container.setAttribute('class', 'videoDownloadContainer');
 
     const video = document.createElement('video');
-    video.setAttribute('src', data);
+    video.src = data;
     video.controls = true;
     container.appendChild(video);
+    console.log(video);
 
     const downloadLink = document.createElement('a');
     downloadLink.href = data;
     downloadLink.download = `ecvideo-${Date.now()}.mp4`;
     container.appendChild(downloadLink);
+    console.log(downloadLink);
 
     this.capturesStorage.appendChild(container);
     return container;

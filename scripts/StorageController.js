@@ -54,12 +54,32 @@ export class StorageController{
   returnDownloadImgEl(data){
     const img = document.createElement('img');
     img.setAttribute('src', data);
+
     const downloadLink = document.createElement('a');
     downloadLink.href = data;
-    downloadLink.download = `screenshot-${Date.now()}.png`;
+    downloadLink.download = `ecimage-${Date.now()}.png`;
     downloadLink.appendChild(img);
+
     this.capturesStorage.appendChild(downloadLink);
     return downloadLink;
+  }
+
+  returnDownloadVideoEl(data){
+    const container = document.createElement('div');
+    container.setAttribute('class', 'videoDownloadContainer');
+
+    const video = document.createElement('video');
+    video.setAttribute('src', data);
+    video.controls = true;
+    container.appendChild(video);
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = data;
+    downloadLink.download = `ecvideo-${Date.now()}.mp4`;
+    container.appendChild(downloadLink);
+
+    this.capturesStorage.appendChild(container);
+    return container;
   }
 
 

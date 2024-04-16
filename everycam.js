@@ -16,6 +16,7 @@ window.onload = ()=>{
     fullscreenBtn: document.getElementById('fullscreen-btn'),
     displayBtn: document.getElementById('get-display'),
     endDisplayBtn: document.getElementById('end-display'),
+    recordBtn: document.getElementById('record-video')
   };
 
   const capsContainer = document.querySelector('#captures-container');
@@ -61,6 +62,17 @@ window.onload = ()=>{
   buttons.photoBtn.addEventListener('click', ()=>{
     app.takeScreenshot();
     buttons.clearCapsBtn.disabled = false;
+  });
+
+  buttons.recordBtn.addEventListener('click', ()=>{
+    if(app.isRecording){
+      app.stopRecording();
+      app.isRecording = false;
+    } else {
+      app.startRecording();
+      app.isRecording = true;
+    }
+    buttons.recordBtn.classList.toggle('active');
   });
 
   buttons.clearCapsBtn.addEventListener('click', ()=>{

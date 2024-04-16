@@ -4,7 +4,7 @@ export class WebcamController{
   constructor(){
     this.stream = null;
     this.available = false;
-    this.constraints = {video: true, audio: false};
+    this.constraints = {video: true, audio: true};
   }
 
   async init(){
@@ -20,6 +20,22 @@ export class WebcamController{
     }catch(err){
       console.log('webcam was not approved by user' + err);
       alert('webcam was not approved by user' + err);
+    }
+  }
+
+  getVideoTrack(){
+    if(this.available){
+      return this.stream.getVideoTracks()[0];
+    } else {
+      console.log("webcam stream not available");
+    }
+  }
+
+  getAudioTrack(){
+    if(this.available){
+      return this.stream.getAudioTracks()[0];
+    } else {
+      console.log("webcam stream not available");
     }
   }
   

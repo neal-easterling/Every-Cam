@@ -2,7 +2,7 @@ import { StorageController } from "./StorageController.js";
 import { CanvasController } from "./CanvasController.js";
 import { WebcamController } from "./WebcamController.js";
 import { DisplayController } from "./DisplayController.js";
-
+import { RecordingController } from "./RecordingController.js";
 
 export class AppHandler {
 
@@ -11,6 +11,7 @@ export class AppHandler {
     this.mainCanvas = new CanvasController();
     this.webcam = new WebcamController();
     this.display = new DisplayController();
+    this.recorder = new RecordingController();
     this.mainContainer = document.querySelector('main');
 
     this.resolution = {
@@ -20,6 +21,7 @@ export class AppHandler {
 
     this.framerate = 30;
     this.camInverted = true;
+    this.isRecording = false;
 
     //Setup Objects
     this.storage.initStorage(this.resolution);
@@ -62,7 +64,20 @@ export class AppHandler {
     }catch(err){
       console.log(err);
     }
-}
+  }
+  startRecording(){
+    const audioTrack = this.webcam.getAudioTrack();
+    const videoTrack = this.mainCanvas.captureCanvasStream().getVideoTracks()[0];
+    const stream = this.recorder.combineTracksToStream(videoTrack, audioTrack);
+    this.recorder.createRecorder(stream);
+    this.recorder.active.ondataavailable = e => this.storage.returnDownloadVideoEl(e.data);
+    this.recorder.active.start();
+    console.log('recording started');
+  }
+  stopRecording(){
+    this.recorder.active.stop();
+    console.log('recording stopped');
+  }
 
   render(){
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);

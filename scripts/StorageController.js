@@ -44,6 +44,7 @@ export class StorageController{
   assignWebcamToVideo(stream){
     this.webcamStream = stream;
     this.webcamVideoEl.srcObject = this.webcamStream;
+    //this.webcamVideoEl.volume = 0;
   }
 
   assignDisplayToVideo(stream){

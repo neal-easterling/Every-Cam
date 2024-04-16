@@ -1,6 +1,6 @@
 import { StorageController } from "./StorageController.js";
 import { CanvasController } from "./CanvasController.js";
-import { WebcamController } from "./WebcamController.js";
+import { MediaController } from "./MediaController.js";
 import { DisplayController } from "./DisplayController.js";
 import { RecordingController } from "./RecordingController.js";
 
@@ -9,7 +9,8 @@ export class AppHandler {
   constructor(){
     this.storage = new StorageController();
     this.mainCanvas = new CanvasController();
-    this.webcam = new WebcamController();
+    this.webcam = new MediaController('video');
+    this.microphone = new MediaController('audio');
     this.display = new DisplayController();
     this.recorder = new RecordingController();
     this.mainContainer = document.querySelector('main');
@@ -32,6 +33,12 @@ export class AppHandler {
     const stream = await this.webcam.init();
     await this.setVideoTrackSize(stream);
     this.storage.assignWebcamToVideo(stream);
+    console.log("initWebcam triggered");
+  }
+
+  async initMicrophone(){
+    const stream = await this.microphone.init();
+    console.log("initMicrophone triggered");
   }
 
   async initDisplay(){
@@ -70,7 +77,11 @@ export class AppHandler {
     const videoTrack = this.mainCanvas.captureCanvasStream().getVideoTracks()[0];
     const stream = this.recorder.combineTracksToStream(videoTrack, audioTrack);
     this.recorder.createRecorder(stream);
-    this.recorder.active.ondataavailable = e => this.storage.returnDownloadVideoEl(e.data);
+    console.log(stream);
+    this.recorder.active.ondataavailable = async(e) => {
+      const data = await this.recorder.active.requestData();
+      this.storage.returnDownloadVideoEl(data);
+    }
     this.recorder.active.start();
     console.log('recording started');
   }

@@ -19,7 +19,7 @@ Current production versions is a simple online view only document camera for des
 
   ### v1.3 (in process)
   - ✅switch display to Canvas element & hide video elements.
-  - Add camera inverse control.
+  - ✅Add camera inverse control.
   - ✅Add webcam fullscreen to canvas.
   - ✅Add webcam overlay to canvas.
   - Add ability to drag webcam overlay to desired position.

@@ -32,27 +32,39 @@ export class CanvasController{
     const centery = Math.floor(this.height/2);
     this.ctx.drawImage(this.logo, centerx - 125, centery - 125);
   }
+  drawCamFullFrame(videoSource, inverted = true){
+    this.ctx.save();
+    let posX = 0;
+    if(inverted) {
+      this.ctx.scale(-1, 1);
+      posX = this.width * -1;
+    }
+    this.ctx.drawImage(videoSource, posX, 0, this.width, this.height);
+    this.ctx.restore();
+  }
   
   drawFullFrame(videoSource){
     this.ctx.drawImage(videoSource, 0, 0, this.width, this.height); 
   }
 
-  drawCircle(videoSource, camObj = this.overlayCam){
-    let {x, y, radius} = camObj;
+  drawCircle(videoSource, inverted=true, camObj = this.overlayCam){
+    let {x, y, radius, videoWidth, videoHeight, vX, vY} = camObj;
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
     this.ctx.clip()
-    let videoWidth = radius * 4;
-    let videoHeight = (videoWidth * this.height) / this.width;
-    let startX = x - videoWidth / 2;
-    let startY = y - videoHeight / 2;
-    this.ctx.drawImage(videoSource, startX, startY, videoWidth, videoHeight);
+    let posX = vX;
+    if(inverted) {
+      this.ctx.scale(-1, 1);
+      posX = (videoWidth - radius/2) * -1;
+    }
+    this.ctx.drawImage(videoSource, posX, vY, videoWidth, videoHeight);
     this.ctx.restore();
   }
 
   captureCanvasStream(){
     const stream = this.mainCanvas.el.captureStream(this.frameRate);
+    return stream;
   }
 
 }

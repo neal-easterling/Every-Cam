@@ -10,6 +10,7 @@ window.onload = ()=>{
   const buttons = {
     webcamBtn: document.getElementById('get-webcam'),
     closeWebcamBtn: document.getElementById('end-webcam'),
+    invertBtn:document.getElementById('invert-webcam'),
     photoBtn: document.getElementById('take-photo'),
     clearCapsBtn: document.getElementById('clear-captures-btn'),
     fullscreenBtn: document.getElementById('fullscreen-btn'),
@@ -24,6 +25,7 @@ window.onload = ()=>{
     buttons.webcamBtn.classList.add('active');
     buttons.webcamBtn.disabled = true;
     buttons.closeWebcamBtn.disabled = false;
+    buttons.invertBtn.disabled = false;
   });
 
   buttons.closeWebcamBtn.addEventListener('click', ()=>{
@@ -31,7 +33,16 @@ window.onload = ()=>{
     buttons.webcamBtn.disabled = false;
     buttons.webcamBtn.classList.remove('active');
     buttons.closeWebcamBtn.disabled = true;
+    buttons.invertBtn.disabled = true;
+  });
 
+  buttons.invertBtn.addEventListener('click', ()=>{
+    if (app.camInverted) {
+      app.camInverted = false;
+    } else {
+      app.camInverted = true;
+    }
+    buttons.invertBtn.classList.toggle('active');
   });
 
   buttons.displayBtn.addEventListener('click', async()=>{

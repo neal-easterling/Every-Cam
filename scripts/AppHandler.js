@@ -2,7 +2,6 @@ import { StorageController } from "./StorageController.js";
 import { CanvasController } from "./CanvasController.js";
 import { WebcamController } from "./WebcamController.js";
 import { DisplayController } from "./DisplayController.js";
-import { OverlayCam } from "./OverlayCam.js";
 
 
 export class AppHandler {
@@ -20,6 +19,7 @@ export class AppHandler {
     };
 
     this.framerate = 30;
+    this.camInverted = true;
 
     //Setup Objects
     this.storage.initStorage(this.resolution);
@@ -71,14 +71,14 @@ export class AppHandler {
       this.mainCanvas.drawBlank();
     }
     if(this.webcam.available && !this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.webcamVideoEl);
+      this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
     }
     if(!this.webcam.available && this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
     }
     if(this.webcam.available && this.display.available){
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-      this.mainCanvas.drawCircle(this.storage.webcamVideoEl);
+      this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
     } 
   }
 

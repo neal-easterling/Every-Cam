@@ -26,8 +26,8 @@ Current production versions is a simple online view only document camera for des
   - ✅Add display share to canvas.
   - ✅Add canvas photo capture.
   - ✅Add canvas photo download.
-  - Add canvas recording.
-  - Add canvas recording download.
+  - ✅Add canvas recording.
+  - ✅Add canvas recording download.
 
   ### v1.4
   - add user auth with Google

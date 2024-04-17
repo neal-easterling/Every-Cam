@@ -9,13 +9,11 @@ window.onload = ()=>{
 
   const buttons = {
     webcamBtn: document.getElementById('get-webcam'),
-    closeWebcamBtn: document.getElementById('end-webcam'),
     invertBtn:document.getElementById('invert-webcam'),
     photoBtn: document.getElementById('take-photo'),
     clearCapsBtn: document.getElementById('clear-captures-btn'),
     fullscreenBtn: document.getElementById('fullscreen-btn'),
     displayBtn: document.getElementById('get-display'),
-    endDisplayBtn: document.getElementById('end-display'),
     recordBtn: document.getElementById('record-video'),
     micBtn: document.getElementById('get-mic')
   };
@@ -23,19 +21,13 @@ window.onload = ()=>{
   const capsContainer = document.querySelector('#captures-container');
 
   buttons.webcamBtn.addEventListener('click', async()=>{
-    await app.initWebcam();    
-    buttons.webcamBtn.classList.add('active');
-    buttons.webcamBtn.disabled = true;
-    buttons.closeWebcamBtn.disabled = false;
-    buttons.invertBtn.disabled = false;
-  });
-
-  buttons.closeWebcamBtn.addEventListener('click', ()=>{
-    app.webcam.available = false;
-    buttons.webcamBtn.disabled = false;
-    buttons.webcamBtn.classList.remove('active');
-    buttons.closeWebcamBtn.disabled = true;
-    buttons.invertBtn.disabled = true;
+    if (app.webcam.available){
+      app.webcam.available = false;
+    } else {
+      await app.initWebcam(); 
+    }
+    buttons.webcamBtn.classList.toggle('active');
+    buttons.invertBtn.toggleAttribute('disabled');
   });
 
   buttons.invertBtn.addEventListener('click', ()=>{
@@ -48,16 +40,12 @@ window.onload = ()=>{
   });
 
   buttons.displayBtn.addEventListener('click', async()=>{
-    await app.initDisplay();
-    buttons.displayBtn.classList.add('active');
-    buttons. endDisplayBtn.disabled = false;
-
-  });
-
-  buttons.endDisplayBtn.addEventListener('click', ()=>{
-    app.display.available = false;
-    buttons.displayBtn.classList.remove('active');
-    buttons.endDisplayBtn.disabled = true;
+    if(app.display.available){
+      app.display.available = false;
+    } else {
+      await app.initDisplay();
+    }
+    buttons.displayBtn.classList.toggle('active');
   });
 
   buttons.photoBtn.addEventListener('click', ()=>{

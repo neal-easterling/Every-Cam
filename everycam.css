@@ -7,11 +7,11 @@
   --clr-button: #555;
   --clr-button-border: #444;
   --clr-white: #d9d9d9;
-  --clr-on: #257FD2;
+  --clr-on: #C10940;
   --clr-on-hover: #1b5e9c;
   --clr-delete: #C10940;
   --clr-close: #D28325;
-  --clr-available: #1f7513;
+  --clr-available: #257FD2;
 
   --gap: 5px;
   --border-radius: 5px;
@@ -155,7 +155,7 @@ h4{
   text-decoration: none;
   text-align: center;
   color: var(--clr-white);
-  background-color: var(--clr-on);
+  background-color: var(--clr-available);
   border-radius: var(--border-radius);
   border: var(--border);
 }

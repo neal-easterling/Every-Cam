@@ -44,6 +44,9 @@ window.onload = ()=>{
       app.display.available = false;
     } else {
       await app.initDisplay();
+      app.display.stream.getVideoTracks()[0].onended = ()=>{
+        buttons.displayBtn.classList.toggle('active');
+      }
     }
     buttons.displayBtn.classList.toggle('active');
   });

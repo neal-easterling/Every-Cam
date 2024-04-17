@@ -19,4 +19,17 @@ export class RecordingController {
     return mediaStream;
   }
 
+  convertBlobToMP4(buffer){
+    const blob = new Blob(buffer, {type: 'video/mp4'});
+    return blob;
+  }
+
+  handleRecording(e, storage){
+    const buffer = [];
+    buffer.push(e.data);
+    const blob = this.convertBlobToMP4(buffer);
+    const urlObj = window.URL.createObjectURL(blob);
+    storage.returnDownloadVideoEl(urlObj);
+  }
+
 }

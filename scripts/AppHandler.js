@@ -83,23 +83,10 @@ export class AppHandler {
     return newStream;
   }
 
-  convertBlobToMP4(buffer){
-    const blob = new Blob(buffer, {type: 'video/mp4'});
-    return blob;
-  }
-
-  handleRecording(e){
-    const buffer = [];
-    buffer.push(e.data);
-    const blob = this.convertBlobToMP4(buffer);
-    const urlObj = window.URL.createObjectURL(blob);
-    this.storage.returnDownloadVideoEl(urlObj);
-  }
-
   async startRecording(){
     const stream = await this.getCombinedStream();
     const record = this.recorder.createRecorder(stream);
-    record.ondataavailable = (e) => this.handleRecording(e);
+    record.ondataavailable = (e) => this.recorder.handleRecording(e, this.storage);
     this.recorder.active.start();
     console.log('recording started');
   }

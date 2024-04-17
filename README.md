@@ -22,7 +22,6 @@ Current production versions is a simple online view only document camera for des
   - ✅Add camera inverse control.
   - ✅Add webcam fullscreen to canvas.
   - ✅Add webcam overlay to canvas.
-  - Add ability to drag webcam overlay to desired position.
   - ✅Add display share to canvas.
   - ✅Add canvas photo capture.
   - ✅Add canvas photo download.
@@ -38,6 +37,7 @@ Current production versions is a simple online view only document camera for des
   - Integrate YouTube Streaming
   
   ### v1.6
+  - Add ability to drag webcam overlay to desired position.
   - add whiteboarding / annotations on canvas
   - add pencil tool
   - add highlight tool

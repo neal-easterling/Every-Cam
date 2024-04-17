@@ -64,15 +64,23 @@ export class StorageController{
     return downloadLink;
   }
 
-  returnDownloadVideoEl(data){
-    const urlObj = window.URL.createObjectURL(data);
+  returnDownloadVideoEl(urlObj){
+    const container = document.createElement('div');
+    container.setAttribute('class', 'video-container');
 
     const video = document.createElement('video');
     video.src = urlObj;
     video.controls = true;
+    container.appendChild(video);
+    
+    const downloadLink = document.createElement('a');
+    downloadLink.href = urlObj;
+    downloadLink.download = `ecvideo-${Date.now()}.mp4`;
+    downloadLink.innerHTML = 'download';
+    container.appendChild(downloadLink);
 
-    this.capturesStorage.appendChild(video);
-    return video;
+    this.capturesStorage.appendChild(container);
+    return container;
   }
 
 

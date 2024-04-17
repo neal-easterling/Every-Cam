@@ -142,10 +142,22 @@ h4{
   width: 100%;
 }
 
-.captures-container video{
+.captures-container .video-container video{
  width: 100%;
- margin-top: 5px;
+ margin-top: 10px;
  border-radius: var(--border-radius);
+}
+
+.video-container a {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
+  color: var(--clr-white);
+  background-color: var(--clr-on);
+  border-radius: var(--border-radius);
+  border: var(--border);
 }
 
 .btn{

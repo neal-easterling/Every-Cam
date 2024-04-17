@@ -3,13 +3,12 @@ export class RecordingController {
 
   constructor(){
     this.active = null;
-    this.mimeType = 'video/mp4';
+    this.mimeType = 'video/webm';
     this.blog = null;
   }
 
   createRecorder(mediaStream){
-    //let options = {mimeType: this.mimeType};
-    this.active = new MediaRecorder(mediaStream);
+    this.active = new MediaRecorder(mediaStream, {mimeType: this.mimeType});
     return this.active;
   }
 

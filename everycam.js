@@ -79,6 +79,7 @@ window.onload = ()=>{
     if(app.isRecording){
       app.stopRecording();
       app.isRecording = false;
+      buttons.clearCapsBtn.disabled = false;
     } else {
       app.startRecording();
       app.isRecording = true;

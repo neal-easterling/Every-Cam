@@ -74,9 +74,9 @@ export class AppHandler {
   }
 
   async getCombinedStream(){
-    const videoTracks = await this.mainCanvas.captureCanvasStream().getVideoTracks();
+    const videoTracks = await this.mainCanvas.captureCanvasStream(this.framerate).getVideoTracks();
     let audioTracks = null;
-    if(this.mainContainer.available){
+    if(this.microphone.available){
       audioTracks = await this.microphone.stream.getAudioTracks();
     }
     const newStream = await this.recorder.combineTracksToStream({videoTracks, audioTracks});

@@ -138,8 +138,14 @@ h4{
   gap: var(--gap);
 }
 
-.captures-container a img{
+.captures-container a img {
   width: 100%;
+}
+
+.captures-container video{
+ width: 100%;
+ margin-top: 5px;
+ border-radius: var(--border-radius);
 }
 
 .btn{

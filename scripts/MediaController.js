@@ -1,57 +1,48 @@
-export const MediaController = {
 
-  getCameraStream : async()=>{
-      const constraints = {video:true, audio: false};
-      try{
-        console.log('getting webcam stream ...');
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        return stream;
-      }catch(err){
-        console.log('webcam was not approved by user' + err);
-        alert('webcam was not approved by user' + err);
-      }
-  },
-  setVideoTrackSize : async (stream) => {
-    const videoConstraints = {
-      width: 1200,
-      height: 720
+export class MediaController{
+
+  constructor(type){
+    this.type = type.toLowerCase();
+    this.stream = null;
+    this.available = false;
+    this.constraints = {
+      video: this.type == 'video' ? true:false, 
+      audio: this.type == 'audio' ? true:false
     };
-    //Get Video Track from stream
-    const vTrack = stream.getVideoTracks()[0];
+  }
+
+  async init(){
     try{
-      const setVideo = await vTrack.applyConstraints(videoConstraints);
+      console.log(`getting ${this.type} stream ...`);
+      const stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+      this.stream = stream;
+      this.available = true;
+      this.stream.getTracks()[0].addEventListener('ended',()=>{
+        this.available = false;
+      });
+      return stream;
     }catch(err){
-      console.log('track size was rejected: ' + err);
-    }
-  },
-  setVideoSourceToStream : async(videoEl)=>{
-    const stream = await MediaController.getCameraStream();
-    const videoSet = await MediaController.setVideoTrackSize(stream);
-    videoEl.srcObject = stream;
-    videoEl.addEventListener('loadedmetadata', ()=> videoEl.play());
-  },
-  takeScreenshot : (canvas, video)=>{
-    const context = canvas.getContext('2d');
-    const videoBox = video.getBoundingClientRect();
-    context.drawImage(video, 0, 0, videoBox.width, videoBox.height);
-    const data = canvas.toDataURL('image/png');
-    return data;
-  },
-  addPhoto : (elements)=>{
-    const img = document.createElement('img');
-    const data = MediaController.takeScreenshot(elements.canvas, elements.videoWeb);
-    img.setAttribute('src', data);
-    const downloadLink = document.createElement('a');
-    downloadLink.href = data;
-    downloadLink.download = `screenshot-${Date.now()}.png`;
-    downloadLink.appendChild(img);
-    elements.photoContainer.appendChild(downloadLink);
-  },
-  enterFullscreen : async(element)=>{
-    try{
-      element.requestFullscreen();
-    }catch(err){
-      console.log(err);
+      console.log(`${this.type} was not approved by user ${err}`);
+      alert(`${this.type} was not approved by user ${err}`);
     }
   }
+
+  getVideoTracks(){
+    if(this.available){
+      return this.stream.getVideoTracks();
+    } else {
+      console.log("video tracks not available");
+    }
+  }
+
+  getAudioTracks(){
+    if(this.available){
+      return this.stream.getAudioTracks();
+    } else {
+      console.log("audio tracks not available");
+    }
+  }
+  
+  
+
 }

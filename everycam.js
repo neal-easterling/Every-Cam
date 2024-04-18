@@ -1,66 +1,90 @@
-import { MediaController } from "./scripts/MediaController.js";
-
-
-
+import { AppHandler } from "./scripts/AppHandler.js";
 
 window.onload = ()=>{
 
-  const elements = {
-    videoWeb: document.getElementById("webcam-video"),
-    videoDisplay: document.getElementById('display-video'),
-    webcamButton: document.getElementById('get-webcam'),
-    closeWebcamButton: document.getElementById('end-webcam'),
-    photoButton: document.getElementById('take-photo-button'),
-    photoContainer: document.getElementById('photo-container'),
-    clearPhotosButton: document.getElementById('clear-photos-button'),
-    fullscreenButton: document.getElementById('fullscreen-button'),
-    canvas: document.getElementById('canvas'),
+  const app = new AppHandler();
+  setInterval(()=>{
+    app.render();
+  }, 1000 / app.framerate);
+
+  const buttons = {
+    webcamBtn: document.getElementById('get-webcam'),
+    invertBtn:document.getElementById('invert-webcam'),
+    photoBtn: document.getElementById('take-photo'),
+    clearCapsBtn: document.getElementById('clear-captures-btn'),
+    fullscreenBtn: document.getElementById('fullscreen-btn'),
+    displayBtn: document.getElementById('get-display'),
+    recordBtn: document.getElementById('record-video'),
+    micBtn: document.getElementById('get-mic')
   };
 
-  elements.webcamButton.addEventListener('click',()=>{
-    MediaController.setVideoSourceToStream(elements.videoWeb);
-    elements.webcamButton.classList.toggle('active');
-    elements.webcamButton.disabled = true;
-    elements.closeWebcamButton.disabled = false;
-    elements.photoButton.disabled = false;
-    elements.fullscreenButton.disabled = false;
+  const capsContainer = document.querySelector('#captures-container');
+
+  buttons.webcamBtn.addEventListener('click', async()=>{
+    if (app.webcam.available){
+      app.webcam.available = false;
+    } else {
+      await app.initWebcam(); 
+    }
+    buttons.webcamBtn.classList.toggle('active');
+    buttons.invertBtn.toggleAttribute('disabled');
   });
 
-  elements.closeWebcamButton.addEventListener('click', ()=>{
-    elements.videoWeb.srcObject = null;
-    if(elements.webcamButton.disabled == true){
-      elements.webcamButton.disabled = false;
-      elements.webcamButton.classList.toggle('active');
+  buttons.invertBtn.addEventListener('click', ()=>{
+    if (app.camInverted) {
+      app.camInverted = false;
+    } else {
+      app.camInverted = true;
     }
-    if(elements.closeWebcamButton.disabled == false){
-      elements.closeWebcamButton.disabled = true;
-    }
-    if(elements.photoButton.disabled == false){
-      elements.photoButton.disabled = true;
-    }
-    if(elements.fullscreenButton.disabled == false){
-      elements.fullscreenButton.disabled = true;
-    }
-  })
-
-  elements.photoButton.addEventListener('click', ()=>{
-    elements.canvas.setAttribute('width', elements.videoWeb.getBoundingClientRect().width);
-    elements.canvas.setAttribute('height', elements.videoWeb.getBoundingClientRect().height);
-    MediaController.addPhoto(elements);
-    if(elements.clearPhotosButton.disabled == true){
-      elements.clearPhotosButton.disabled = false;
-    }
+    buttons.invertBtn.classList.toggle('active');
   });
 
-  elements.clearPhotosButton.addEventListener('click', ()=>{
-    elements.photoContainer.innerHTML = '';
-    if(elements.clearPhotosButton.disabled == false){
-      elements.clearPhotosButton.disabled = true;
+  buttons.displayBtn.addEventListener('click', async()=>{
+    if(app.display.available){
+      app.display.available = false;
+    } else {
+      await app.initDisplay();
+      app.display.stream.getVideoTracks()[0].onended = ()=>{
+        buttons.displayBtn.classList.remove('active');
+      }
     }
+    buttons.displayBtn.classList.toggle('active');
   });
 
-  elements.fullscreenButton.addEventListener('click', ()=>{
-    MediaController.enterFullscreen(elements.videoWeb);
+  buttons.photoBtn.addEventListener('click', ()=>{
+    app.takeScreenshot();
+    buttons.clearCapsBtn.disabled = false;
+  });
+
+  buttons.micBtn.addEventListener('click', async()=>{
+    if(app.microphone.available){
+      app.microphone.available = false;
+    } else {
+      await app.initMicrophone();
+      app.microphone.available = true;
+    }
+    buttons.micBtn.classList.toggle('active');
+  });
+
+  buttons.recordBtn.addEventListener('click', ()=>{
+    if(app.isRecording){
+      app.stopRecording();
+      app.isRecording = false;
+      buttons.clearCapsBtn.disabled = false;
+    } else {
+      app.startRecording();
+      app.isRecording = true;
+    }
+    buttons.recordBtn.classList.toggle('active');
+  });
+
+  buttons.clearCapsBtn.addEventListener('click', ()=>{
+    capsContainer.innerHTML = '';
+    buttons.clearCapsBtn.disabled = true;
+  });
+
+  buttons.fullscreenBtn.addEventListener('click', ()=>{
+    app.requestFullScreen();
   });
   
 }

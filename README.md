@@ -6,26 +6,45 @@ Current production versions is a simple online view only document camera for des
 
 ## Development Road Map
 
-  ### v1 (completed)
-  - view only webcam in browser as document camera
+  ### v1.1 (completed)
+  - ✅view only webcam in browser as document camera
   
-  ### v2 (completed)
-  - Add snapshot of camera feature.
-  - Add ability to download shapshot.
-  - add ability to clear taken photos.
-  - add ability to fullscreen camera.
-  - add ability to start and stop camera without reload.
-  - Adjust stylings to familiar graphics applications.
+  ### v1.2 (completed)
+  - ✅Add snapshot of camera feature.
+  - ✅Add ability to download shapshot.
+  - ✅add ability to clear taken photos.
+  - ✅add ability to fullscreen camera.
+  - ✅add ability to start and stop camera without reload.
+  - ✅Adjust stylings to familiar graphics applications.
 
-  ### v3
-  - switch display to Canvas element & hide video elements.
-  - Add camera inverse control.
-  - Add video capture and download.
-  - Add display capture and download.
-  - Add webcam/display overlay stream, record, and download.
+  ### v1.3 (in process)
+  - ✅switch display to Canvas element & hide video elements.
+  - ✅Add camera inverse control.
+  - ✅Add webcam fullscreen to canvas.
+  - ✅Add webcam overlay to canvas.
+  - ✅Add display share to canvas.
+  - ✅Add canvas photo capture.
+  - ✅Add canvas photo download.
+  - ✅Add canvas recording.
+  - ✅Add canvas recording download.
 
-  ### v4
-  - Integrate Google Drive.
-  - Add ability to share screen between computers with WebRTC.
+  ### v1.4
+  - add user auth with Google
+  - storage of photos and video with Google Drive. 
+
+  ### v1.5
+  - Integrate direct upload to YouTube.
+  - Integrate YouTube Streaming
+  
+  ### v1.6
+  - Add ability to drag webcam overlay to desired position.
+  - add whiteboarding / annotations on canvas
+  - add pencil tool
+  - add highlight tool
+  - add text tool
+  - add shape tool
+
+  ### v1.7
+  - Integrate Twitch Streaming
   
     

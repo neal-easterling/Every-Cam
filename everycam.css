@@ -7,11 +7,11 @@
   --clr-button: #555;
   --clr-button-border: #444;
   --clr-white: #d9d9d9;
-  --clr-on: #257FD2;
+  --clr-on: #C10940;
   --clr-on-hover: #1b5e9c;
   --clr-delete: #C10940;
   --clr-close: #D28325;
-  --clr-available: #1f7513;
+  --clr-available: #257FD2;
 
   --gap: 5px;
   --border-radius: 5px;
@@ -65,9 +65,7 @@ aside{
   background-color: var(--clr-lite);
 }
 
-canvas{
-  display: none;
-}
+
 
 h1, h2, h3, h4{
   font-weight: 300;
@@ -82,6 +80,14 @@ h3{
 }
 h4{
   font-size: 0.8em;
+}
+
+.main-canvas{
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--clr-white);
+    width: 80%;
+    aspect-ratio: 16/9;
 }
 
 .fullscreen-container{
@@ -113,18 +119,6 @@ h4{
   place-items: center;
 }
 
-.video-container{
-  width: 95%;
-  aspect-ratio: 16/9;
-  background-color: var(--clr-dark);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-}
-
-video{
-  width: 100%;
-}
-
 .assets-bar{
   grid-area: assets;
   padding: 1rem;
@@ -136,7 +130,7 @@ video{
   grid-template-columns: 2fr 1fr;
 }
 
-.photo-container{
+.captures-container{
   margin-top: 1rem;
   border-top: var(--border);
   display: flex;
@@ -144,15 +138,33 @@ video{
   gap: var(--gap);
 }
 
-.photo-container a img{
+.captures-container a img {
   width: 100%;
 }
 
-.button{
+.captures-container .video-container video{
+ width: 100%;
+ margin-top: 10px;
+ border-radius: var(--border-radius);
+}
+
+.video-container a {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
+  color: var(--clr-white);
+  background-color: var(--clr-available);
+  border-radius: var(--border-radius);
+  border: var(--border);
+}
+
+.btn{
   position: relative;
   display: grid;
   place-items: center;
-  background-color: var(--clr-button);
+  background-color: var(--clr-available);
   color: var(--clr-white);
   border: var(--border);
   aspect-ratio: 1;
@@ -160,56 +172,60 @@ video{
   border-radius: var(--border-radius);
 }
 
-.button:hover{
+.btn:hover{
   background-color: var(--clr-lite);
 }
 
-.button:disabled{
+.btn:disabled{
   background-color: var(--clr-lite);
 }
 
-.button.active{
-  background-color: var(--clr-on);
+.btn.active{
+  background-color: var(--clr-on) !important;
   border-color: var(--clr-white);
 }
 
-.button.active:hover{
+.btn.active:hover{
   background-color: var(--clr-on-hover);
 }
 
-.fullscreen-button::before{
+.fullscreen-btn::before{
   content: url('./images/fullscreen.svg');
 }
 
-.get-camera-button::before{
+.get-camera-btn::before{
   content: url('./images/camera-on.svg');
 }
 
-.end-camera-button::before{
+.end-camera-btn::before{
   content: url('./images/camera-off.svg');
 }
 
-.invert-camera-button::before{
+.invert-camera-btn::before{
   content: url('./images/invert-camera.svg');
 }
 
-.get-display-button::before{
+.get-display-btn::before{
   content: url('./images/display.svg');
 }
 
-.end-display-button::before{
+.end-display-btn::before{
   content: url('./images/display-close.svg');
 }
 
-.take-photo-button::before{
+.take-photo-btn::before{
   content: url('./images/camera-icon.svg');
 }
 
-.record-video-button::before{
+.get-mic-btn::before{
+  content: url('./images/mic-fill.svg');
+}
+
+.record-video-btn::before{
   content: url('./images/record.svg');
 }
 
-.clear-photos-button::before{
+.clear-captures-btn::before{
   content: url('./images/remove-photo.svg');
 } 
 
@@ -226,14 +242,6 @@ video{
 .align-left{
   align-self: center;
   justify-self: start;
-}
-
-.on:enabled{
-  background-color: var(--clr-on);
-}
-
-.on:enabled:hover{
-  background-color: var(--clr-on-hover);
 }
 
 .close:enabled{

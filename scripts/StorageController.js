@@ -74,6 +74,7 @@ export class StorageController{
     container.appendChild(video);
     
     const downloadLink = document.createElement('a');
+    downloadLink.classList.add('text-btn');
     downloadLink.href = urlObj;
     downloadLink.download = `ecvideo-${Date.now()}.mp4`;
     downloadLink.innerHTML = 'download';

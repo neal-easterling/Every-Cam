@@ -299,6 +299,16 @@ h4{
   justify-content: space-between;
 }
 
+.about-page .block{
+  flex-direction: column;
+  width: 60%;
+}
+
+.block p{
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
 .about-page h3{
   font-size: 1.2em;
 }
@@ -307,4 +317,5 @@ h4{
   display: block;
   padding: 3px;
   border: 1px solid var(--clr-white);
+  margin: 5px 0;
 }

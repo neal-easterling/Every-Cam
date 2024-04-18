@@ -1,8 +1,8 @@
-# Document Camera
+# Every Cam
 
 ## Description
 Current production versions is a simple online view only document camera for desktop.
-[Visit current production version](https://apps4everyone.tech/apps/doc-cam/index.html)
+[Visit current production version](https://apps4everyone.tech/everycam/)
 
 ## Development Road Map
 
@@ -17,7 +17,7 @@ Current production versions is a simple online view only document camera for des
   - ✅add ability to start and stop camera without reload.
   - ✅Adjust stylings to familiar graphics applications.
 
-  ### v1.3 (in process)
+  ### v1.3 (completed)
   - ✅switch display to Canvas element & hide video elements.
   - ✅Add camera inverse control.
   - ✅Add webcam fullscreen to canvas.
@@ -33,16 +33,16 @@ Current production versions is a simple online view only document camera for des
   - storage of photos and video with Google Drive. 
 
   ### v1.5
-  - Integrate direct upload to YouTube.
-  - Integrate YouTube Streaming
-  
-  ### v1.6
   - Add ability to drag webcam overlay to desired position.
   - add whiteboarding / annotations on canvas
   - add pencil tool
   - add highlight tool
   - add text tool
   - add shape tool
+
+  ### v1.6
+  - Integrate direct upload to YouTube.
+  - Integrate YouTube Streaming
 
   ### v1.7
   - Integrate Twitch Streaming

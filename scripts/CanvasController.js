@@ -9,7 +9,8 @@ export class CanvasController{
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.overlayCam = new OverlayCam();
       this.logo = new Image(250, 250);
-      this.logo.src = "https://apps4everyone.tech/everycam/images/appslogo.svg";
+      // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
+      this.logo.src = "../images/appslogo.svg";
   }
 
   setMainCanvasResolution(width, height){

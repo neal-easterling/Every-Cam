@@ -34,7 +34,7 @@ body{
   height: 100vh;
   display: grid;
   grid-template-columns: 50px 5fr 1.5fr;
-  grid-template-rows: 0.5fr 7fr 0.25fr;
+  grid-template-rows: 0.5fr 7fr 1fr;
   grid-template-areas: 
     "header header header"
     "tools main assets"
@@ -123,6 +123,9 @@ h4{
   grid-area: assets;
   padding: 1rem;
   border-left: var(--border);
+  overflow-y: scroll;
+  scrollbar-color: var(--clr-mid) var(--clr-dark);
+  scrollbar-width: thin;
 }
 
 .assets-title{
@@ -318,4 +321,9 @@ h4{
   padding: 3px;
   border: 1px solid var(--clr-white);
   margin: 5px 0;
+}
+
+.ad-container{
+  width: 100%;
+  height: 100px;
 }

@@ -203,43 +203,43 @@ h4{
 }
 
 .fullscreen-btn::before{
-  content: url('./images/fullscreen.svg');
+  content: url('../images/fullscreen.svg');
 }
 
 .get-camera-btn::before{
-  content: url('./images/camera-on.svg');
+  content: url('../images/camera-on.svg');
 }
 
 .end-camera-btn::before{
-  content: url('./images/camera-off.svg');
+  content: url('../images/camera-off.svg');
 }
 
 .invert-camera-btn::before{
-  content: url('./images/invert-camera.svg');
+  content: url('../images/invert-camera.svg');
 }
 
 .get-display-btn::before{
-  content: url('./images/display.svg');
+  content: url('../images/display.svg');
 }
 
 .end-display-btn::before{
-  content: url('./images/display-close.svg');
+  content: url('../images/display-close.svg');
 }
 
 .take-photo-btn::before{
-  content: url('./images/camera-icon.svg');
+  content: url('../images/camera-icon.svg');
 }
 
 .get-mic-btn::before{
-  content: url('./images/mic-fill.svg');
+  content: url('../images/mic-fill.svg');
 }
 
 .record-video-btn::before{
-  content: url('./images/record.svg');
+  content: url('../images/record.svg');
 }
 
 .clear-captures-btn::before{
-  content: url('./images/remove-photo.svg');
+  content: url('../images/remove-photo.svg');
 } 
 
 /* ==== Helpers ==== */

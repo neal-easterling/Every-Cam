@@ -269,60 +269,6 @@ h4{
   background-color: var(--clr-delete);
 }
 
-/*====== ABOUT PAGE ========*/
-.about-page{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--clr-available);
-}
-
-.about-page section {
-  display: flex;
-  align-items: center;
-}
-
-.about-page .logo{
-  width: 200px;
-  aspect-ratio: 1/1;
-}
-
-.about-page .hero-text{
-  font-size: 8em;
-  font-weight: 400;
-  margin-top: -1.5em;
-  color: var(--clr-mid);
-  -webkit-text-stroke: 2px var(--clr-white);
-}
-
-.about-page .spread{
-  width: 60%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.about-page .block{
-  flex-direction: column;
-  width: 60%;
-}
-
-.block p{
-  font-size: 0.8em;
-  margin-top: 5px;
-}
-
-.about-page h3{
-  font-size: 1.2em;
-}
-
-.about-page .start-btn{
-  display: block;
-  padding: 3px;
-  border: 1px solid var(--clr-white);
-  margin: 5px 0;
-}
-
 .ad-container{
   width: 100%;
   height: 100px;

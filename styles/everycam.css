@@ -189,6 +189,23 @@ h4{
   background-color: var(--clr-lite);
 }
 
+.btn::after{
+  position: absolute;
+  left: 50px;
+  width: max-content;
+  padding: 0.5em;
+  background-color: var(--clr-mid);
+  border-radius: var(--border-radius);
+  --scale: 0;
+  transform: scale(var(--scale));
+  transform-origin: left center;
+  transition: transform 300ms 500ms ease;
+}
+
+.btn:hover::after{
+  --scale: 1;
+}
+
 .btn:disabled{
   background-color: var(--clr-lite);
 }
@@ -205,42 +222,69 @@ h4{
 .fullscreen-btn::before{
   content: url('../images/fullscreen.svg');
 }
+.fullscreen-btn::after{
+  content: 'Enter Fullscreen';
+  left: -125px;
+  transform-origin: right center;
+}
 
 .get-camera-btn::before{
   content: url('../images/camera-on.svg');
 }
-
-.end-camera-btn::before{
-  content: url('../images/camera-off.svg');
+.get-camera-btn::after{
+  content: 'Toggle on Webcam';
 }
 
 .invert-camera-btn::before{
   content: url('../images/invert-camera.svg');
 }
 
+.invert-camera-btn::after{
+  content: 'Invert Webcam for Text';
+}
+
 .get-display-btn::before{
   content: url('../images/display.svg');
 }
 
-.end-display-btn::before{
-  content: url('../images/display-close.svg');
+.get-display-btn::after{
+  content: 'Toggle Display Share';
 }
 
 .take-photo-btn::before{
   content: url('../images/camera-icon.svg');
 }
 
+.take-photo-btn::after{
+  content: 'Take Screenshot';
+}
+
 .get-mic-btn::before{
   content: url('../images/mic-fill.svg');
+}
+
+.get-mic-btn::after{
+  content: 'Toggle on Microphone';
 }
 
 .record-video-btn::before{
   content: url('../images/record.svg');
 }
 
+.record-video-btn::after{
+  content: 'Toggle on Video Recording';
+}
+
 .clear-captures-btn::before{
   content: url('../images/remove-photo.svg');
 } 
+
+.clear-captures-btn::after{
+  content: 'Remove Images and Videos';
+  left: -200px;
+  transform-origin: right center;
+  
+}
 
 /* ==== Helpers ==== */
 

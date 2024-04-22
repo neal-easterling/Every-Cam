@@ -28,17 +28,17 @@ Current production versions is a simple online view only document camera for des
   - ✅Add canvas recording.
   - ✅Add canvas recording download.
 
-  ### v1.4
-  - add user auth with Google
-  - storage of photos and video with Google Drive. 
-
-  ### v1.5
+    ### v1.4
   - Add ability to drag webcam overlay to desired position.
   - add whiteboarding / annotations on canvas
   - add pencil tool
   - add highlight tool
   - add text tool
   - add shape tool
+  
+  ### v1.5
+  - add user auth with Google
+  - storage of photos and video with Google Drive. 
 
   ### v1.6
   - Integrate direct upload to YouTube.

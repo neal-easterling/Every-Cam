@@ -316,8 +316,3 @@ h4{
 .delete:enabled{
   background-color: var(--clr-delete);
 }
-
-.ad-container{
-  width: 100%;
-  height: 100px;
-}

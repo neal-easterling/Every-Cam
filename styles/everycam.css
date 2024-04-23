@@ -111,10 +111,20 @@ h4{
 }
 
 .main-container{
+  position: relative;
   grid-area: main;
   display: grid;
   place-items: center;
   background-color: var(--clr-mid);
+}
+
+.whiteboard-tools-container{
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .assets-bar{
@@ -161,22 +171,6 @@ h4{
   padding: 5px;
 }
 
-.text-btn{
-  text-decoration: none;
-  text-align: center;
-  color: var(--clr-white);
-  background-color: var(--clr-available);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--clr-white);
-  transition: all 300ms;
-}
-
-.text-btn:hover{
-  color: var(--clr-available);
-  background-color: var(--clr-white);
-  border-color: var(--clr-available);
-}
-
 .btn{
   position: relative;
   display: grid;
@@ -187,6 +181,7 @@ h4{
   aspect-ratio: 1;
   width: 40px;
   border-radius: var(--border-radius);
+  z-index: 100;
 }
 
 .btn:hover{
@@ -223,9 +218,47 @@ h4{
   background-color: var(--clr-on-hover);
 }
 
+.text-btn{
+  text-decoration: none;
+  text-align: center;
+  color: var(--clr-white);
+  background-color: var(--clr-available);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--clr-white);
+  transition: all 300ms;
+}
+
+.text-btn:hover{
+  color: var(--clr-available);
+  background-color: var(--clr-white);
+  border-color: var(--clr-available);
+}
+
+.select-btn{
+  border-radius: var(--border-radius);
+  background-color: var(--clr-mid);
+  color: var(--clr-white);
+  min-width: 75px;
+  padding: 3px;
+}
+
+.whiteboard-tools-container .btn{
+  background-color: var(--clr-mid);
+}
+
+.whiteboard-tools-container .btn:hover{
+    background-color: var(--clr-lite);
+}
+
+.whiteboard-tools-container label{
+  margin-left: 5px;
+}
+
+
 .fullscreen-btn::before{
   content: url('../images/fullscreen.svg');
 }
+
 .fullscreen-btn::after{
   content: 'Enter Fullscreen';
   left: -125px;
@@ -286,8 +319,23 @@ h4{
 .clear-captures-btn::after{
   content: 'Remove Images and Videos';
   left: -200px;
-  transform-origin: right center;
-  
+  transform-origin: right center; 
+}
+
+.pencil-btn::before{
+  content: url('../images/pencil-icon.svg');
+} 
+
+.highlighter-btn::before{
+  content: url('../images/highlighter-icon.svg');
+}
+
+.square-btn::before{
+  content: url('../images/square-icon.svg');
+}
+
+.circle-btn::before{
+  content: url('../images/circle-icon.svg');
 }
 
 /* ==== Helpers ==== */

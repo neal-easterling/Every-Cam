@@ -45,7 +45,8 @@ export class CanvasController{
   }
   
   drawFullFrame(videoSource){
-    this.ctx.drawImage(videoSource, 0, 0, this.width, this.height); 
+    // , this.width, this.height
+    this.ctx.drawImage(videoSource, 0, 0); 
   }
 
   drawCircle(videoSource, inverted=true, camObj = this.overlayCam){

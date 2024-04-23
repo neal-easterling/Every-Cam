@@ -14,11 +14,10 @@ export class StorageController{
     this.resolution = resolution;
   }
 
-  initStorage(resolution){
-    this.resolution = resolution;
+  initStorage(){
     this.hiddenStorage = this.createHiddenStorageEl();
-    this.webcamVideoEl = this.createHiddenVideoEl('webcam-video', this.resolution);
-    this.displayVideoEl = this.createHiddenVideoEl('display-video', this.resolution);
+    this.webcamVideoEl = this.createHiddenVideoEl('webcam-video');
+    this.displayVideoEl = this.createHiddenVideoEl('display-video');
     this.capturesStorage = document.getElementById('captures-container');
   }
 
@@ -30,10 +29,8 @@ export class StorageController{
     return hidden;
   }
 
-  createHiddenVideoEl(id, resolution){
+  createHiddenVideoEl(id){
     const el = document.createElement('video');
-    el.width = resolution.width;
-    el.height = resolution.height;
     el.id = id;
     el.autoplay = true;
     el.setAttribute('playsinline', true);

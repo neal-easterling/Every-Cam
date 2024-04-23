@@ -25,7 +25,7 @@ export class AppHandler {
     this.isRecording = false;
 
     //Setup Objects
-    this.storage.initStorage(this.resolution);
+    this.storage.initStorage();
     this.mainCanvas.setMainCanvasResolution(this.resolution.width, this.resolution.height);
   }
 
@@ -43,7 +43,7 @@ export class AppHandler {
 
   async initDisplay(){
     const stream = await this.display.init();
-    await this.setVideoTrackSize(stream);
+    //await this.setVideoTrackSize(stream);
     this.storage.assignDisplayToVideo(stream);
   }
 

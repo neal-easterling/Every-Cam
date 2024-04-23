@@ -48,39 +48,26 @@ export class StorageController{
     this.displayVideoEl.srcObject = this.displayStream;
   }
 
-  returnDownloadImgEl(data){
-    const img = document.createElement('img');
-    img.setAttribute('src', data);
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = data;
-    downloadLink.download = `ecimage-${Date.now()}.png`;
-    downloadLink.appendChild(img);
-
-    this.capturesStorage.appendChild(downloadLink);
-    return downloadLink;
-  }
-
-  returnDownloadVideoEl(urlObj){
+  returnDownloadMediaEl(urlObj, type='video'){
     const container = document.createElement('div');
-    container.setAttribute('class', 'video-container');
+    container.setAttribute('class', 'media-container');
 
-    const video = document.createElement('video');
-    video.src = urlObj;
-    video.controls = true;
-    container.appendChild(video);
+    const media = document.createElement(type);
+    media.src = urlObj;
+    if(type == 'video') media.controls = true;
+    container.appendChild(media);
     
     const downloadLink = document.createElement('a');
     downloadLink.classList.add('text-btn');
     downloadLink.href = urlObj;
-    downloadLink.download = `ecvideo-${Date.now()}.mp4`;
+    let fileExtension = '.mp4';
+    if(type='img') fileExtension = '.png';
+    downloadLink.download = `ec${type}-${Date.now()}${fileExtension}`;
     downloadLink.innerHTML = 'download';
     container.appendChild(downloadLink);
 
     this.capturesStorage.appendChild(container);
     return container;
   }
-
-
 
 }

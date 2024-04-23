@@ -29,7 +29,7 @@ export class RecordingController {
     buffer.push(e.data);
     const blob = this.convertBlobToMP4(buffer);
     const urlObj = window.URL.createObjectURL(blob);
-    storage.returnDownloadVideoEl(urlObj);
+    storage.returnDownloadMediaEl(urlObj, 'video');
   }
 
 }

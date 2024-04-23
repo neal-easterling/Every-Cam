@@ -62,7 +62,7 @@ export class AppHandler {
   }
   async takeScreenshot(){
     const data = this.mainCanvas.takeCanvasPhoto();
-    return this.storage.returnDownloadImgEl(data);
+    return this.storage.returnDownloadMediaEl(data, 'img');
   }
 
   async requestFullScreen(){

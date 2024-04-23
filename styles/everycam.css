@@ -141,17 +141,23 @@ h4{
   gap: var(--gap);
 }
 
-.captures-container a img {
+.media-container{
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: var(--border-radius);
+  border: var(--border);
+}
+
+.captures-container .media-container img {
   width: 100%;
 }
 
-.captures-container .video-container video{
+.captures-container .media-container video{
  width: 100%;
- margin-top: 10px;
  border-radius: var(--border-radius);
 }
 
-.video-container a {
+.media-container a {
   display: block;
   width: 100%;
   padding: 5px;

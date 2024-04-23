@@ -91,6 +91,7 @@ window.onload = ()=>{
 
   buttons.whiteboardBtn.addEventListener('click', ()=>{
     whiteboardToolbar.classList.toggle('active');
+    buttons.whiteboardBtn.classList.toggle('active');
   });
   
 }

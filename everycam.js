@@ -15,10 +15,12 @@ window.onload = ()=>{
     fullscreenBtn: document.getElementById('fullscreen-btn'),
     displayBtn: document.getElementById('get-display'),
     recordBtn: document.getElementById('record-video'),
-    micBtn: document.getElementById('get-mic')
+    micBtn: document.getElementById('get-mic'),
+    whiteboardBtn: document.getElementById('whiteboard-tools-toggle')
   };
 
   const capsContainer = document.querySelector('#captures-container');
+  const whiteboardToolbar = document.querySelector('.whiteboard-tools-container');
 
   buttons.webcamBtn.addEventListener('click', async()=>{
     if (app.webcam.available){
@@ -85,6 +87,10 @@ window.onload = ()=>{
 
   buttons.fullscreenBtn.addEventListener('click', ()=>{
     app.requestFullScreen();
+  });
+
+  buttons.whiteboardBtn.addEventListener('click', ()=>{
+    whiteboardToolbar.classList.toggle('active');
   });
   
 }

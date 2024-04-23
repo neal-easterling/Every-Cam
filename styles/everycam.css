@@ -104,6 +104,8 @@ h4{
 }
 
 .tools-container{
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,14 +121,21 @@ h4{
 }
 
 .whiteboard-tools-container{
+  --scale: 0;
   position: absolute;
   bottom: 5px;
   left: 5px;
   display: flex;
   align-items: center;
   gap: 5px;
+  transform: scale(var(--scale));
+  transform-origin: left center;
+  transition: transform 300ms ease;
 }
 
+.whiteboard-tools-container.active{
+  --scale: 1;
+}
 .assets-bar{
   grid-area: assets;
   padding: 1rem;
@@ -174,7 +183,7 @@ h4{
 .btn{
   position: relative;
   display: grid;
-  place-items: center;
+  place-items: center; 
   background-color: var(--clr-available);
   color: var(--clr-white);
   border: var(--border);
@@ -320,6 +329,15 @@ h4{
   content: 'Remove Images and Videos';
   left: -200px;
   transform-origin: right center; 
+}
+
+.whiteboard-toggle-btn {
+  position: absolute;
+  bottom: 5px;
+}
+
+.whiteboard-toggle-btn::before{
+  content: url('../images/pencil-sq-icon.svg');
 }
 
 .pencil-btn::before{

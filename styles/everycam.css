@@ -29,12 +29,12 @@
 
 body{
   font-family: 'Poppins', sans-serif;
-  background-color: var(--clr-mid);
+  background-color: var(--clr-dark);
   color: var(--clr-white);
   height: 100vh;
   display: grid;
   grid-template-columns: 50px 5fr 1.5fr;
-  grid-template-rows: 0.5fr 7fr 1fr;
+  grid-template-rows: 0.5fr 8fr 1fr;
   grid-template-areas: 
     "header header header"
     "tools main assets"
@@ -42,7 +42,7 @@ body{
 }
 
 header, footer{
-  background-color: #111;
+  background-color: var(--clr-dark);
 }
 
 header{
@@ -117,6 +117,7 @@ h4{
   grid-area: main;
   display: grid;
   place-items: center;
+  background-color: var(--clr-mid);
 }
 
 .assets-bar{

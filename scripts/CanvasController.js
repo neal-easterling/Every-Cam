@@ -19,7 +19,7 @@ export class CanvasController{
   setOverlayCamPostion(){
     this.mouse.setCoords();
     const mouseCoords = this.mouse.getCoords();
-    if(this.overlayCam.isMouseOn(mouseCoords)) this.overlayCam.setCoords(mouseCoords);
+    if(this.overlayCam.isMouseOn(mouseCoords) && this.overlayCam.isDraggable) this.overlayCam.setCoords(mouseCoords);
   }
 
   setMainCanvasResolution(width, height){

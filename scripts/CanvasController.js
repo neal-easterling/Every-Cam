@@ -1,4 +1,5 @@
 import { OverlayCam } from "./OverlayCam.js";
+import { MouseConverter } from "./MouseConverter.js";
 
 export class CanvasController{
 
@@ -7,10 +8,18 @@ export class CanvasController{
       this.height = height;
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
+      this.boundingRect = this.el.getBoundingClientRect();
+      this.mouse = new MouseConverter(this.el, this.width, this.height);
       this.overlayCam = new OverlayCam();
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
       this.logo.src = "../images/appslogo.svg";
+  }
+
+  setOverlayCamPostion(){
+    this.mouse.setCoords();
+    const mouseCoords = this.mouse.getCoords();
+    this.overlayCam.setCoords(mouseCoords);
   }
 
   setMainCanvasResolution(width, height){
@@ -18,7 +27,6 @@ export class CanvasController{
     this.el.width = width;
     this.height = height;
     this.el.height = height;
-  
   }
 
   takeCanvasPhoto(){
@@ -33,6 +41,7 @@ export class CanvasController{
     const centery = Math.floor(this.height/2);
     this.ctx.drawImage(this.logo, centerx - 125, centery - 125);
   }
+
   drawCamFullFrame(videoSource, inverted = true){
     this.ctx.save();
     let posX = 0;
@@ -49,19 +58,23 @@ export class CanvasController{
     this.ctx.drawImage(videoSource, 0, 0); 
   }
 
-  drawCircle(videoSource, inverted=true, camObj = this.overlayCam){
-    let {x, y, radius, videoWidth, videoHeight, vX, vY} = camObj;
+  drawCircle(videoSource, inverted, camObj = this.overlayCam){
+    this.setOverlayCamPostion();
+    let {x, y, radius, vX, vY, videoWidth, videoHeight} = camObj;
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    //this.ctx.fillStyle = 'red';
+    //this.ctx.fill();
     this.ctx.clip()
     let posX = vX;
-    if(inverted) {
+    if(inverted == true){
       this.ctx.scale(-1, 1);
-      posX = (videoWidth - radius/2) * -1;
+      posX = (videoWidth + vX ) * -1;
     }
     this.ctx.drawImage(videoSource, posX, vY, videoWidth, videoHeight);
     this.ctx.restore();
+    console.log(x,y);
   }
 
   captureCanvasStream(){

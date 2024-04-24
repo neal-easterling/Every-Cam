@@ -1,25 +1,24 @@
-import { StorageController } from "./StorageController.js";
+import { Storage } from "./Storage.js";
 import { CanvasController } from "./CanvasController.js";
 import { MediaController } from "./MediaController.js";
 import { DisplayController } from "./DisplayController.js";
-import { RecordingController } from "./RecordingController.js";
+import { Recorder } from "./Recorder.js";
 
-export class AppHandler {
+export class App {
 
   constructor(){
-    this.storage = new StorageController();
+    this.storage = new Storage();
     this.mainCanvas = new CanvasController();
     this.webcam = new MediaController('video');
     this.microphone = new MediaController('audio');
     this.display = new DisplayController();
-    this.recorder = new RecordingController();
-    this.mainContainer = document.querySelector('main');
+    this.recorder = new Recorder();
+    this.mainContainer = document.querySelector('main');  
 
     this.resolution = {
       width: 1280,
       height: 720
     };
-
     this.framerate = 30;
     this.camInverted = true;
     this.isRecording = false;
@@ -60,6 +59,7 @@ export class AppHandler {
       console.log('track size was rejected: ' + err);
     }
   }
+
   async takeScreenshot(){
     const data = this.mainCanvas.takeCanvasPhoto();
     return this.storage.returnDownloadMediaEl(data, 'img');
@@ -90,6 +90,7 @@ export class AppHandler {
     this.recorder.active.start();
     console.log('recording started');
   }
+
   stopRecording(){
     this.recorder.active.stop();
     console.log('recording stopped');
@@ -98,19 +99,19 @@ export class AppHandler {
   render(){
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
-    if(!this.webcam.available && !this.display.available){
-      this.mainCanvas.drawBlank();
-    }
-    if(this.webcam.available && !this.display.available){
-      this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
-    }
-    if(!this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-    }
-    if(this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    // if(!this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawBlank();
+    // }
+    // if(this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
+    // }
+    // if(!this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    // }
+    // if(this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
       this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
-    } 
+    //} 
   }
 
 }

@@ -4,23 +4,24 @@ export class OverlayCam{
     this.x = 200;
     this.y = 520;
     this.radius = 150;
-    this.videoWidth = 533;
-    this.videoHeight = 300;
-    this.vX = -67;
-    this.vY = 370; 
+    this.vX = this.x - this.radius * 16/9;
+    this.vY = this.y - this.radius; 
+    this.videoHeight= this.radius * 2;
+    this.videoWidth =(2 * this.radius) * 16/9;
   }
 
-  setCoords({x,y}){
+  setCoords([x,y]){
     this.x = x;
     this.y = y;
-    this.vX = Math.round(x - this.videoWidth / 2);
+    this.vX =  x - this.radius * 16/9;
     this.vY = y - this.radius;
+    //console.log('x: ' + this.x +' vX: ' + this.vX + ' y: ' + this.y + ' vY: ' + this.vY);
   }
 
   setRadius(radius){
     this.radius = radius;
     this.videoHeight = radius * 2;
-    this.videoWidth = Math.round((2 * radius) * 16/9);
+    this.videoWidth = (2 * radius) * 16/9;
   }
 
   getCoords(){

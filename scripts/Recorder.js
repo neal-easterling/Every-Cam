@@ -1,5 +1,5 @@
 
-export class RecordingController {
+export class Recorder {
 
   constructor(){
     this.active = null;

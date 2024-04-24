@@ -1,8 +1,8 @@
-import { AppHandler } from "./scripts/AppHandler.js";
+import { App } from "./scripts/App.js";
 
 window.onload = ()=>{
 
-  const app = new AppHandler();
+  const app = new App();
   setInterval(()=>{
     app.render();
   }, 1000 / app.framerate);

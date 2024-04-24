@@ -1,5 +1,5 @@
 
-export class StorageController{
+export class Storage{
 
   constructor(){
     //Offscreen video capture elements

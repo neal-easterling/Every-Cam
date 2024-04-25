@@ -87,6 +87,13 @@ h4{
     aspect-ratio: 16/9;
 }
 
+.whiteboard-canvas{
+  position: absolute;
+  z-index: 100;
+  width: 80%;
+  aspect-ratio: 16/9;
+}
+
 .fullscreen-container{
   display: flex;
   align-items: end;
@@ -128,7 +135,7 @@ h4{
   display: flex;
   align-items: center;
   gap: 5px;
-  transform: scale(var(--scale));
+  transform: scaleX(var(--scale));
   transform-origin: left center;
   transition: transform 300ms ease;
 }
@@ -136,6 +143,7 @@ h4{
 .whiteboard-tools-container.active{
   --scale: 1;
 }
+
 .assets-bar{
   grid-area: assets;
   padding: 1rem;
@@ -256,6 +264,8 @@ h4{
   height: 40px;
   aspect-ratio: auto;
   padding: 4px;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 .whiteboard-tools-container .btn{

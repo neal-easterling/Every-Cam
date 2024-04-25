@@ -260,12 +260,22 @@ h4{
 }
 
 .select-btn{
-  min-width: 80px;
+  background-color: var(--clr-mid);
+  color: var(--clr-white);
+  border-radius: 3px;
+  border: var(--border);
   height: 40px;
-  aspect-ratio: auto;
-  padding: 4px;
+  padding: 5px;
   text-align: center;
   font-size: 1.2rem;
+}
+
+.select-btn:hover{
+  background-color: var(--clr-lite);
+}
+
+.select-btn:focus{
+  outline: none;
 }
 
 .whiteboard-tools-container .btn{

@@ -383,6 +383,10 @@ h4{
   content: url('../images/circle-icon.svg');
 }
 
+.clear-whiteboard-btn::before{
+  content: url('../images/x-clear-icon.svg');
+}
+
 /* ==== Helpers ==== */
 
 .align-right{

@@ -54,28 +54,19 @@
             </section>
         </aside>
         <main id="main-container" class="main-container">
-            <!--insert display canvas with javascript here-->
             <canvas id="main-canvas" class="main-canvas">
                 <p>Update browser in order to use this Every Cam.</p>
             </canvas>
+            <canvas id="whiteboard-canvas" class="whiteboard-canvas"></canvas>
             <section class="whiteboard-tools-container">
                 <button id="pencil-tool" class="btn pencil-btn"></button>
                 <button id="highlighter-tool" class="btn highlighter-btn"></button>
                 <button id="square-tool" class="btn square-btn"></button>
                 <button id="circle-tool" class="btn circle-btn"></button>
-                <label for="fill-color-select">Fill</label>
-                <select name="fill-color-select" id="fill-color-select" class="select-btn">
-                    <option value="red">red</option>
-                    <option value="blue">blue</option>
-                    <option value="black">black</option>
-                    <option value="none">none</option>
-                </select>
-                <label for="stroke-color-select"> Stroke</label>
-                <select name="stroke-color-select" id="stroke-color-select" class="select-btn">
-                    <option value="none">none</option>
-                    <option value="red">red</option>
-                    <option value="blue">blue</option>
-                    <option value="black">black</option>
+                <input type="color" id="color-select" class="btn color-btn">
+                <select name="color-style-select" id="color-style-select" class="btn select-btn">
+                    <option value="fill">fill</option>
+                    <option value="stroke">stroke</option>
                 </select>
             </section>
         </main>

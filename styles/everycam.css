@@ -243,12 +243,19 @@ h4{
   border-color: var(--clr-available);
 }
 
-.select-btn{
+.color-btn{
   border-radius: var(--border-radius);
   background-color: var(--clr-mid);
   color: var(--clr-white);
-  min-width: 75px;
+  height: 40px;
   padding: 3px;
+}
+
+.select-btn{
+  min-width: 80px;
+  height: 40px;
+  aspect-ratio: auto;
+  padding: 4px;
 }
 
 .whiteboard-tools-container .btn{

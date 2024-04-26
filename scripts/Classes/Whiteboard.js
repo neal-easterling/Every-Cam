@@ -23,8 +23,8 @@ export class Whiteboard {
     this.color = "#257FD2";
     this.strokeSize = 3;
     this.shapeStyle = "stroke";
-    this.opacity = 0.5;
-    this.mode = 'drawing';
+    this.opacity = 1;
+    this.mode = 'none';
     this.isActive = false;
     this.isBackgroundActive = false;
 
@@ -83,6 +83,9 @@ export class Whiteboard {
     if(this.isActive && this.mode == 'drawing'){
       const [x,y] = this.getConvertedCoords();
       const ctx = this.canvas.ctx;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.globalAlpha = this.opacity;
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.strokeSize;
       ctx.beginPath();

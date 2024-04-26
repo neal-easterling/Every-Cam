@@ -18,7 +18,6 @@ window.onload = ()=>{
     displayBtn: document.getElementById('get-display'),
     recordBtn: document.getElementById('record-video'),
     micBtn: document.getElementById('get-mic'),
-    whiteboardBtn: document.getElementById('whiteboard-tools-toggle')
   };
 
   const capsContainer = document.querySelector('#captures-container');
@@ -91,9 +90,58 @@ window.onload = ()=>{
     app.requestFullScreen();
   });
 
-  buttons.whiteboardBtn.addEventListener('click', ()=>{
+
+// ========== Whiteboard Toolbar =================== //
+
+  const wbtoolbtns = {
+    whiteboardBtn: document.getElementById('whiteboard-tools-toggle'),
+    pencilBtn: document.getElementById('pencil-tool'),
+    highlighterBtn: document.getElementById('highlighter-tool'),
+    squareBtn: document.getElementById('square-tool'),
+    circleBtn: document.getElementById('circle-tool'),
+    colorSelect: document.getElementById('color-select'),
+    colorStyleSelect: document.getElementById('color-style-select'),
+    strokeSizeSelect:document.getElementById('stroke-size-select'),
+    clearWhiteboardBtn: document.getElementById('clear-whiteboard')
+  }
+
+const removeActiveClass = (btnsObj)=>{
+  for(const btn in btnsObj){
+    if(btn.classList.contains('active')){
+      btn.classList.remove('active');
+    }
+  }
+}
+
+
+  wbtoolbtns.whiteboardBtn.addEventListener('click', ()=>{
     whiteboardToolbar.classList.toggle('active');
-    buttons.whiteboardBtn.classList.toggle('active');
+    wbtoolbtns.whiteboardBtn.classList.toggle('active');
+    if(app.whiteboard.isActive){
+      app.whiteboard.isActive = false;
+      app.mainCanvas.overlayCam.isDraggable = true;
+    }else{
+      app.whiteboard.isActive = true;
+      app.mainCanvas.overlayCam.isDraggable = false;
+    }
+  });
+
+  wbtoolbtns.pencilBtn.addEventListener('click', ()=>{
+    //removeActiveClass(wbtoolbtns);
+    wbtoolbtns.pencilBtn.classList.add('active');
+    if(app.whiteboard.mode != 'drawing') app.whiteboard.mode = 'drawing';
+  });
+
+  wbtoolbtns.colorSelect.addEventListener('change',(e)=>{
+    app.whiteboard.color = e.target.value;
+  });
+
+  wbtoolbtns.strokeSizeSelect.addEventListener('change', (e)=>{
+    app.whiteboard.strokeSize = e.target.value;
+  });
+
+  wbtoolbtns.clearWhiteboardBtn.addEventListener('click', ()=>{
+    app.whiteboard.clearCanvas();
   });
   
 }

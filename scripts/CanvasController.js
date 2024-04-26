@@ -3,13 +3,13 @@ import { MouseConverter } from "./MouseConverter.js";
 
 export class CanvasController{
 
-  constructor(width=1280, height=720){
+  constructor(mouseHandler, width=1280, height=720){
       this.width = width;
       this.height = height;
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.boundingRect = this.el.getBoundingClientRect();
-      this.mouse = new MouseConverter(this.el, this.width, this.height);
+      this.mouse = new MouseConverter(mouseHandler,this.el, this.width, this.height);
       this.overlayCam = new OverlayCam();
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"

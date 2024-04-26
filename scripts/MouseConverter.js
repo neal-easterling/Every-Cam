@@ -1,9 +1,8 @@
-import { MouseHandler } from "./MouseHandler.js";
 
 export class MouseConverter{
 
-  constructor(el, width, height){
-    this.mouse = new MouseHandler();
+  constructor(mouseHandler, el, width, height){
+    this.mouse = mouseHandler;
     this.canvas = {
       el: el,
       boundingRect: el.getBoundingClientRect(),

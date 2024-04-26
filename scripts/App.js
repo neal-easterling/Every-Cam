@@ -3,17 +3,22 @@ import { CanvasController } from "./CanvasController.js";
 import { MediaController } from "./MediaController.js";
 import { DisplayController } from "./DisplayController.js";
 import { Recorder } from "./Recorder.js";
+import { MouseHandler } from "./MouseHandler.js";
+import { Whiteboard } from "./Whiteboard.js";
 
 export class App {
 
   constructor(){
     this.storage = new Storage();
-    this.mainCanvas = new CanvasController();
+    this.mouseHandler = new MouseHandler(); 
+    this.mainCanvas = new CanvasController(this.mouseHandler);
+    this.whiteboard = new Whiteboard(this.mouseHandler, 'whiteboard-canvas', this.mainCanvas.el);
     this.webcam = new MediaController('video');
     this.microphone = new MediaController('audio');
     this.display = new DisplayController();
     this.recorder = new Recorder();
-    this.mainContainer = document.querySelector('main');  
+    this.mainContainer = document.querySelector('main');
+     
 
     this.resolution = {
       width: 1280,
@@ -97,6 +102,7 @@ export class App {
   }
 
   render(){
+    this.whiteboard.addBackground();
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
     if(!this.webcam.available && !this.display.available){

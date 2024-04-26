@@ -23,5 +23,4 @@ export class MouseHandler {
   getMouse(){
     return [this.x, this.y, this.mouseDown];
   }
-
 }

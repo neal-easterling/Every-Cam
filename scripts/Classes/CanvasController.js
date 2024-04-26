@@ -1,5 +1,5 @@
 import { OverlayCam } from "./OverlayCam.js";
-import { MouseConverter } from "./MouseConverter.js";
+import { convertMouseCoords } from "../functions/convertMouseCoords.js";
 
 export class CanvasController{
 
@@ -9,7 +9,7 @@ export class CanvasController{
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.boundingRect = this.el.getBoundingClientRect();
-      this.mouse = new MouseConverter(mouseHandler,this.el, this.width, this.height);
+      this.mouse = mouseHandler;
       this.overlayCam = new OverlayCam();
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
@@ -17,9 +17,15 @@ export class CanvasController{
   }
 
   setOverlayCamPostion(){
-    this.mouse.setCoords();
-    const mouseCoords = this.mouse.getCoords();
-    if(this.overlayCam.isMouseOn(mouseCoords) && this.overlayCam.isDraggable) this.overlayCam.setCoords(mouseCoords);
+    const[x,y,mouseDown] = this.mouse.getMouse();
+    if(mouseDown){
+      const newCoords = convertMouseCoords(x,y, this.el, this.width, this.height);
+      if(this.overlayCam.isMouseOn(newCoords) 
+        && this.overlayCam.isDraggable){
+          this.overlayCam.setCoords(newCoords);
+        } 
+    } 
+    
   }
 
   setMainCanvasResolution(width, height){

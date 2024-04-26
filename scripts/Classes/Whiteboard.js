@@ -42,12 +42,8 @@ export class Whiteboard {
   }
 
   addBackground(){
-    let ctx = this.canvas.ctx;
     if(this.isActive && this.isBackgroundActive){
-      ctx.clearRect(0,0,this.width, this.height);
-      ctx.globalAlpha = this.opacity;
-      ctx. fillStyle = "#ffcccc";
-      ctx.fillRect(0, 0, this.width, this.height);
+      this.canvas.el.style = "background-color: #d9d9ff; opacity: 0.5;"
     }
   }
 

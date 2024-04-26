@@ -1,10 +1,10 @@
-import { Storage } from "./Storage.js";
-import { CanvasController } from "./CanvasController.js";
-import { MediaController } from "./MediaController.js";
-import { DisplayController } from "./DisplayController.js";
-import { Recorder } from "./Recorder.js";
-import { MouseHandler } from "./MouseHandler.js";
-import { Whiteboard } from "./Whiteboard.js";
+import { Storage } from "./Classes/Storage.js";
+import { CanvasController } from "./Classes/CanvasController.js";
+import { MediaController } from "./Classes/MediaController.js";
+import { DisplayController } from "./Classes/DisplayController.js";
+import { Recorder } from "./Classes/Recorder.js";
+import { MouseHandler } from "./Classes/MouseHandler.js";
+import { Whiteboard } from "./Classes/Whiteboard.js";
 
 export class App {
 
@@ -101,23 +101,23 @@ export class App {
     console.log('recording stopped');
   }
 
-  render(){
-    this.whiteboard.addBackground();
+  renderMain(){
+    //this.whiteboard.addBackground();
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
-    if(!this.webcam.available && !this.display.available){
-      this.mainCanvas.drawBlank();
-    }
-    if(this.webcam.available && !this.display.available){
-      this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
-    }
-    if(!this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-    }
-    if(this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    // if(!this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawBlank();
+    // }
+    // if(this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
+    // }
+    // if(!this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    // }
+    // if(this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
       this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
-    } 
+    //} 
   }
 
 }

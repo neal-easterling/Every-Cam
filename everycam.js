@@ -4,7 +4,7 @@ window.onload = ()=>{
 
   const app = new App();
   setInterval(()=>{
-    app.render();
+    app.renderMain();
   }, 1000 / app.framerate);
 
   const buttons = {

@@ -13,7 +13,7 @@ export class OverlayCam{
 
   isMouseOn([mouseX, mouseY]){
     let distance = Math.pow(mouseX - this.x, 2) / Math.pow(this.radius, 2) + Math.pow(mouseY - this.y,2) / Math.pow(this.radius,2);
-    console.log(distance);
+    //console.log(distance);
     if (distance<2) return true;
     else return false;
 }

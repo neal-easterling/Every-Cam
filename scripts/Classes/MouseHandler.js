@@ -23,4 +23,15 @@ export class MouseHandler {
   getMouse(){
     return [this.x, this.y, this.mouseDown];
   }
+  
+  scaleCoords(el,width, height){
+    const boundingRect = el.getBoundingClientRect();
+    const smWidth = boundingRect.width;
+    const smHeight = boundingRect.height;
+    const left = boundingRect.left;
+    const top = boundingRect.top;
+    const newX = (width * (this.x - left))/smWidth;
+    const newY = (height * (this.y - top))/smHeight;
+    return[newX, newY];
+  }
 }

@@ -12,7 +12,6 @@ export class App {
     this.storage = new Storage();
     this.mouseHandler = new MouseHandler(); 
     this.mainCanvas = new CanvasController(this.mouseHandler);
-    this.whiteboard = new Whiteboard(this.mouseHandler, 'whiteboard-canvas', this.mainCanvas.el);
     this.webcam = new MediaController('video');
     this.microphone = new MediaController('audio');
     this.display = new DisplayController();
@@ -27,6 +26,8 @@ export class App {
     this.framerate = 30;
     this.camInverted = true;
     this.isRecording = false;
+
+    this.whiteboard = new Whiteboard(this.mouseHandler, 'whiteboard-canvas', this.mainCanvas.el, this.resolution);
 
     //Setup Objects
     this.storage.initStorage();
@@ -118,6 +119,10 @@ export class App {
       this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
       this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
     } 
+  }
+
+  renderWhiteboard(){
+    this.whiteboard.draw();
   }
 
 }

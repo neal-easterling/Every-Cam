@@ -5,7 +5,9 @@ window.onload = ()=>{
   const app = new App();
   setInterval(()=>{
     app.renderMain();
+    app.renderWhiteboard();
   }, 1000 / app.framerate);
+
 
   const buttons = {
     webcamBtn: document.getElementById('get-webcam'),

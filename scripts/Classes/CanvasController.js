@@ -1,5 +1,4 @@
 import { OverlayCam } from "./OverlayCam.js";
-import { convertMouseCoords } from "../functions/convertMouseCoords.js";
 
 export class CanvasController{
 
@@ -17,9 +16,9 @@ export class CanvasController{
   }
 
   setOverlayCamPostion(){
-    const[x,y,mouseDown] = this.mouse.getMouse();
+    const[x, y, mouseDown] = this.mouse.getMouse();
     if(mouseDown){
-      const newCoords = convertMouseCoords(x,y, this.el, this.width, this.height);
+      const newCoords = this.mouse.scaleCoords(this.el, this.width, this.height);
       if(this.overlayCam.isMouseOn(newCoords) 
         && this.overlayCam.isDraggable){
           this.overlayCam.setCoords(newCoords);

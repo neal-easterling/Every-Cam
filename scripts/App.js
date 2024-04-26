@@ -105,19 +105,19 @@ export class App {
     //this.whiteboard.addBackground();
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
-    // if(!this.webcam.available && !this.display.available){
-    //   this.mainCanvas.drawBlank();
-    // }
-    // if(this.webcam.available && !this.display.available){
-    //   this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
-    // }
-    // if(!this.webcam.available && this.display.available){
-    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-    // }
-    // if(this.webcam.available && this.display.available){
-    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    if(!this.webcam.available && !this.display.available){
+      this.mainCanvas.drawBlank();
+    }
+    if(this.webcam.available && !this.display.available){
+      this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
+    }
+    if(!this.webcam.available && this.display.available){
+      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    }
+    if(this.webcam.available && this.display.available){
+      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
       this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
-    //} 
+    } 
   }
 
 }

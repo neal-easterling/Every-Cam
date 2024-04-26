@@ -80,7 +80,7 @@ export class CanvasController{
     }
     this.ctx.drawImage(videoSource, posX, vY, videoWidth, videoHeight);
     this.ctx.restore();
-    console.log(x,y);
+    //console.log(x,y);
   }
 
   captureCanvasStream(){

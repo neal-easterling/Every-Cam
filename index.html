@@ -8,12 +8,14 @@
   <meta property="og:image" content="https://apps4everyone.tech/everycam/images/ec-facebook-share.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Every Cam | Free Online Desktop Recording App">
+  <meta name="twitter:site" content="@Neal_Easterling">
+  <meta name="twitter:creator" content="@Neal_Easterling">
   <meta name="twitter:url" content="https://apps4everyone.tech/everycam/">
   <meta name="twitter:description" content="Screenshare recording, webcam overlay, inverted document camera, and screen capture - all in one free app." >
   <meta name="twitter:image" content="https://apps4everyone.tech/everycam/images/ec-twitter-share.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Every Cam</title>
+  <title>Every Cam | About</title>
   <!-- Analytics Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMKT7CYM8J"></script>
   <script>
@@ -26,95 +28,123 @@
   <!--  Google Adsense Tag-->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9125251438066597" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="./styles/splash.css">
+  <link rel="stylesheet" href="./index.css">
   <link rel="icon" href="https://apps4everyone.tech/img/Apps4logo.ico" sizes="any">
   <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml"> 
 </head>
 <body>
-  <header></header>
-  <div class="splash-container">
-    <section class="title-header">
-      <img class="logo" src="https://apps4everyone.tech/everycam/images/appslogo.svg" />
-      <h1 class="hero-text">Every Cam</h1>
-    </section>
-    <section class="donation">
-      <h3 class="subtitle">Every camera 4 everyone</h3>
-      <form action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="hosted_button_id" value="WJSCAATE33SVA" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-      </form> 
-      <p>Free online desktop recording app.  Screenshare recording, webcam overlay, inverted document camera, and screen capture - all in one free app.  Other apps charge subscription fees that can be prohibitive for educators and small business owners.  <strong>Every Cam</strong> was developed and continues to evolve to solve these needs.</p><br/> <p> Every Cam was created and is maintained by a single developer - Neal Easterling. Please consider donating to help continue development and keep this app free 4 everyone.</p>      
-    </section>
-    <section class="socials">
-      <a class="text-btn start-btn" href="./app.html">Start App</a>
-      <h3>Tutorials & News</h3>
-      <div class="socials-container">
-      <a href="https://www.youtube.com/@neal.easterling" target="_blank"><img src="./images/youtube-color.svg" alt="youtube icon" ></a>
-      <a href="https://twitter.com/Neal_Easterling" target="_blank"><img src="./images/x-twitter-color.svg" alt="x, twitter icon" ></a>
-      <a href="https://www.linkedin.com/in/neal-easterling/" target="_blank"><img src="./images/linkedIn-color.svg" alt="LinkedIn Icon" ></a>
-      <a href="https://github.com/neal-easterling" target="_blank"><img src="./images/github-color.svg" alt="GitHub Icon" ></a>
+  <header class="main-header">
+    <img class="nav-logo" src="https://apps4everyone.tech/assets/appslogo.svg" alt="Apps4Everyone Logo">
+    <h1 class="header-title">Apps4Everyone.tech</h1>
+    
+    <div class="menu-container">
+        <div id="main-menu-btn" class="main-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+              </svg>
+        </div>
+        <ul id="main-menu" class="container card main-menu">
+            <li><a href="https://apps4everyone.tech#top" class="menu-link">Home</a></li>
+            <li><a href="https://apps4everyone.tech#mission" class="menu-link">Our Mission</a></li>
+            <li><a href="https://apps4everyone.tech#apps" class="menu-link">Our Apps</a></li>
+            <li><a href="https://apps4everyone.tech#donate" class="menu-link">Donate</a></li>
+            <li><a href="https://apps4everyone.tech#join" class="menu-link">Join Our Team</a></li>
+        </ul>
+      </div>
+  </header>
+  <section id="top" class="section hero-splash">
+    <div class="container">
+      <img class="every-cam-logo" src="https://apps4everyone.tech/assets/every-cam-logo.svg" />
+    </div>
+  </section>
+  <section id="about" class="section about-section">
+    <div class="container card">
+      <h2>About</h2>
+      <p>All-in-one Online Screen Share, Webcam, Document Camera, Whiteboarding, Streaming, Capture and Video Recorder.</p> 
+      <p>Free with minimal advertising. No watermarks.</p>
+      <p>Other apps charge subscription fees that can be prohibitive for educators and small business owners.  Every Cam was developed and continues to evolve to solve these needs.</p>
+      <a class="btn main-btn" href="./app.html">Start App</a>
+    </div>
+  </section>
+  <section class="section donation">
+    <div class="container split-col2">
+      <div class="container card col1 fullheight">
+        <h2>Donate</h2>
+        <p >Apps4Everyone operates on the generosity of donors and the support of our community. Together, we can expand our reach and empower more individuals to thrive in an ever-evolving world.</p>
+        <a href="https://patreon.com/Apps4Everyone" class="btn main-btn">Donate with Patreon</a>
+      </div>
+      <div class="container card col2 fullheight">
+        <h2>Tutorials & News</h2>
+        <p>We believe in fostering a community where everyone's voice is heard and needs are met. Whether you're a teacher seeking innovative classroom solutions, an entrepreneur striving to grow your business, or an individual eager to learn and create, Apps4Everyone is here for you.</p>
+        <div class="socials-container">
+          <a href="https://www.youtube.com/@neal.easterling" target="_blank"><img src="./images/youtube-color.svg" alt="youtube icon" ></a>
+          <a href="https://twitter.com/Neal_Easterling" target="_blank"><img src="./images/x-twitter-color.svg" alt="x, twitter icon" ></a>
+          <a href="https://www.linkedin.com/in/neal-easterling/" target="_blank"><img src="./images/linkedIn-color.svg" alt="LinkedIn Icon" ></a>
+          <a href="https://github.com/neal-easterling" target="_blank"><img src="./images/github-color.svg" alt="GitHub Icon" ></a>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section id="roadmap" class="section roadmap-section">
+      <div class="container card roadmap">
+        <h2 id="development-road-map">Development Road Map</h2>
+        <h3 id="v1-1-completed-">v1.1 (completed)</h3>
+        <ul>
+        <li>view only webcam in browser as document camera</li>
+        </ul>
+        <h3 id="v1-2-completed-">v1.2 (completed)</h3>
+        <ul>
+          <li>Add snapshot of camera feature.</li>
+          <li>Add ability to download shapshot.</li>
+          <li>add ability to clear taken photos.</li>
+          <li>add ability to fullscreen camera.</li>
+          <li>add ability to start and stop camera without reload.</li>
+          <li>Adjust stylings to familiar graphics applications.</li>
+        </ul>
+
+        <h3 id="v1-3-completed-">v1.3 (completed)</h3>
+        <ul>
+          <li>switch display to Canvas element &amp; hide video elements.</li>
+          <li>Add camera inverse control.</li>
+          <li>Add webcam fullscreen to canvas.</li>
+          <li>Add webcam overlay to canvas.</li>
+          <li>Add display share to canvas.</li>
+          <li>Add canvas photo capture.</li>
+          <li>Add canvas photo download.</li>
+          <li>Add canvas recording.</li>
+          <li>Add canvas recording download.</li>
+        </ul>
+
+        <h3 id="v1-4">v1.4</h3>
+        <ul>
+          <li>add user auth with Google</li>
+          <li>storage of photos and video with Google Drive. </li>
+        </ul>
+
+        <h3 id="v1-5">v1.5</h3>
+        <ul>
+          <li>Add ability to drag webcam overlay to desired position.</li>
+          <li>add whiteboarding / annotations on canvas</li>
+          <li>add pencil tool</li>
+          <li>add highlight tool</li>
+          <li>add text tool</li>
+          <li>add shape tool</li>
+        </ul>
+
+        <h3 id="v1-6">v1.6</h3>
+        <ul>
+          <li>Integrate direct upload to YouTube.</li>
+          <li>Integrate YouTube Streaming</li>
+        </ul>
+
+        <h3 id="v1-7">v1.7</h3>
+        <ul>
+          <li>Integrate Twitch Streaming</li>
+        </ul>
       </div>
     </section>
-    <section class="roadmap">
-      <h2 id="development-road-map">Development Road Map</h2>
-      <h3 id="v1-1-completed-">v1.1 (completed)</h3>
-      <ul>
-      <li>view only webcam in browser as document camera</li>
-      </ul>
-      <h3 id="v1-2-completed-">v1.2 (completed)</h3>
-      <ul>
-        <li>Add snapshot of camera feature.</li>
-        <li>Add ability to download shapshot.</li>
-        <li>add ability to clear taken photos.</li>
-        <li>add ability to fullscreen camera.</li>
-        <li>add ability to start and stop camera without reload.</li>
-        <li>Adjust stylings to familiar graphics applications.</li>
-      </ul>
-
-      <h3 id="v1-3-completed-">v1.3 (completed)</h3>
-      <ul>
-        <li>switch display to Canvas element &amp; hide video elements.</li>
-        <li>Add camera inverse control.</li>
-        <li>Add webcam fullscreen to canvas.</li>
-        <li>Add webcam overlay to canvas.</li>
-        <li>Add display share to canvas.</li>
-        <li>Add canvas photo capture.</li>
-        <li>Add canvas photo download.</li>
-        <li>Add canvas recording.</li>
-        <li>Add canvas recording download.</li>
-      </ul>
-
-      <h3 id="v1-4">v1.4</h3>
-      <ul>
-        <li>add user auth with Google</li>
-        <li>storage of photos and video with Google Drive. </li>
-      </ul>
-
-      <h3 id="v1-5">v1.5</h3>
-      <ul>
-        <li>Add ability to drag webcam overlay to desired position.</li>
-        <li>add whiteboarding / annotations on canvas</li>
-        <li>add pencil tool</li>
-        <li>add highlight tool</li>
-        <li>add text tool</li>
-        <li>add shape tool</li>
-      </ul>
-
-      <h3 id="v1-6">v1.6</h3>
-      <ul>
-        <li>Integrate direct upload to YouTube.</li>
-        <li>Integrate YouTube Streaming</li>
-      </ul>
-
-      <h3 id="v1-7">v1.7</h3>
-      <ul>
-        <li>Integrate Twitch Streaming</li>
-      </ul>
-    </section>
-  </div>
-  <footer></footer>
-  
+  <footer class="main-footer"></footer>
+  <script src="./index.js"></script>
   
 </body>
 </html>

@@ -52,6 +52,14 @@ h3{
     "donation donation social"
     "roadmap roadmap roadmap";
   padding: 1em;
+
+  @media screen and (max-width: 750px) {
+    grid-template-areas:
+      "title title title"
+      "donation donation donation"
+      "social social social"
+      "roadmap roadmap roadmap";
+  }
 }
 
 header {
@@ -70,6 +78,9 @@ section.title-header{
 .logo{
   width: 200px;
   aspect-ratio: 1/1;
+  @media screen and (max-width: 750px) {
+    width: 100px;
+  }
 }
 
 .hero-text{
@@ -78,6 +89,10 @@ section.title-header{
   margin-top: -1.5em;
   color: var(--clr-mid);
   -webkit-text-stroke: 2px var(--clr-white);
+  @media screen and (max-width: 750px) {
+    font-size: 3.5em;
+    margin-top: -1.5em;
+  }
 }
 
 section.donation{
@@ -145,4 +160,14 @@ ul{
 footer{
   display: block;
   height: 100px;
+}
+
+@media screen and (max-width: 750){
+  
+  .splash-container{
+    display: flex;
+
+
+  }
+  
 }

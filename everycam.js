@@ -4,8 +4,7 @@ window.onload = ()=>{
 
   const app = new App();
   setInterval(()=>{
-    app.renderMain();
-    app.renderWhiteboard();
+    app.render();
   }, 1000 / app.framerate);
 
 

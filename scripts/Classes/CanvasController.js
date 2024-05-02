@@ -82,8 +82,8 @@ export class CanvasController{
     //console.log(x,y);
   }
 
-  captureCanvasStream(){
-    const stream = this.el.captureStream(this.frameRate);
+  captureCanvasStream(frameRate){
+    const stream = this.el.captureStream(frameRate);
     return stream;
   }
 

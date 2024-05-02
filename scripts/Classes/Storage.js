@@ -7,6 +7,7 @@ export class Storage{
     this.hiddenStorage = null;
     this.webcamVideoEl = null;
     this.displayVideoEl = null;
+    this.hiddenCanvas = null;
     this.capturesStorage = null;
   }
 
@@ -18,6 +19,7 @@ export class Storage{
     this.hiddenStorage = this.createHiddenStorageEl();
     this.webcamVideoEl = this.createHiddenVideoEl('webcam-video');
     this.displayVideoEl = this.createHiddenVideoEl('display-video');
+    this.hiddenCanvas = this.createHiddenCanvas('hidden-canvas');
     this.capturesStorage = document.getElementById('captures-container');
   }
 
@@ -37,6 +39,13 @@ export class Storage{
     this.hiddenStorage.appendChild(el);
     return el; 
   }
+
+  createHiddenCanvas(id){
+    const canvas = document.createElement('canvas');
+    canvas.id = id;
+    this.hiddenStorage.appendChild(canvas);
+    return canvas;
+  }
  
   assignWebcamToVideo(stream){
     this.webcamStream = stream;
@@ -49,6 +58,7 @@ export class Storage{
   }
 
   returnDownloadMediaEl(urlObj, type='video'){
+    console.log(urlObj, type);
     const container = document.createElement('div');
     container.setAttribute('class', 'media-container');
 
@@ -61,7 +71,7 @@ export class Storage{
     downloadLink.classList.add('text-btn');
     downloadLink.href = urlObj;
     let fileExtension = '.mp4';
-    if(type='img') fileExtension = '.png';
+    if(type=='img') fileExtension = '.png';
     downloadLink.download = `ec${type}-${Date.now()}${fileExtension}`;
     downloadLink.innerHTML = 'download';
     container.appendChild(downloadLink);

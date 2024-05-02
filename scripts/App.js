@@ -5,6 +5,7 @@ import { DisplayController } from "./Classes/DisplayController.js";
 import { Recorder } from "./Classes/Recorder.js";
 import { MouseHandler } from "./Classes/MouseHandler.js";
 import { Whiteboard } from "./Classes/Whiteboard.js";
+import { OffscreenCanvasHandler } from "./Classes/OffscreenCanvasHandler.js";
 
 export class App {
 
@@ -32,6 +33,11 @@ export class App {
     //Setup Objects
     this.storage.initStorage();
     this.mainCanvas.setMainCanvasResolution(this.resolution.width, this.resolution.height);
+    this.mainContainer.addEventListener('fullscreenchange', ()=>{
+      this.whiteboard.setSizesOnChange();
+    });
+
+    this.offscreen = new OffscreenCanvasHandler(this.storage.hiddenCanvas,this.resolution);
   }
 
   async initWebcam(){
@@ -80,7 +86,7 @@ export class App {
   }
 
   async getCombinedStream(){
-    const videoTracks = await this.mainCanvas.captureCanvasStream(this.framerate).getVideoTracks();
+    const videoTracks = await this.offscreen.captureCanvasStream(this.framerate).getVideoTracks();
     let audioTracks = null;
     if(this.microphone.available){
       audioTracks = await this.microphone.stream.getAudioTracks();
@@ -123,6 +129,18 @@ export class App {
 
   renderWhiteboard(){
     this.whiteboard.draw();
+  }
+
+  async renderOffscreen(){
+    const mainCanvas = this.mainCanvas.el;
+    const whiteboardCanvas = this.whiteboard.canvas.el;
+    this.offscreen.renderCanvas([mainCanvas, whiteboardCanvas]);
+  }
+
+  render(){
+    this.renderMain();
+    this.renderWhiteboard();
+    this.renderOffscreen();
   }
 
 }

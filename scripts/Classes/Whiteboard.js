@@ -28,7 +28,8 @@ export class Whiteboard {
     this.isActive = false;
     this.isBackgroundActive = false;
 
-    this.setCanvasSize();
+    this.setCanvasElSize();
+    this.setSizesOnChange();
 
     document.addEventListener('mousedown', ()=>{
       const [x,y] = this.mouse.getMouse();
@@ -39,9 +40,18 @@ export class Whiteboard {
     })
   }
   
-  setCanvasSize(){
+  setCanvasElSize(){
     this.canvas.el.width = this.width;
     this.canvas.el.height = this.height;
+  }
+
+  setSizesOnChange(){
+    const newBoundingRect = this.mirrorEl.el.getBoundingClientRect();
+    this.mirrorEl.boundingRect = newBoundingRect;
+    this.left = this.mirrorEl.boundingRect.left;
+    this.top = this.mirrorEl.boundingRect.top;
+    this.right = this.mirrorEl.boundingRect.right;
+    this.bottom = this.mirrorEl.boundingRect.bottom;
   }
 
   setColor(str){
@@ -80,7 +90,7 @@ export class Whiteboard {
   }
 
   draw(){
-    if(this.isActive && this.mode == 'drawing'){
+    if(this.isActive && this.mode == 'drawing' && this.mouse.mouseDown){
       const [x,y] = this.getConvertedCoords();
       const ctx = this.canvas.ctx;
       ctx.lineCap = 'round';
@@ -95,12 +105,18 @@ export class Whiteboard {
       ctx.closePath();
       this.x = x;
       this.y = y;
+      console.log('draw');
     }
     
   }
 
   clearCanvas(){
     this.canvas.ctx.clearRect(0,0,this.width, this.height);
+  }
+
+  captureCanvasStream(frameRate){
+    const stream = this.canvas.el.captureStream(frameRate);
+    return stream;
   }
 
 }

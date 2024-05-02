@@ -58,7 +58,6 @@ export class Storage{
   }
 
   returnDownloadMediaEl(urlObj, type='video'){
-    console.log(urlObj, type);
     const container = document.createElement('div');
     container.setAttribute('class', 'media-container');
 

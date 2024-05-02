@@ -24,4 +24,9 @@ export class OffscreenCanvasHandler {
     const stream = this.canvas.el.captureStream(frameRate);
     return stream;
   }
+
+  takeCanvasPhoto(){
+    const data = this.canvas.el.toDataURL('image/png');
+    return data;
+  }
 }

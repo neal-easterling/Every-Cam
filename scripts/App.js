@@ -73,7 +73,7 @@ export class App {
   }
 
   async takeScreenshot(){
-    const data = this.mainCanvas.takeCanvasPhoto();
+    const data = this.offscreen.takeCanvasPhoto();
     return this.storage.returnDownloadMediaEl(data, 'img');
   }
 

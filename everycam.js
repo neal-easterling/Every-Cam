@@ -92,10 +92,10 @@ window.onload = ()=>{
 
 // ========== Whiteboard Toolbar =================== //
 
-  const wbtoolbtns = {
-    whiteboardBtn: document.getElementById('whiteboard-tools-toggle'),
+const whiteboardBtn = document.getElementById('whiteboard-tools-toggle'); 
+const wbtoolbtns = {
     pencilBtn: document.getElementById('pencil-tool'),
-    highlighterBtn: document.getElementById('highlighter-tool'),
+    penBtn: document.getElementById('pen-tool'),
     squareBtn: document.getElementById('square-tool'),
     circleBtn: document.getElementById('circle-tool'),
     colorSelect: document.getElementById('color-select'),
@@ -106,16 +106,14 @@ window.onload = ()=>{
 
 const removeActiveClass = (btnsObj)=>{
   for(const btn in btnsObj){
-    if(btn.classList.contains('active')){
-      btn.classList.remove('active');
-    }
+    btnsObj[btn].classList.remove('active');
   }
-}
+};
 
 
-  wbtoolbtns.whiteboardBtn.addEventListener('click', ()=>{
+  whiteboardBtn.addEventListener('click', ()=>{
     whiteboardToolbar.classList.toggle('active');
-    wbtoolbtns.whiteboardBtn.classList.toggle('active');
+    whiteboardBtn.classList.toggle('active');
     if(app.whiteboard.isActive){
       app.whiteboard.isActive = false;
       app.mainCanvas.overlayCam.isDraggable = true;
@@ -126,10 +124,19 @@ const removeActiveClass = (btnsObj)=>{
   });
 
   wbtoolbtns.pencilBtn.addEventListener('click', ()=>{
-    //removeActiveClass(wbtoolbtns);
+    removeActiveClass(wbtoolbtns);
     wbtoolbtns.pencilBtn.classList.add('active');
     if(app.whiteboard.mode != 'drawing') app.whiteboard.mode = 'drawing';
+    app.whiteboard.setOpacity(1);
   });
+
+  wbtoolbtns.penBtn.addEventListener('click', ()=>{
+    removeActiveClass(wbtoolbtns);
+    wbtoolbtns.penBtn.classList.add('active');
+    if(app.whiteboard.mode != 'ink') app.whiteboard.mode = 'ink';
+    app.whiteboard.setOpacity(0.5);
+  });
+
 
   wbtoolbtns.colorSelect.addEventListener('change',(e)=>{
     app.whiteboard.color = e.target.value;

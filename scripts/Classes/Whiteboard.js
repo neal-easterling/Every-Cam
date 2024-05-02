@@ -19,7 +19,7 @@ export class Whiteboard {
     this.height = resolution.height;
     this.mouse = mouseHandler;
     this.x = 0;
-    this.y=0;
+    this.y = 0;
     this.color = "#257FD2";
     this.strokeSize = 3;
     this.shapeStyle = "stroke";
@@ -35,7 +35,7 @@ export class Whiteboard {
       const [x,y] = this.mouse.getMouse();
       if(x > this.left && x < this.right && y > this.top && y < this.bottom){
         const newCoords = this.mouse.scaleCoords(this.canvas.el, this.width, this.height);
-        this.setWhiteboardCoords(newCoords);
+        if(this.mode == 'drawing') this.setWhiteboardCoords(newCoords);
       }
     })
   }
@@ -54,6 +54,11 @@ export class Whiteboard {
     this.bottom = this.mirrorEl.boundingRect.bottom;
   }
 
+  setWhiteboardCoords([x,y]){
+    this.x = x;
+    this.y = y;
+  }
+
   setColor(str){
     this.color = str;
   }
@@ -69,15 +74,10 @@ export class Whiteboard {
     this.opacity = opacity;
   }
 
-  setWhiteboardCoords([x,y]){
-    this.x = x;
-    this.y = y;
-  }
-
   getConvertedCoords(){
     const[x,y,mouseDown] = this.mouse.getMouse();
     let newCoords = [this.x, this.y];
-    if(x > this.left && x < this.right && y > this.top && y < this.bottom && mouseDown){
+    if(x > this.left && x < this.right && y > this.top && y < this.bottom && mouseDown ){ 
       newCoords = this.mouse.scaleCoords(this.canvas.el, this.width, this.height);
     }
     return newCoords;
@@ -90,24 +90,27 @@ export class Whiteboard {
   }
 
   draw(){
-    if(this.isActive && this.mode == 'drawing' && this.mouse.mouseDown){
-      const [x,y] = this.getConvertedCoords();
+    if(this.isActive){
       const ctx = this.canvas.ctx;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.globalAlpha = this.opacity;
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.strokeSize;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.lineTo(this.x, this.y);
-      ctx.stroke();
-      ctx.closePath();
-      this.x = x;
-      this.y = y;
-      console.log('draw');
+      ctx.fillStyle = this.color;
+      
+      if(this.mode == 'drawing' && this.mouse.mouseDown ){ 
+        ctx.beginPath();
+        const [x,y] = this.getConvertedCoords();
+        ctx.moveTo(x, y);
+        ctx.lineTo(this.x, this.y);
+        ctx.stroke();
+        ctx.closePath();
+        this.x = x;
+        this.y = y;
+        console.log('draw');
+      }
     }
-    
   }
 
   clearCanvas(){

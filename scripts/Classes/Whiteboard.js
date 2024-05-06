@@ -36,16 +36,52 @@ export class Whiteboard {
     this.setSizesOnChange();
 
     // on mousedown with mode set point1
-    // on mousemove with mode set point2 & draw on MainCanvas
-    // on mouseup draw on whiteboard 
-
     document.addEventListener('mousedown', ()=>{
-      const [x,y] = this.mouse.getMouse();
-      if(x > this.left && x < this.right && y > this.top && y < this.bottom){
-        const newCoords = this.mouse.scaleCoords(this.canvas.el, this.width, this.height);
-        if(this.mode == 'drawing') this.setWhiteboardCoords(newCoords);
+      const newCoords = this.getScaledCoords();
+      if(newCoords){
+        switch(this.mode) {
+          case 'none':
+            break;
+          case 'drawing':
+            this.pencil.setPoint1(newCoords);
+            break;
+           default:
+            break;
+        }
+      }   
+    });
+
+    // on mousemove with mode set point2 & draw on MainCanvas
+    document.addEventListener('mousemove', ()=>{
+      const newCoords = this.getScaledCoords();
+      if(newCoords && this.mouse.mouseDown){
+        switch(this.mode) {
+          case 'none':
+            break;
+          case 'drawing':
+            this.pencil.setPoint2(newCoords);
+            break;
+           default:
+            break;
+        }
       }
-    })
+    });
+
+    // on mouseup draw on whiteboard 
+    document.addEventListener('mouseup',()=>{
+      const newCoords = this.getScaledCoords();
+      switch(this.mode) {
+        case 'none':
+          break;
+        case 'drawing':
+          this.pencil.setPoint1([]);
+          this.pencil.setPoint2([]);
+          break;
+         default:
+          break;
+      }
+    });
+
   }
   
   setCanvasElSize(){
@@ -60,6 +96,13 @@ export class Whiteboard {
     this.top = this.mirrorEl.boundingRect.top;
     this.right = this.mirrorEl.boundingRect.right;
     this.bottom = this.mirrorEl.boundingRect.bottom;
+  }
+
+  getScaledCoords(){
+    const [x,y] = this.mouse.getMouse();
+    if(x > this.left && x < this.right && y > this.top && y < this.bottom){
+      return this.mouse.scaleCoords(this.canvas.el, this.width, this.height);
+    }else{ return false; }
   }
 
   setWhiteboardCoords([x,y]){
@@ -107,16 +150,12 @@ export class Whiteboard {
       ctx.lineWidth = this.strokeSize;
       ctx.fillStyle = this.color;
       
-      if(this.mode == 'drawing' && this.mouse.mouseDown ){ 
-        ctx.beginPath();
-        const [x,y] = this.getConvertedCoords();
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(x, y);
-        ctx.closePath();
+      if(this.mode == 'drawing' && this.mouse.mouseDown){ 
+        this.pencil.draw(ctx);
         ctx.stroke();
         
-        this.x = x;
-        this.y = y;
+        this.pencil.setPoint1(this.pencil.getPoint2());
+        
         console.log('draw');
       }
     }

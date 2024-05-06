@@ -15,6 +15,14 @@ class ShapeTool {
     this.point2 = [...array];
   }
 
+  getPoint1(){
+    return this.point1;
+  }
+
+  getPoint2(){
+    return this.point2;
+  }
+
   getDimensions(){
     const [x1, y1, x2, y2] = this.getPoints();
     const width = x2 - x1;

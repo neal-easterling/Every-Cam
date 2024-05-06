@@ -96,12 +96,14 @@ const whiteboardBtn = document.getElementById('whiteboard-tools-toggle');
 const wbtoolbtns = {
     pencilBtn: document.getElementById('pencil-tool'),
     lineBtn: document.getElementById('line-tool'),
+    textBtn: document.getElementById('text-tool'),
     squareBtn: document.getElementById('square-tool'),
     ellipseBtn: document.getElementById('ellipse-tool'),
     colorSelect: document.getElementById('color-select'),
     colorStyleSelect: document.getElementById('color-style-select'),
     strokeSizeSelect:document.getElementById('stroke-size-select'),
-    clearWhiteboardBtn: document.getElementById('clear-whiteboard')
+    clearWhiteboardBtn: document.getElementById('clear-whiteboard'),
+    textBar: document.getElementById('textbox-container')
   }
 
 const removeActiveClass = (btnsObj)=>{
@@ -128,7 +130,13 @@ const removeActiveClass = (btnsObj)=>{
     removeActiveClass(wbtoolbtns);
     wbtoolbtns.pencilBtn.classList.add('active');
     if(app.whiteboard.mode != 'drawing') app.whiteboard.mode = 'drawing';
-    app.whiteboard.setOpacity(1);
+  });
+
+  wbtoolbtns.textBtn.addEventListener('click', ()=>{
+    removeActiveClass(wbtoolbtns);
+    wbtoolbtns.textBtn.classList.add('active');
+    wbtoolbtns.textBar.classList.add('active');
+    if(app.whiteboard.mode != 'text') app.whiteboard.mode = 'text';
   });
 
   wbtoolbtns.lineBtn.addEventListener('click', ()=>{

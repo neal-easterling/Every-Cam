@@ -128,7 +128,7 @@ h4{
   background-color: var(--clr-mid);
 }
 
-.whiteboard-tools-container{
+.whiteboard-tools-container, .textbox-container{
   --scale: 0;
   position: absolute;
   bottom: 5px;
@@ -144,6 +144,38 @@ h4{
 .whiteboard-tools-container.active{
   --scale: 1;
 }
+
+.textbox-container{
+  bottom: 50px;
+  left: 50px;
+  transition: bottom left;
+
+  input{
+    height: 25px;
+    width: 200px;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    background-color: var(--clr-lite);
+    color: var(--clr-white);
+    padding: 0 5px;
+  }
+
+  input:focus{
+    outline: 1px solid var(--clr-available);
+  }
+
+  .text-set-btn{
+    height: 25px;
+    width: 75px;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.textbox-container.active{
+  --scale: 1;
+}
+
 
 .assets-bar{
   grid-area: assets;
@@ -371,6 +403,10 @@ h4{
 .pencil-btn::before{
   content: url('../images/pencil-icon.svg');
 } 
+
+.text-tool-btn::before{
+  content: url('../images/text-icon.svg');
+}
 
 .line-btn::before{
   content: url('../images/line-tool.svg');

@@ -372,8 +372,8 @@ h4{
   content: url('../images/pencil-icon.svg');
 } 
 
-.pen-btn::before{
-  content: url('../images/vector-pen.svg');
+.line-btn::before{
+  content: url('../images/line-tool.svg');
 }
 
 .square-btn::before{

@@ -95,7 +95,7 @@ window.onload = ()=>{
 const whiteboardBtn = document.getElementById('whiteboard-tools-toggle'); 
 const wbtoolbtns = {
     pencilBtn: document.getElementById('pencil-tool'),
-    penBtn: document.getElementById('pen-tool'),
+    lineBtn: document.getElementById('line-tool'),
     squareBtn: document.getElementById('square-tool'),
     circleBtn: document.getElementById('circle-tool'),
     colorSelect: document.getElementById('color-select'),
@@ -115,6 +115,7 @@ const removeActiveClass = (btnsObj)=>{
     whiteboardToolbar.classList.toggle('active');
     whiteboardBtn.classList.toggle('active');
     if(app.whiteboard.isActive){
+      removeActiveClass(wbtoolbtns);
       app.whiteboard.isActive = false;
       app.mainCanvas.overlayCam.isDraggable = true;
     }else{
@@ -130,11 +131,11 @@ const removeActiveClass = (btnsObj)=>{
     app.whiteboard.setOpacity(1);
   });
 
-  wbtoolbtns.penBtn.addEventListener('click', ()=>{
+  wbtoolbtns.lineBtn.addEventListener('click', ()=>{
     removeActiveClass(wbtoolbtns);
-    wbtoolbtns.penBtn.classList.add('active');
-    if(app.whiteboard.mode != 'ink') app.whiteboard.mode = 'ink';
-    app.whiteboard.setOpacity(0.5);
+    wbtoolbtns.lineBtn.classList.add('active');
+    if(app.whiteboard.mode != 'line') app.whiteboard.mode = 'ink';
+    
   });
 
 

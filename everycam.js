@@ -134,7 +134,7 @@ const removeActiveClass = (btnsObj)=>{
   wbtoolbtns.lineBtn.addEventListener('click', ()=>{
     removeActiveClass(wbtoolbtns);
     wbtoolbtns.lineBtn.classList.add('active');
-    if(app.whiteboard.mode != 'line') app.whiteboard.mode = 'ink';
+    if(app.whiteboard.mode != 'line') app.whiteboard.mode = 'line';
     
   });
 

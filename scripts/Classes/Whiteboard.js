@@ -8,7 +8,8 @@ export class Whiteboard {
     }
     this.mirrorEl = {
       el:mirrorEl,
-      boundingRect: mirrorEl.getBoundingClientRect()
+      boundingRect: mirrorEl.getBoundingClientRect(),
+      ctx: mirrorEl.getContext('2d')
     }
     
     this.left = this.mirrorEl.boundingRect.left;
@@ -45,7 +46,10 @@ export class Whiteboard {
           case 'drawing':
             this.pencil.setPoint1(newCoords);
             break;
-           default:
+          case 'line':
+            this.lineTool.setPoint1(newCoords);
+            break;
+          default:
             break;
         }
       }   
@@ -61,7 +65,9 @@ export class Whiteboard {
           case 'drawing':
             this.pencil.setPoint2(newCoords);
             break;
-           default:
+          case 'line':
+            this.lineTool.setPoint2(newCoords);
+          default:
             break;
         }
       }
@@ -77,6 +83,13 @@ export class Whiteboard {
           this.pencil.setPoint1([]);
           this.pencil.setPoint2([]);
           break;
+        case 'line':
+          this.lineTool.draw(this.canvas.ctx);
+          this.canvas.ctx.stroke();
+          setTimeout(()=>{
+            this.lineTool.setPoint1([]);
+            this.lineTool.setPoint2([]);
+          }, 10);
          default:
           break;
       }
@@ -153,11 +166,22 @@ export class Whiteboard {
       if(this.mode == 'drawing' && this.mouse.mouseDown){ 
         this.pencil.draw(ctx);
         ctx.stroke();
-        
         this.pencil.setPoint1(this.pencil.getPoint2());
-        
         console.log('draw');
       }
+
+      if(this.mode == 'line' && this.mouse.mouseDown){
+        const mCtx = this.mirrorEl.ctx
+        this.lineTool.draw(mCtx);
+        mCtx.strokeStyle = this.color;
+        mCtx.lineWidth = this.strokeSize;
+        mCtx.stroke();
+        if(this.lineTool.active){
+          this.lineTool.draw(ctx);
+          ctx.stroke();
+        }
+      }
+
     }
   }
 

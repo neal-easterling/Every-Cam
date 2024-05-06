@@ -14,7 +14,7 @@ export class Recorder {
     const mediaStream = new MediaStream();
     videoTracks.forEach(track=>{
       mediaStream.addTrack(track);
-      console.log("main track" + track);
+      //console.log("main track" + track);
     });
     
     if(audioTracks) audioTracks.forEach(track=> mediaStream.addTrack(track));

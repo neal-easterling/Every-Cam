@@ -380,7 +380,7 @@ h4{
   content: url('../images/square-icon.svg');
 }
 
-.circle-btn::before{
+.ellipse-btn::before{
   content: url('../images/circle-icon.svg');
 }
 

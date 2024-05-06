@@ -42,6 +42,14 @@ class ShapeTool {
     return [x1, y1, x2, y2];
   }
 
+  determineStyle(ctx,str){
+    if(str=='stroke'){
+      ctx.stroke();
+    }else{
+      ctx.fill();
+    }
+  }
+
 }
 
 export class LineTool extends ShapeTool{
@@ -50,12 +58,13 @@ export class LineTool extends ShapeTool{
     super();
   }
 
-  draw(ctx){
+  draw(ctx, style){
     const [x1, y1, x2, y2] = this.getPoints();
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.closePath();
+    this.determineStyle(ctx, style);
   }
 
 }
@@ -64,15 +73,16 @@ export class SquareTool extends ShapeTool{
 
   constructor(){
     super();
-    this.borderRadius = 5;
+    this.borderRadius = 10;
   }
 
-  draw(ctx){
+  draw(ctx, style){
     const [x1, y1] = this.point1;
     const [width, height] = this.getDimensions();
     ctx.beginPath();
     ctx.roundRect(x1, y1, width, height, this.borderRadius);
     ctx.closePath();
+    this.determineStyle(ctx, style);
   }
 
 }
@@ -83,14 +93,15 @@ export class EllipseTool extends ShapeTool{
     super();
   }
 
-  draw(ctx){
+  draw(ctx, style){
     const [centerX, centerY] = this.getCenterPoints();
     const [width, height] = this.getDimensions();
     const radiusX = width * 0.5;
     const radiusY = height * 0.5;
     ctx.beginPath();
-    ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2); 
+    ctx.ellipse(centerX, centerY, Math.abs(radiusX), Math.abs(radiusY), 0, 0, Math.PI * 2); 
     ctx.closePath();
+    this.determineStyle(ctx, style);
   }
 
 }

@@ -49,6 +49,12 @@ export class Whiteboard {
           case 'line':
             this.lineTool.setPoint1(newCoords);
             break;
+          case 'square':
+            this.squareTool.setPoint1(newCoords);
+            break;
+          case 'ellipse':
+            this.ellipseTool.setPoint1(newCoords);
+            break;
           default:
             break;
         }
@@ -67,6 +73,13 @@ export class Whiteboard {
             break;
           case 'line':
             this.lineTool.setPoint2(newCoords);
+            break;
+          case 'square' :
+            this.squareTool.setPoint2(newCoords);
+            break;
+          case 'ellipse' :
+            this.ellipseTool.setPoint2(newCoords);
+            break;
           default:
             break;
         }
@@ -84,13 +97,20 @@ export class Whiteboard {
           this.pencil.setPoint2([]);
           break;
         case 'line':
-          this.lineTool.draw(this.canvas.ctx);
-          this.canvas.ctx.stroke();
-          setTimeout(()=>{
-            this.lineTool.setPoint1([]);
-            this.lineTool.setPoint2([]);
-          }, 10);
-         default:
+          this.lineTool.draw(this.canvas.ctx, 'stroke');
+          this.lineTool.setPoint1([]);
+          this.lineTool.setPoint2([]);
+          break;
+        case 'square':
+          this.squareTool.draw(this.canvas.ctx, this.shapeStyle);
+          this.squareTool.setPoint1([]);
+          this.squareTool.setPoint2([]);
+          break;
+        case 'ellipse':
+          this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
+          this.ellipseTool.setPoint1([]);
+          this.ellipseTool.setPoint2([]);
+        default:
           break;
       }
     });
@@ -162,26 +182,30 @@ export class Whiteboard {
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.strokeSize;
       ctx.fillStyle = this.color;
-      
-      if(this.mode == 'drawing' && this.mouse.mouseDown){ 
-        this.pencil.draw(ctx);
-        ctx.stroke();
-        this.pencil.setPoint1(this.pencil.getPoint2());
-        console.log('draw');
-      }
+      const mCtx = this.mirrorEl.ctx
 
-      if(this.mode == 'line' && this.mouse.mouseDown){
-        const mCtx = this.mirrorEl.ctx
-        this.lineTool.draw(mCtx);
-        mCtx.strokeStyle = this.color;
-        mCtx.lineWidth = this.strokeSize;
-        mCtx.stroke();
-        if(this.lineTool.active){
-          this.lineTool.draw(ctx);
-          ctx.stroke();
+      if(this.mouse.mouseDown){
+
+        if(this.mode == 'drawing'){ 
+          this.pencil.draw(ctx, 'stroke');
+          this.pencil.setPoint1(this.pencil.getPoint2());
+          //console.log('draw');
+        } else {
+          mCtx.strokeStyle = this.color;
+          mCtx.fillStyle = this.color;
+          mCtx.lineWidth = this.strokeSize;
+          switch(this.mode){
+            case 'line':
+              this.lineTool.draw(mCtx, 'stroke');
+              break;
+            case 'square':
+              this.squareTool.draw(mCtx, this.shapeStyle);
+              break;
+            case 'ellipse':
+              this.ellipseTool.draw(mCtx, this.shapeStyle);
+          }
         }
       }
-
     }
   }
 

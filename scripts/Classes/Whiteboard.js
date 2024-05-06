@@ -1,4 +1,4 @@
-
+import { LineTool, SquareTool, EllipseTool } from "./ShapeTools.js";
 export class Whiteboard {
 
   constructor(mouseHandler, id, mirrorEl, resolution){
@@ -27,9 +27,17 @@ export class Whiteboard {
     this.mode = 'none';
     this.isActive = false;
     this.isBackgroundActive = false;
+    this.pencil = new LineTool();
+    this.lineTool = new LineTool();
+    this.squareTool = new SquareTool();
+    this.ellipseTool = new EllipseTool();
 
     this.setCanvasElSize();
     this.setSizesOnChange();
+
+    // on mousedown with mode set point1
+    // on mousemove with mode set point2 & draw on MainCanvas
+    // on mouseup draw on whiteboard 
 
     document.addEventListener('mousedown', ()=>{
       const [x,y] = this.mouse.getMouse();
@@ -102,10 +110,11 @@ export class Whiteboard {
       if(this.mode == 'drawing' && this.mouse.mouseDown ){ 
         ctx.beginPath();
         const [x,y] = this.getConvertedCoords();
-        ctx.moveTo(x, y);
-        ctx.lineTo(this.x, this.y);
-        ctx.stroke();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(x, y);
         ctx.closePath();
+        ctx.stroke();
+        
         this.x = x;
         this.y = y;
         console.log('draw');

@@ -29,12 +29,13 @@ Current production versions is a simple online view only document camera for des
   - ✅Add canvas recording download.
 
     ### v1.4
-  - Add ability to drag webcam overlay to desired position.
-  - add whiteboarding / annotations on canvas
-  - add pencil tool
-  - add highlight tool
+  - ✅Add ability to drag webcam overlay to desired position.
+  - ✅add whiteboarding / annotations on canvas
+  - ✅add pencil tool
+  - ✅add line tool
+  - ✅add square tool
+  - ✅add ellipse tool
   - add text tool
-  - add shape tool
   
   ### v1.5
   - add user auth with Google

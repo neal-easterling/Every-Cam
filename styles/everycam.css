@@ -240,20 +240,45 @@ h4{
   cursor: pointer;
 }
 
-.btn::after{
+.tooltip-right,
+.tooltip-left,
+.tooltip-top{
+  position: relative;
+}
+
+.tooltip-right::after, 
+.tooltip-top::after, 
+.tooltip-left::after{
   position: absolute;
-  left: 50px;
   width: max-content;
   padding: 0.5em;
+  font-size: 1rem;
   background-color: var(--clr-mid);
   border-radius: var(--border-radius);
   --scale: 0;
   transform: scale(var(--scale));
-  transform-origin: left center;
   transition: transform 300ms 500ms ease;
 }
 
-.btn:hover::after{
+.tooltip-right::after{
+  left: 50px;
+  transform-origin: left center;
+}
+
+.tooltip-left::after{
+  left: -100px;
+  transform-origin: right center;
+}
+
+.tooltip-top::after{
+  top: -40px;
+  left: 0;
+  transform-origin: bottom left;
+}
+
+.tooltip-right:hover::after, 
+.tooltip-top:hover::after, 
+.tooltip-left:hover::after{
   --scale: 1;
 }
 
@@ -359,6 +384,14 @@ h4{
   content: 'Toggle Display Share';
 }
 
+.make-whiteboard-btn::before{
+  content: url('../images/whiteboard-icon.svg');
+}
+
+.make-whiteboard-btn::after{
+  content: 'Set Background to Whiteboard';
+}
+
 .take-photo-btn::before{
   content: url('../images/camera-icon.svg');
 }
@@ -402,28 +435,68 @@ h4{
   content: url('../images/pencil-sq-icon.svg');
 }
 
+.whiteboard-toggle-btn::after{
+  content: "Show Whiteboarding Tools";
+}
+
 .pencil-btn::before{
   content: url('../images/pencil-icon.svg');
+}
+
+.pencil-btn::after{
+  content: 'Pencil Tool';
 } 
 
 .text-tool-btn::before{
   content: url('../images/text-icon.svg');
 }
 
+.text-tool-btn::after{
+  content: 'Text Tool';
+}
+
 .line-btn::before{
   content: url('../images/line-tool.svg');
+}
+
+.line-btn::after{
+  content: 'Line Tool';
 }
 
 .square-btn::before{
   content: url('../images/square-icon.svg');
 }
 
+.square-btn::after{
+  content: 'Square Shape Tool';
+}
+
 .ellipse-btn::before{
   content: url('../images/circle-icon.svg');
 }
 
+.ellipse-btn::after{
+  content: 'Ellipse Tool';
+}
+
+.color-btn::after{
+  content: 'Color Picker';
+}
+
+.color-style-wrapper::after{
+  content: 'Shape Style'
+}
+
+.size-select-wrapper::after{
+  content: 'Size Selector';
+}
+
 .clear-whiteboard-btn::before{
   content: url('../images/x-clear-icon.svg');
+}
+
+.clear-whiteboard-btn::after{
+  content: 'Clear Whiteboard';
 }
 
 /* ==== Helpers ==== */

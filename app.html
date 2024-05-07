@@ -36,7 +36,7 @@
             <h2 class="align-left">Apps4Everyone.tech </h2>
             <h1 class="align-center">Every Cam</h1>
             <div class="fullscreen-container align-right">
-                <button id="fullscreen-btn" class="btn fullscreen-btn"></button>
+                <button id="fullscreen-btn" class="btn fullscreen-btn tooltip-left"></button>
             </div>
             
         </header>
@@ -44,13 +44,14 @@
             <!--All the tools and buttons to operate camera-->
             <h3>Tools</h3>
             <section class="tools-container">
-                <button id="get-webcam" class="btn get-camera-btn"></button>
-                <button id="invert-webcam" class="btn invert-camera-btn" disabled></button>
-                <button id="get-display" class="btn get-display-btn"></button>
-                <button id="take-photo" class="btn take-photo-btn"></button>
-                <button id="get-mic" class="btn get-mic-btn"></button>
-                <button id="record-video" class="btn record-video-btn"></button>
-                <button id="whiteboard-tools-toggle" class="btn whiteboard-toggle-btn"></button>
+                <button id="get-webcam" class="btn get-camera-btn tooltip-right"></button>
+                <button id="invert-webcam" class="btn invert-camera-btn tooltip-right" disabled></button>
+                <button id="get-display" class="btn get-display-btn tooltip-right"></button>
+                <button id="make-whiteboard" class="btn make-whiteboard-btn tooltip-right"></button>
+                <button id="get-mic" class="btn get-mic-btn tooltip-right"></button>
+                <button id="take-photo" class="btn take-photo-btn tooltip-right"></button>
+                <button id="record-video" class="btn record-video-btn tooltip-right"></button>
+                <button id="whiteboard-tools-toggle" class="btn whiteboard-toggle-btn tooltip-top"></button>
             </section>
         </aside>
         <main id="main-container" class="main-container">
@@ -60,26 +61,30 @@
             <canvas id="whiteboard-canvas" class="whiteboard-canvas"></canvas>
             <section id="textbox-container" class="textbox-container">
                 <input type="text" name="onscreen-text" id="onscreen-text" />
-                <button id="text-place" class="btn text-place-btn">Place</button>
+                <button id="text-place" class="btn text-place-btn tooltip-top">Place</button>
             </section>
             <section class="whiteboard-tools-container">
-                <button id="pencil-tool" class="btn pencil-btn"></button>
-                <button id="text-tool" class="btn text-tool-btn"></button>
-                <button id="line-tool" class="btn line-btn"></button>
-                <button id="square-tool" class="btn square-btn"></button>
-                <button id="ellipse-tool" class="btn ellipse-btn"></button>
-                <input type="color" value="#257FD2" id="color-select" class="btn color-btn">
-                <select name="color-style-select" id="color-style-select" class="select-btn">
-                    <option value="stroke">Stroke</option>
-                    <option value="fill">Fill</option>
-                </select>
-                <select name="stroke-size-select" id="stroke-size-select" class="select-btn">
-                    <option value="3">Small</option>
-                    <option value="6">Medium</option>
-                    <option value="9">Large</option>
-                    <option value="12">XLarge</option>
-                </select>
-                <button id="clear-whiteboard" class="btn clear-whiteboard-btn"></button>
+                <button id="pencil-tool" class="btn pencil-btn tooltip-top"></button>
+                <button id="text-tool" class="btn text-tool-btn tooltip-top"></button>
+                <button id="line-tool" class="btn line-btn tooltip-top"></button>
+                <button id="square-tool" class="btn square-btn tooltip-top"></button>
+                <button id="ellipse-tool" class="btn ellipse-btn tooltip-top"></button>
+                <input type="color" value="#257FD2" id="color-select" class="btn color-btn tooltip-top">
+                <div class="color-style-wrapper tooltip-top">
+                    <select name="color-style-select" id="color-style-select" class="select-btn color-select-btn">
+                        <option value="stroke">Stroke</option>
+                        <option value="fill">Fill</option>
+                    </select>
+                </div>
+                <div class="size-select-wrapper tooltip-top">
+                    <select name="stroke-size-select" id="stroke-size-select" class="select-btn size-select-btn">
+                        <option value="3">Small</option>
+                        <option value="6">Medium</option>
+                        <option value="9">Large</option>
+                        <option value="12">XLarge</option>
+                    </select>
+                </div>
+                <button id="clear-whiteboard" class="btn clear-whiteboard-btn tooltip-top"></button>
             </section>
         </main>
         <aside id="assets-bar" class="assets-bar">
@@ -89,7 +94,7 @@
                     <h3>Captures</h3>
                 </div>
                 <div class="clear-container align-right">
-                    <button id="clear-captures-btn" class="btn clear-captures-btn" disabled></button>
+                    <button id="clear-captures-btn" class="btn clear-captures-btn tooltip-left" disabled></button>
                 </div>
             </section>
             <section id="captures-container" class="captures-container"></section>

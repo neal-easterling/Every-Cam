@@ -1,4 +1,5 @@
 import { LineTool, SquareTool, EllipseTool } from "./ShapeTools.js";
+import { TextTool } from "./TextTool.js";
 export class Whiteboard {
 
   constructor(mouseHandler, id, mirrorEl, resolution){
@@ -32,6 +33,7 @@ export class Whiteboard {
     this.lineTool = new LineTool();
     this.squareTool = new SquareTool();
     this.ellipseTool = new EllipseTool();
+    this.textTool = new TextTool(resolution);
 
     this.setCanvasElSize();
     this.setSizesOnChange();
@@ -80,6 +82,8 @@ export class Whiteboard {
           case 'ellipse' :
             this.ellipseTool.setPoint2(newCoords);
             break;
+          case 'text' :
+            this.setTextToolPosition(newCoords);
           default:
             break;
         }
@@ -143,6 +147,21 @@ export class Whiteboard {
     this.y = y;
   }
 
+  setTextToolPosition(coords){
+    const[x, y, mouseDown] = this.mouse.getMouse();
+    if(mouseDown){
+      if(this.textTool.isMouseOn(coords)){
+          this.textTool.setCoords(coords);
+        } 
+    }  
+  }
+
+  placeText(){
+    const ctx = this.canvas.ctx;
+    ctx.fillStyle = this.color;
+    this.textTool.draw(this.canvas.ctx);
+  }
+
   setColor(str){
     this.color = str;
   }
@@ -182,8 +201,18 @@ export class Whiteboard {
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.strokeSize;
       ctx.fillStyle = this.color;
-      const mCtx = this.mirrorEl.ctx
 
+      this.setTextToolPosition();
+      const mCtx = this.mirrorEl.ctx
+      mCtx.strokeStyle = this.color;
+      mCtx.fillStyle = this.color;
+      mCtx.lineWidth = this.strokeSize;
+      this.textTool.draw(mCtx, this.strokeSize);
+      
+      if(this.mode == 'text') {
+        this.textTool.draw(mCtx, this.strokeSize);
+        this.textTool.drawHandle(mCtx);
+      }
       if(this.mouse.mouseDown){
 
         if(this.mode == 'drawing'){ 
@@ -191,9 +220,7 @@ export class Whiteboard {
           this.pencil.setPoint1(this.pencil.getPoint2());
           //console.log('draw');
         } else {
-          mCtx.strokeStyle = this.color;
-          mCtx.fillStyle = this.color;
-          mCtx.lineWidth = this.strokeSize;
+          
           switch(this.mode){
             case 'line':
               this.lineTool.draw(mCtx, 'stroke');
@@ -203,6 +230,10 @@ export class Whiteboard {
               break;
             case 'ellipse':
               this.ellipseTool.draw(mCtx, this.shapeStyle);
+            case 'text':
+              break;
+            default:
+              break;
           }
         }
       }

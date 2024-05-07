@@ -23,8 +23,7 @@ export class CanvasController{
         && this.overlayCam.isDraggable){
           this.overlayCam.setCoords(newCoords);
         } 
-    } 
-    
+    }  
   }
 
   setMainCanvasResolution(width, height){
@@ -43,9 +42,9 @@ export class CanvasController{
     this.ctx.fillStyle = "#c9c9c9";
     this.ctx.fillRect(0, 0, this.width, this.height);
     
-    this.ctx.fillStyle = "#257FD2";
-    this.ctx.font = "700 8rem 'Poppins', sans-serif";
-    this.ctx.fillText('Hello World', 100, 100);
+    // this.ctx.fillStyle = "#257FD2";
+    // this.ctx.font = "700 8rem 'Poppins', sans-serif";
+    // this.ctx.fillText('Hello World', 100, 100);
 
     const centerx = Math.floor(this.width/2);
     const centery = Math.floor(this.height/2);

@@ -92,7 +92,9 @@ window.onload = ()=>{
 
 // ========== Whiteboard Toolbar =================== //
 
-const whiteboardBtn = document.getElementById('whiteboard-tools-toggle'); 
+const whiteboardBtn = document.getElementById('whiteboard-tools-toggle');
+const onscreenText = document.getElementById('onscreen-text');
+const textPlaceBtn = document.getElementById('text-place'); 
 const wbtoolbtns = {
     pencilBtn: document.getElementById('pencil-tool'),
     lineBtn: document.getElementById('line-tool'),
@@ -139,6 +141,14 @@ const removeActiveClass = (btnsObj)=>{
     if(app.whiteboard.mode != 'text') app.whiteboard.mode = 'text';
   });
 
+  onscreenText.addEventListener('input', e => {
+    app.whiteboard.textTool.setText(e.target.value);
+  });
+
+  textPlaceBtn.addEventListener('click', ()=>{
+    app.whiteboard.placeText();
+  });
+
   wbtoolbtns.lineBtn.addEventListener('click', ()=>{
     removeActiveClass(wbtoolbtns);
     wbtoolbtns.lineBtn.classList.add('active');
@@ -158,7 +168,7 @@ const removeActiveClass = (btnsObj)=>{
   });
 
 
-  wbtoolbtns.colorSelect.addEventListener('change',(e)=>{
+  wbtoolbtns.colorSelect.addEventListener('input',(e)=>{
     app.whiteboard.color = e.target.value;
   });
 

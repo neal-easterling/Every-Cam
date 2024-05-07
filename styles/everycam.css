@@ -164,11 +164,12 @@ h4{
     outline: 1px solid var(--clr-available);
   }
 
-  .text-set-btn{
+  .text-place-btn{
     height: 25px;
     width: 75px;
     font-weight: 700;
     text-align: center;
+    background-color: var(--clr-on);
   }
 }
 
@@ -236,6 +237,7 @@ h4{
 
 .btn:hover{
   background-color: var(--clr-lite);
+  cursor: pointer;
 }
 
 .btn::after{

@@ -1,8 +1,10 @@
 export class OverlayCam{
 
-  constructor(){
-    this.x = 200;
-    this.y = 520;
+  constructor({width, height}){
+    this.canvasWidth = width;
+    this.canvasHeight = height;
+    this.x = this.canvasWidth - 200;
+    this.y = 200;
     this.radius = 150;
     this.vX = this.x - this.radius * 16/9;
     this.vY = this.y - this.radius; 

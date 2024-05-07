@@ -9,7 +9,7 @@ export class CanvasController{
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.boundingRect = this.el.getBoundingClientRect();
       this.mouse = mouseHandler;
-      this.overlayCam = new OverlayCam();
+      this.overlayCam = new OverlayCam({width:this.width, heght:this.height});
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
       this.logo.src = "../images/appslogo.svg";
@@ -41,14 +41,14 @@ export class CanvasController{
   drawBlank(){
     this.ctx.fillStyle = "#c9c9c9";
     this.ctx.fillRect(0, 0, this.width, this.height);
-    
-    // this.ctx.fillStyle = "#257FD2";
-    // this.ctx.font = "700 8rem 'Poppins', sans-serif";
-    // this.ctx.fillText('Hello World', 100, 100);
-
     const centerx = Math.floor(this.width/2);
     const centery = Math.floor(this.height/2);
     this.ctx.drawImage(this.logo, centerx - 125, centery - 125);
+  }
+
+  drawWhiteboardBackground(){
+    this.ctx.fillStyle = "#c9c9c9";
+    this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
   drawCamFullFrame(videoSource, inverted = true){
@@ -63,7 +63,6 @@ export class CanvasController{
   }
   
   drawFullFrame(videoSource){
-    // , this.width, this.height
     this.ctx.drawImage(videoSource, 0, 0); 
   }
 
@@ -71,10 +70,11 @@ export class CanvasController{
     this.setOverlayCamPostion();
     let {x, y, radius, vX, vY, videoWidth, videoHeight} = camObj;
     this.ctx.save();
+    this.ctx.arc(x, y, radius + 5, 0, 2 * Math.PI);
+    this.ctx.fillStyle = "#257FD2";
+    this.ctx.fill();
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    //this.ctx.fillStyle = 'red';
-    //this.ctx.fill();
     this.ctx.clip()
     let posX = vX;
     if(inverted == true){
@@ -82,8 +82,7 @@ export class CanvasController{
       posX = (videoWidth + vX ) * -1;
     }
     this.ctx.drawImage(videoSource, posX, vY, videoWidth, videoHeight);
-    this.ctx.restore();
-    //console.log(x,y);
+    this.ctx.restore();;
   }
 
   captureCanvasStream(frameRate){

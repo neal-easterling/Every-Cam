@@ -2,7 +2,8 @@
 export class TextTool{
 
   constructor({height}){
-    this.point1 = [40, height - 40];
+    this.canvasHeight = height;
+    this.point1 = [40, this.canvasHeight - 40];
     this.handle = [this.point1[0] - 25, this.point1[1] - 25];
     this.text = '';
     this.font = "'Poppins', sans-serif";
@@ -20,6 +21,11 @@ export class TextTool{
   setCoords([x,y]){
     this.point1 = [x, y];
     this.handle = [x-25, y-25];
+  }
+  reset(){
+    this.point1 = [40, this.canvasHeight - 40];
+    this.handle = [this.point1[0] - 25, this.point1[1] - 25];
+    this.text = '';
   }
 
   isMouseOn(coords){

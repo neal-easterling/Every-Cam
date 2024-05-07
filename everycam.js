@@ -147,6 +147,8 @@ const removeActiveClass = (btnsObj)=>{
 
   textPlaceBtn.addEventListener('click', ()=>{
     app.whiteboard.placeText();
+    onscreenText.value = '';
+    app.whiteboard.textTool.reset();
   });
 
   wbtoolbtns.lineBtn.addEventListener('click', ()=>{

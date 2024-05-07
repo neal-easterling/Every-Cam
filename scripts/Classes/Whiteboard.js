@@ -159,7 +159,8 @@ export class Whiteboard {
   placeText(){
     const ctx = this.canvas.ctx;
     ctx.fillStyle = this.color;
-    this.textTool.draw(this.canvas.ctx);
+    ctx.lineWidth = this.strokeSize;
+    this.textTool.draw(this.canvas.ctx, this.strokeSize);
   }
 
   setColor(str){

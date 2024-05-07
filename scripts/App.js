@@ -108,23 +108,69 @@ export class App {
     console.log('recording stopped');
   }
 
+  testConditionsForRender(){
+    //blank screen = 0
+    if(!this.webcam.available && !this.display.available && this.mainCanvas.mode != 'whiteboard') return 0;
+    
+    //webcam only = 1
+    if(this.webcam.available && !this.display.available && this.mainCanvas.mode != 'whiteboard') return 1;
+    
+    //webcam and display only = 2
+    if(this.webcam.available && this.display.available && this.mainCanvas.mode != 'whiteboard') return 2;
+    
+    //webcam and whiteboard = 3
+    if(this.webcam.available && !this.display.available && this.mainCanvas.mode == 'whiteboard' ||
+      this.webcam.available && this.display.available && this.mainCanvas.mode == 'whiteboard'
+      ){ return 3;}
+    
+    //only whiteboard = 4
+    if(!this.webcam.available && this.display.available && this.mainCanvas.mode == 'whiteboard' ||
+      !this.webcam.available && !this.display.available && this.mainCanvas.mode == 'whiteboard'
+      ){ return 4;}
+  }
+
   renderMain(){
     //this.whiteboard.addBackground();
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
 
-    if(!this.webcam.available && !this.display.available){
-      this.mainCanvas.drawBlank();
+    const results = this.testConditionsForRender();
+    //console.log(results);
+    switch(results){
+      case 0:
+        this.mainCanvas.drawBlank();
+        break;
+      case 1:
+        this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
+        break;
+      case 2:
+        this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+        this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
+        break;
+      case 3:
+        this.mainCanvas.drawWhiteboardBackground();
+        this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
+        break;
+      case 4:
+        this.mainCanvas.drawWhiteboardBackground();
+        break;
+      default:
+        this.mainCanvas.drawBlank();
+        break;
     }
-    if(this.webcam.available && !this.display.available){
-      this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
-    }
-    if(!this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-    }
-    if(this.webcam.available && this.display.available){
-      this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
-      this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
-    } 
+
+    // if(!this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawBlank();
+    // }
+    // if(this.webcam.available && !this.display.available){
+    //   this.mainCanvas.drawCamFullFrame(this.storage.webcamVideoEl, this.camInverted);
+    // }
+    // if(!this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    // }
+    // if(this.webcam.available && this.display.available){
+    //   this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
+    //   this.mainCanvas.drawCircle(this.storage.webcamVideoEl, this.camInverted);
+    // } 
   }
 
   renderWhiteboard(){

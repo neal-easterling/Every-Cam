@@ -17,6 +17,7 @@ window.onload = ()=>{
     displayBtn: document.getElementById('get-display'),
     recordBtn: document.getElementById('record-video'),
     micBtn: document.getElementById('get-mic'),
+    setWBbtn: document.getElementById('make-whiteboard')
   };
 
   const capsContainer = document.querySelector('#captures-container');
@@ -51,6 +52,16 @@ window.onload = ()=>{
       }
     }
     buttons.displayBtn.classList.toggle('active');
+  });
+
+  buttons.setWBbtn.addEventListener('click', ()=>{
+    if(app.mainCanvas.mode != 'whiteboard'){
+      app.mainCanvas.mode = 'whiteboard';
+    }else{
+      app.mainCanvas.mode = 'default';
+    }
+    console.log(app.mainCanvas.mode);
+    buttons.setWBbtn.classList.toggle('active');
   });
 
   buttons.photoBtn.addEventListener('click', ()=>{

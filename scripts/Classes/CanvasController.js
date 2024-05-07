@@ -13,6 +13,7 @@ export class CanvasController{
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
       this.logo.src = "../images/appslogo.svg";
+      this.mode = "default";
   }
 
   setOverlayCamPostion(){

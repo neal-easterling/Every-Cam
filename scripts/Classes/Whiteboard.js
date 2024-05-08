@@ -12,7 +12,7 @@ export class Whiteboard {
     this.mirrorEl = {
       el:canvasObj.el,
       boundingRect: canvasObj.el.getBoundingClientRect(),
-      ctx: canvasObj.ctx
+      ctx: canvasObj.el.getContext('2d')
     }
     
     this.left = this.mirrorEl.boundingRect.left;

@@ -22,6 +22,7 @@ window.onload = ()=>{
 
   const capsContainer = document.querySelector('#captures-container');
   const whiteboardToolbar = document.querySelector('.whiteboard-tools-container');
+  const whiteboardCanvas = document.querySelector("#whiteboard-canvas");
 
   buttons.webcamBtn.addEventListener('click', async()=>{
     if (app.webcam.available){

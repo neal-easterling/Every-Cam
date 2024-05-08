@@ -2,15 +2,17 @@ import { LineTool, SquareTool, EllipseTool } from "./ShapeTools.js";
 import { TextTool } from "./TextTool.js";
 export class Whiteboard {
 
-  constructor(mouseHandler, id, mirrorEl, resolution){
+  constructor(mouseHandler, id, canvasObj, resolution){
     this.canvas = {
       el: document.getElementById(id),
       ctx: document.getElementById(id).getContext('2d')
     }
+    this.mainCanvas = canvasObj;
+
     this.mirrorEl = {
-      el:mirrorEl,
-      boundingRect: mirrorEl.getBoundingClientRect(),
-      ctx: mirrorEl.getContext('2d')
+      el:canvasObj.el,
+      boundingRect: canvasObj.el.getBoundingClientRect(),
+      ctx: canvasObj.ctx
     }
     
     this.left = this.mirrorEl.boundingRect.left;
@@ -211,7 +213,24 @@ export class Whiteboard {
     }
   }
 
+  setCursor(){
+    if(this.mainCanvas.overlayCam.isActive & this.mainCanvas.overlayCam.isDraggable 
+      || this.mode == 'text' && this.isActive){
+        this.canvas.el.style.cursor = "grab";
+        if(this.mouse.mouseDown){
+          this.canvas.el.style.cursor = "grabbing";
+        }
+    }else if(this.isActive && this.mode != 'text'){
+      this.canvas.el.style.cursor = 'crosshair';
+    } else {
+      this.canvas.el.style.cursor = 'move';
+    }
+  
+  }
+
   draw(){
+    this.setCursor();
+
     if(this.isActive){
       const ctx = this.canvas.ctx;
       ctx.lineCap = 'round';

@@ -11,6 +11,7 @@ export class OverlayCam{
     this.videoHeight= this.radius * 2;
     this.videoWidth =(2 * this.radius) * 16/9;
     this.isDraggable = true;
+    this.isActive = false;
   }
 
   isMouseOn([mouseX, mouseY]){

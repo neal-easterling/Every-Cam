@@ -8,6 +8,7 @@ export class MouseHandler {
 
     document.addEventListener('mousedown', (md)=>{
       this.mouseDown = true;
+      //console.log(this.mouseDown);
     });
 
     document.addEventListener('touchstart', (ts)=>{
@@ -17,6 +18,7 @@ export class MouseHandler {
     document.addEventListener('mousemove', (mm)=>{
       this.x = mm.clientX;
       this.y = mm.clientY;
+      //console.log(this.mouseDown);
     });
 
     document.addEventListener('touchmove', (tm)=>{
@@ -27,6 +29,7 @@ export class MouseHandler {
 
     document.addEventListener('mouseup', (mu)=>{
       this.mouseDown = false;
+      //console.log(this.mouseDown);
     });
 
     document.addEventListener('touchend', (te)=>{

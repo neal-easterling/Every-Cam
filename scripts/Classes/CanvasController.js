@@ -40,6 +40,7 @@ export class CanvasController{
   }
 
   drawBlank(){
+    this.overlayCam.isActive = false;
     this.ctx.fillStyle = "#c9c9c9";
     this.ctx.fillRect(0, 0, this.width, this.height);
     const centerx = Math.floor(this.width/2);
@@ -53,6 +54,7 @@ export class CanvasController{
   }
 
   drawCamFullFrame(videoSource, inverted = true){
+    this.overlayCam.isActive = false;
     this.ctx.save();
     let posX = 0;
     if(inverted) {
@@ -69,6 +71,7 @@ export class CanvasController{
 
   drawCircle(videoSource, inverted, camObj = this.overlayCam){
     this.setOverlayCamPostion();
+    this.overlayCam.isActive = true;
     let {x, y, radius, vX, vY, videoWidth, videoHeight} = camObj;
     this.ctx.save();
     this.ctx.arc(x, y, radius + 5, 0, 2 * Math.PI);

@@ -28,7 +28,7 @@ export class App {
     this.camInverted = true;
     this.isRecording = false;
 
-    this.whiteboard = new Whiteboard(this.mouseHandler, 'whiteboard-canvas', this.mainCanvas.el, this.resolution);
+    this.whiteboard = new Whiteboard(this.mouseHandler, 'whiteboard-canvas', this.mainCanvas, this.resolution);
 
     //Setup Objects
     this.storage.initStorage();
@@ -132,7 +132,6 @@ export class App {
   renderMain(){
     //this.whiteboard.addBackground();
     this.mainCanvas.ctx.clearRect(0, 0, this.mainCanvas.el.width, this.mainCanvas.el.height);
-
     const results = this.testConditionsForRender();
     //console.log(results);
     switch(results){

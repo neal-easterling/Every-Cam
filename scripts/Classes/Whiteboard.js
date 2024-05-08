@@ -39,86 +39,104 @@ export class Whiteboard {
     this.setSizesOnChange();
 
     // on mousedown with mode set point1
-    document.addEventListener('mousedown', ()=>{
-      const newCoords = this.getScaledCoords();
-      if(newCoords){
-        switch(this.mode) {
-          case 'none':
-            break;
-          case 'drawing':
-            this.pencil.setPoint1(newCoords);
-            break;
-          case 'line':
-            this.lineTool.setPoint1(newCoords);
-            break;
-          case 'square':
-            this.squareTool.setPoint1(newCoords);
-            break;
-          case 'ellipse':
-            this.ellipseTool.setPoint1(newCoords);
-            break;
-          default:
-            break;
-        }
-      }   
+    document.addEventListener('mousedown', this.handleStart);
+    document.addEventListener('touchstart', (ts)=>{
+      ts.preventDefault();
+      this.handleStart();
     });
 
     // on mousemove with mode set point2 & draw on MainCanvas
-    document.addEventListener('mousemove', ()=>{
-      const newCoords = this.getScaledCoords();
-      if(newCoords && this.mouse.mouseDown){
-        switch(this.mode) {
-          case 'none':
-            break;
-          case 'drawing':
-            this.pencil.setPoint2(newCoords);
-            break;
-          case 'line':
-            this.lineTool.setPoint2(newCoords);
-            break;
-          case 'square' :
-            this.squareTool.setPoint2(newCoords);
-            break;
-          case 'ellipse' :
-            this.ellipseTool.setPoint2(newCoords);
-            break;
-          case 'text' :
-            this.setTextToolPosition(newCoords);
-          default:
-            break;
-        }
-      }
+    document.addEventListener('mousemove', this.handleMove);
+    document.addEventListener('touchstart', (tm)=>{
+      tm.preventDefault();
+      this.handleMove();
+    });
+      
+    // on mouseup draw on whiteboard 
+    document.addEventListener('mouseup', this.handleEnd);
+    document.addEventListener('touchstart', (te)=>{
+      te.preventDefault();
+      this.handleEnd();
     });
 
-    // on mouseup draw on whiteboard 
-    document.addEventListener('mouseup',()=>{
-      const newCoords = this.getScaledCoords();
+  }
+
+  handleStart = ()=>{
+    const newCoords = this.getScaledCoords();
+    if(newCoords){
       switch(this.mode) {
         case 'none':
           break;
         case 'drawing':
-          this.pencil.setPoint1([]);
-          this.pencil.setPoint2([]);
+          this.pencil.setPoint1(newCoords);
           break;
         case 'line':
-          this.lineTool.draw(this.canvas.ctx, 'stroke');
-          this.lineTool.setPoint1([]);
-          this.lineTool.setPoint2([]);
+          this.lineTool.setPoint1(newCoords);
           break;
         case 'square':
-          this.squareTool.draw(this.canvas.ctx, this.shapeStyle);
-          this.squareTool.setPoint1([]);
-          this.squareTool.setPoint2([]);
+          this.squareTool.setPoint1(newCoords);
           break;
         case 'ellipse':
-          this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
-          this.ellipseTool.setPoint1([]);
-          this.ellipseTool.setPoint2([]);
+          this.ellipseTool.setPoint1(newCoords);
+          break;
         default:
           break;
       }
-    });
+    } 
+  }
 
+  handleMove = ()=>{
+    const newCoords = this.getScaledCoords();
+    if(newCoords && this.mouse.mouseDown){
+      switch(this.mode) {
+        case 'none':
+          break;
+        case 'drawing':
+          this.pencil.setPoint2(newCoords);
+          break;
+        case 'line':
+          this.lineTool.setPoint2(newCoords);
+          break;
+        case 'square' :
+          this.squareTool.setPoint2(newCoords);
+          break;
+        case 'ellipse' :
+          this.ellipseTool.setPoint2(newCoords);
+          break;
+        case 'text' :
+          this.setTextToolPosition(newCoords);
+        default:
+          break;
+      }
+    }
+  }
+
+  handleEnd = ()=> {
+    //const newCoords = this.getScaledCoords();
+    switch(this.mode) {
+      case 'none':
+        break;
+      case 'drawing':
+        this.pencil.setPoint1([]);
+        this.pencil.setPoint2([]);
+        break;
+      case 'line':
+        this.lineTool.draw(this.canvas.ctx, 'stroke');
+        this.lineTool.setPoint1([]);
+        this.lineTool.setPoint2([]);
+        break;
+      case 'square':
+        this.squareTool.draw(this.canvas.ctx, this.shapeStyle);
+        this.squareTool.setPoint1([]);
+        this.squareTool.setPoint2([]);
+        break;
+      case 'ellipse':
+        this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
+        this.ellipseTool.setPoint1([]);
+        this.ellipseTool.setPoint2([]);
+      default:
+        break;
+    }
   }
   
   setCanvasElSize(){

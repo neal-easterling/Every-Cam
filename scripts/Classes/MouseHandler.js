@@ -6,19 +6,37 @@ export class MouseHandler {
     this.y = 0;
     this.mouseDown = false;
 
+    document.addEventListener('mousedown', (md)=>{
+      this.mouseDown = true;
+    });
+
+    document.addEventListener('touchstart', (ts)=>{
+      this.mouseDown = true;
+    });
+
     document.addEventListener('mousemove', (mm)=>{
       this.x = mm.clientX;
       this.y = mm.clientY;
     });
 
-    document.addEventListener('mousedown', (md)=>{
-      this.mouseDown = true;
+    document.addEventListener('touchmove', (tm)=>{
+      tm.preventDefault();
+      this.x = tm.touches[0].clientX;
+      this.y = tm.touches[0].clientY;
     });
 
     document.addEventListener('mouseup', (mu)=>{
       this.mouseDown = false;
     });
+
+    document.addEventListener('touchend', (te)=>{
+      te.preventDefault();
+      this.mouseDown = false;
+    });
+
+   
   }
+
 
   getMouse(){
     return [this.x, this.y, this.mouseDown];

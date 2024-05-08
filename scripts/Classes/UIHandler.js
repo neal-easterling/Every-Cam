@@ -139,6 +139,7 @@ export class UIHandler{
         app.whiteboard.isActive = true;
         app.mainCanvas.overlayCam.isDraggable = false;
       }
+      console.log(app.whiteboard.isActive);
     });
   }
 

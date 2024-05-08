@@ -10,9 +10,9 @@ export class Whiteboard {
     this.mainCanvas = canvasObj;
 
     this.mirrorEl = {
-      el:canvasObj.el,
-      boundingRect: canvasObj.el.getBoundingClientRect(),
-      ctx: canvasObj.el.getContext('2d')
+      el:document.getElementById(canvasObj.id),
+      boundingRect: document.getElementById(canvasObj.id).getBoundingClientRect(),
+      ctx: document.getElementById(canvasObj.id).getContext('2d')
     }
     
     this.left = this.mirrorEl.boundingRect.left;
@@ -65,7 +65,7 @@ export class Whiteboard {
 
   handleStart = ()=>{
     const newCoords = this.getScaledCoords();
-    if(newCoords){
+    if(newCoords && this.isActive){
       switch(this.mode) {
         case 'none':
           break;
@@ -89,7 +89,7 @@ export class Whiteboard {
 
   handleMove = ()=>{
     const newCoords = this.getScaledCoords();
-    if(newCoords && this.mouse.mouseDown){
+    if(newCoords && this.mouse.mouseDown && this.isActive){
       switch(this.mode) {
         case 'none':
           break;
@@ -114,30 +114,31 @@ export class Whiteboard {
   }
 
   handleEnd = ()=> {
-    //const newCoords = this.getScaledCoords();
-    switch(this.mode) {
-      case 'none':
-        break;
-      case 'drawing':
-        this.pencil.setPoint1([]);
-        this.pencil.setPoint2([]);
-        break;
-      case 'line':
-        this.lineTool.draw(this.canvas.ctx, 'stroke');
-        this.lineTool.setPoint1([]);
-        this.lineTool.setPoint2([]);
-        break;
-      case 'square':
-        this.squareTool.draw(this.canvas.ctx, this.shapeStyle);
-        this.squareTool.setPoint1([]);
-        this.squareTool.setPoint2([]);
-        break;
-      case 'ellipse':
-        this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
-        this.ellipseTool.setPoint1([]);
-        this.ellipseTool.setPoint2([]);
-      default:
-        break;
+    if(this.isActive){
+      switch(this.mode) {
+        case 'none':
+          break;
+        case 'drawing':
+          this.pencil.setPoint1([]);
+          this.pencil.setPoint2([]);
+          break;
+        case 'line':
+          this.lineTool.draw(this.canvas.ctx, 'stroke');
+          this.lineTool.setPoint1([]);
+          this.lineTool.setPoint2([]);
+          break;
+        case 'square':
+          this.squareTool.draw(this.canvas.ctx, this.shapeStyle);
+          this.squareTool.setPoint1([]);
+          this.squareTool.setPoint2([]);
+          break;
+        case 'ellipse':
+          this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
+          this.ellipseTool.setPoint1([]);
+          this.ellipseTool.setPoint2([]);
+        default:
+          break;
+      }
     }
   }
   

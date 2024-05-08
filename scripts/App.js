@@ -127,6 +127,10 @@ export class App {
     if(!this.webcam.available && this.display.available && this.mainCanvas.mode == 'whiteboard' ||
       !this.webcam.available && !this.display.available && this.mainCanvas.mode == 'whiteboard'
       ){ return 4;}
+
+    if(!this.webcam.available && this.display.available && this.mainCanvas.mode != 'whiteboard' ){
+      return 5;
+    }
   }
 
   renderMain(){
@@ -151,6 +155,10 @@ export class App {
         break;
       case 4:
         this.mainCanvas.drawWhiteboardBackground();
+        break;
+      case 5:
+        //console.log('draw display triggered');
+        this.mainCanvas.drawFullFrame(this.storage.displayVideoEl);
         break;
       default:
         this.mainCanvas.drawBlank();

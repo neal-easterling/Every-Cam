@@ -5,6 +5,7 @@ export class CanvasController{
   constructor(mouseHandler, width=1280, height=720){
       this.width = width;
       this.height = height;
+      this.id ='main-canvas';
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
       this.boundingRect = this.el.getBoundingClientRect();
@@ -74,9 +75,6 @@ export class CanvasController{
     this.overlayCam.isActive = true;
     let {x, y, radius, vX, vY, videoWidth, videoHeight} = camObj;
     this.ctx.save();
-    this.ctx.arc(x, y, radius + 5, 0, 2 * Math.PI);
-    this.ctx.fillStyle = "#257FD2";
-    this.ctx.fill();
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
     this.ctx.clip()

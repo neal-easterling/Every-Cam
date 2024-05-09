@@ -2,15 +2,30 @@ import { OverlayCam } from "./OverlayCam.js";
 
 export class CanvasController{
 
-  constructor(width=1280, height=720){
+  constructor(mouseHandler, width=1280, height=720){
       this.width = width;
       this.height = height;
+      this.id ='main-canvas';
       this.el = document.getElementById('main-canvas');
       this.ctx = document.getElementById('main-canvas').getContext('2d', {alpha: false});
-      this.overlayCam = new OverlayCam();
+      this.boundingRect = this.el.getBoundingClientRect();
+      this.mouse = mouseHandler;
+      this.overlayCam = new OverlayCam({width:this.width, heght:this.height});
       this.logo = new Image(250, 250);
       // Link for production = "https://apps4everyone.tech/everycam/images/appslogo.svg"
-      this.logo.src = "../images/appslogo.svg";
+      this.logo.src = "https://apps4everyone.tech/everycam/images/appslogo.svg";
+      this.mode = "default";
+  }
+
+  setOverlayCamPostion(){
+    const[x, y, mouseDown] = this.mouse.getMouse();
+    if(mouseDown){
+      const newCoords = this.mouse.scaleCoords(this.el, this.width, this.height);
+      if(this.overlayCam.isMouseOn(newCoords) 
+        && this.overlayCam.isDraggable){
+          this.overlayCam.setCoords(newCoords);
+        } 
+    }  
   }
 
   setMainCanvasResolution(width, height){
@@ -18,7 +33,6 @@ export class CanvasController{
     this.el.width = width;
     this.height = height;
     this.el.height = height;
-  
   }
 
   takeCanvasPhoto(){
@@ -27,13 +41,21 @@ export class CanvasController{
   }
 
   drawBlank(){
+    this.overlayCam.isActive = false;
     this.ctx.fillStyle = "#c9c9c9";
     this.ctx.fillRect(0, 0, this.width, this.height);
     const centerx = Math.floor(this.width/2);
     const centery = Math.floor(this.height/2);
     this.ctx.drawImage(this.logo, centerx - 125, centery - 125);
   }
+
+  drawWhiteboardBackground(){
+    this.ctx.fillStyle = "#c9c9c9";
+    this.ctx.fillRect(0, 0, this.width, this.height);
+  }
+
   drawCamFullFrame(videoSource, inverted = true){
+    this.overlayCam.isActive = false;
     this.ctx.save();
     let posX = 0;
     if(inverted) {
@@ -45,26 +67,28 @@ export class CanvasController{
   }
   
   drawFullFrame(videoSource){
-    this.ctx.drawImage(videoSource, 0, 0, this.width, this.height); 
+    this.ctx.drawImage(videoSource, 0, 0); 
   }
 
-  drawCircle(videoSource, inverted=true, camObj = this.overlayCam){
-    let {x, y, radius, videoWidth, videoHeight, vX, vY} = camObj;
+  drawCircle(videoSource, inverted, camObj = this.overlayCam){
+    this.setOverlayCamPostion();
+    this.overlayCam.isActive = true;
+    let {x, y, radius, vX, vY, videoWidth, videoHeight} = camObj;
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
     this.ctx.clip()
     let posX = vX;
-    if(inverted) {
+    if(inverted == true){
       this.ctx.scale(-1, 1);
-      posX = (videoWidth - radius/2) * -1;
+      posX = (videoWidth + vX ) * -1;
     }
     this.ctx.drawImage(videoSource, posX, vY, videoWidth, videoHeight);
-    this.ctx.restore();
+    this.ctx.restore();;
   }
 
-  captureCanvasStream(){
-    const stream = this.el.captureStream(this.frameRate);
+  captureCanvasStream(frameRate){
+    const stream = this.el.captureStream(frameRate);
     return stream;
   }
 

@@ -1,10 +1,8 @@
 
-export class RecordingController {
+export class Recorder {
 
   constructor(){
     this.active = null;
-    //this.mimeType = 'video/webm';
-    this.blog = null;
   }
 
   createRecorder(mediaStream){
@@ -14,7 +12,11 @@ export class RecordingController {
 
   async combineTracksToStream({videoTracks, audioTracks}){
     const mediaStream = new MediaStream();
-    videoTracks.forEach(track=> mediaStream.addTrack(track));
+    videoTracks.forEach(track=>{
+      mediaStream.addTrack(track);
+      //console.log("main track" + track);
+    });
+    
     if(audioTracks) audioTracks.forEach(track=> mediaStream.addTrack(track));
     return mediaStream;
   }
@@ -29,7 +31,7 @@ export class RecordingController {
     buffer.push(e.data);
     const blob = this.convertBlobToMP4(buffer);
     const urlObj = window.URL.createObjectURL(blob);
-    storage.returnDownloadVideoEl(urlObj);
+    storage.returnDownloadMediaEl(urlObj, 'video');
   }
 
 }

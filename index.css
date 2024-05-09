@@ -155,7 +155,9 @@ section{
     margin-top: 1rem;
 
     @media only screen  and (max-width: 650px){
-        grid-template-columns: 1rem auto 1rem;
+        padding: 0.5rem;
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 }
 

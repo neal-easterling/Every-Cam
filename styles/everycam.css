@@ -32,8 +32,8 @@ body{
   color: var(--clr-white);
   height: 100vh;
   display: grid;
-  grid-template-columns: 50px 5fr 1.5fr;
-  grid-template-rows: 0.5fr 8fr 0.5fr;
+  grid-template-columns: 50px minmax(505px, 5fr) minmax(170px, 1.5fr);
+  grid-template-rows: minmax(60px, 10%) 80% minmax(40px, 10%);
   grid-template-areas: 
     "header header header"
     "tools main assets"

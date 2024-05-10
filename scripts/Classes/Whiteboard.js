@@ -9,6 +9,11 @@ export class Whiteboard {
     }
     this.mainCanvas = canvasObj;
 
+    this.mainContainer = {
+      el: document.getElementById('main-container'),
+      boundingRect: document.getElementById('main-container').getBoundingClientRect()
+    };
+
     this.mirrorEl = {
       el:document.getElementById(canvasObj.id),
       boundingRect: document.getElementById(canvasObj.id).getBoundingClientRect(),
@@ -38,6 +43,7 @@ export class Whiteboard {
     this.textTool = new TextTool(resolution);
 
     this.setCanvasElSize();
+    this.setCanvasPosition();
     this.setSizesOnChange();
 
     // on mousedown with mode set point1
@@ -145,6 +151,11 @@ export class Whiteboard {
   setCanvasElSize(){
     this.canvas.el.width = this.width;
     this.canvas.el.height = this.height;
+  }
+
+  setCanvasPosition(){
+    this.canvas.el.style.left = `${this.left - this.mainContainer.boundingRect.left}px`;
+    this.canvas.el.style.top = `${this.top - this.mainContainer.boundingRect.top}px`;
   }
 
   setSizesOnChange(){

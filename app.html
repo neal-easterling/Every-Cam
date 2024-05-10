@@ -9,8 +9,6 @@
         <meta property="og:image" content="https://apps4everyone.tech/everycam/images/ec-facebook-share.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Every Cam | Free Online Desktop Recording App">
-        <meta name="twitter:site" content="@Neal_Easterling">
-        <meta name="twitter:creator" content="@Neal_Easterling">
         <meta name="twitter:url" content="https://apps4everyone.tech/everycam/">
         <meta name="twitter:description" content="Screenshare recording, webcam overlay, inverted document camera, and screen capture - all in one free app." >
         <meta name="twitter:image" content="https://apps4everyone.tech/everycam/images/ec-twitter-share.png">
@@ -38,7 +36,9 @@
             <h2 class="align-left">Apps4Everyone.tech </h2>
             <h1 class="align-center">Every Cam</h1>
             <div class="fullscreen-container align-right">
-                <button id="fullscreen-btn" class="btn fullscreen-btn tooltip-left"></button>
+                <button id="fullscreen-btn" class="btn fullscreen-btn tooltip-bottom"></button>
+                <button id="take-photo" class="btn take-photo-btn tooltip-bottom"></button>
+                <button id="record-video" class="btn record-video-btn tooltip-bottom"></button> 
             </div>
             
         </header>
@@ -51,8 +51,7 @@
                 <button id="get-display" class="btn get-display-btn tooltip-right"></button>
                 <button id="make-whiteboard" class="btn make-whiteboard-btn tooltip-right"></button>
                 <button id="get-mic" class="btn get-mic-btn tooltip-right"></button>
-                <button id="take-photo" class="btn take-photo-btn tooltip-right"></button>
-                <button id="record-video" class="btn record-video-btn tooltip-right"></button>
+                
                 <button id="whiteboard-tools-toggle" class="btn whiteboard-toggle-btn tooltip-top"></button>
             </section>
         </aside>
@@ -61,33 +60,36 @@
                 <p>Update browser in order to use this Every Cam.</p>
             </canvas>
             <canvas id="whiteboard-canvas" class="whiteboard-canvas"></canvas>
-            <section id="textbox-container" class="textbox-container">
-                <input type="text" name="onscreen-text" id="onscreen-text" />
-                <button id="text-place" class="btn text-place-btn tooltip-top">Place</button>
-            </section>
-            <section class="whiteboard-tools-container">
-                <button id="pencil-tool" class="btn pencil-btn tooltip-top"></button>
-                <button id="text-tool" class="btn text-tool-btn tooltip-top"></button>
-                <button id="line-tool" class="btn line-btn tooltip-top"></button>
-                <button id="square-tool" class="btn square-btn tooltip-top"></button>
-                <button id="ellipse-tool" class="btn ellipse-btn tooltip-top"></button>
-                <input type="color" value="#257FD2" id="color-select" class="btn color-btn tooltip-top">
-                <div class="color-style-wrapper tooltip-top">
-                    <select name="color-style-select" id="color-style-select" class="select-btn color-select-btn">
-                        <option value="stroke">Stroke</option>
-                        <option value="fill">Fill</option>
-                    </select>
-                </div>
-                <div class="size-select-wrapper tooltip-top">
-                    <select name="stroke-size-select" id="stroke-size-select" class="select-btn size-select-btn">
-                        <option value="3">Small</option>
-                        <option value="6">Medium</option>
-                        <option value="9">Large</option>
-                        <option value="12">XLarge</option>
-                    </select>
-                </div>
-                <button id="clear-whiteboard" class="btn clear-whiteboard-btn tooltip-top"></button>
-            </section>
+            <div class="whiteboard-tools-wrapper">
+                <section id="textbox-container" class="textbox-container">
+                    <input type="text" name="onscreen-text" id="onscreen-text" />
+                    <button id="text-place" class="btn text-place-btn tooltip-top">Place</button>
+                </section>
+                <section class="whiteboard-tools-container">
+                    <button id="pencil-tool" class="btn pencil-btn tooltip-top"></button>
+                    <button id="text-tool" class="btn text-tool-btn tooltip-top"></button>
+                    <button id="line-tool" class="btn line-btn tooltip-top"></button>
+                    <button id="square-tool" class="btn square-btn tooltip-top"></button>
+                    <button id="ellipse-tool" class="btn ellipse-btn tooltip-top"></button>
+                    <input type="color" value="#257FD2" id="color-select" class="btn color-btn tooltip-top">
+                    <div class="color-style-wrapper tooltip-top">
+                        <select name="color-style-select" id="color-style-select" class="select-btn color-select-btn">
+                            <option value="stroke">Stroke</option>
+                            <option value="fill">Fill</option>
+                        </select>
+                    </div>
+                    <div class="size-select-wrapper tooltip-top">
+                        <select name="stroke-size-select" id="stroke-size-select" class="select-btn size-select-btn">
+                            <option value="3">Small</option>
+                            <option value="6">Medium</option>
+                            <option value="9">Large</option>
+                            <option value="12">XLarge</option>
+                        </select>
+                    </div>
+                    <button id="clear-whiteboard" class="btn clear-whiteboard-btn tooltip-top"></button>
+                </section>
+            </div>
+            
         </main>
         <aside id="assets-bar" class="assets-bar">
             <!--All the photos and  videos captured by camera-->
@@ -96,7 +98,7 @@
                     <h3>Captures</h3>
                 </div>
                 <div class="clear-container align-right">
-                    <button id="clear-captures-btn" class="btn clear-captures-btn tooltip-left" disabled></button>
+                    <button id="clear-captures-btn" class="btn clear-captures-btn tooltip-bottom" disabled></button>
                 </div>
             </section>
             <section id="captures-container" class="captures-container"></section>

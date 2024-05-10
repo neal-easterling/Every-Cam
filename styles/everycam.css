@@ -103,6 +103,7 @@ h4{
 }
 
 .toolbar{
+  position: relative;
   grid-area: tools;
   display: flex;
   flex-direction: column;
@@ -125,16 +126,20 @@ h4{
   grid-area: main;
   display: grid;
   place-items: center;
+  grid-template-rows: 5fr 1fr;
   background-color: var(--clr-mid);
+}
+
+.whiteboard-tools-wrapper{
+  width: 100%;
 }
 
 .whiteboard-tools-container, .textbox-container{
   --scale: 0;
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
+  width: 100%;
+  padding: 5px 0px 0px 7px;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   gap: 5px;
   transform: scaleX(var(--scale));
   transform-origin: left center;
@@ -146,9 +151,8 @@ h4{
 }
 
 .textbox-container{
-  bottom: 50px;
-  left: 50px;
-  transition: bottom left;
+  padding-left: 50px;
+  transform-origin: bottom left;
 
   input{
     height: 25px;
@@ -183,13 +187,14 @@ h4{
   padding: 1rem;
   border-left: var(--border);
   overflow-y: scroll;
+  overflow-x: auto;
   scrollbar-color: var(--clr-mid) var(--clr-dark);
   scrollbar-width: thin;
 }
 
 .assets-title{
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
+  justify-content: space-between;
 }
 
 .captures-container{
@@ -248,11 +253,13 @@ h4{
 
 .tooltip-right::after, 
 .tooltip-top::after, 
-.tooltip-left::after{
+.tooltip-left::after, 
+.tooltip-bottom::after{
   position: absolute;
+  z-index: 101;
   width: max-content;
   padding: 0.5em;
-  font-size: 1rem;
+  font-size: 0.75rem;
   background-color: var(--clr-mid);
   border-radius: var(--border-radius);
   --scale: 0;
@@ -266,7 +273,7 @@ h4{
 }
 
 .tooltip-left::after{
-  left: -100px;
+  right: 50px;
   transform-origin: right center;
 }
 
@@ -276,9 +283,16 @@ h4{
   transform-origin: bottom left;
 }
 
+.tooltip-bottom::after{
+  bottom: -40px;
+  right: 0;
+  transform-origin: top right;
+}
+
 .tooltip-right:hover::after, 
 .tooltip-top:hover::after, 
-.tooltip-left:hover::after{
+.tooltip-left:hover::after, 
+.tooltip-bottom:hover::after{
   --scale: 1;
 }
 
@@ -357,8 +371,6 @@ h4{
 
 .fullscreen-btn::after{
   content: 'Enter Fullscreen';
-  left: -125px;
-  transform-origin: right center;
 }
 
 .get-camera-btn::before{
@@ -420,10 +432,12 @@ h4{
   content: url('../images/remove-photo.svg');
 } 
 
+.clear-captures-btn{
+  z-index: 99;
+}
+
 .clear-captures-btn::after{
   content: 'Remove Images and Videos';
-  left: -200px;
-  transform-origin: right center; 
 }
 
 .whiteboard-toggle-btn {

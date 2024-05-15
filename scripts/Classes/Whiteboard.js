@@ -156,6 +156,7 @@ export class Whiteboard {
   setCanvasPosition(){
     this.canvas.el.style.left = `${this.left - this.mainContainer.boundingRect.left}px`;
     this.canvas.el.style.top = `${this.top - this.mainContainer.boundingRect.top}px`;
+    this.canvas.el.style.width = `${this.mirrorEl.boundingRect.width}px`;
   }
 
   setSizesOnChange(){

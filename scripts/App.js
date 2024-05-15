@@ -6,6 +6,7 @@ import { Recorder } from "./Classes/Recorder.js";
 import { MouseHandler } from "./Classes/MouseHandler.js";
 import { Whiteboard } from "./Classes/Whiteboard.js";
 import { OffscreenCanvasHandler } from "./Classes/OffscreenCanvasHandler.js";
+import { canvasSizer } from "./canvasSizer.js";
 
 export class App {
 
@@ -18,7 +19,8 @@ export class App {
     this.display = new DisplayController();
     this.recorder = new Recorder();
     this.mainContainer = document.querySelector('main');
-     
+  
+    canvasSizer({containerId: 'main-container', canvasId: 'main-canvas'});
 
     this.resolution = {
       width: 1280,
@@ -38,6 +40,8 @@ export class App {
     });
 
     this.offscreen = new OffscreenCanvasHandler(this.storage.hiddenCanvas,this.resolution);
+
+    
   }
 
   async initWebcam(){

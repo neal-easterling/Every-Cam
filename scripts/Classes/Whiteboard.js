@@ -1,5 +1,6 @@
 import { LineTool, SquareTool, EllipseTool } from "./ShapeTools.js";
 import { TextTool } from "./TextTool.js";
+import { EraserTool } from "./EraserTool.js";
 export class Whiteboard {
 
   constructor(mouseHandler, id, canvasObj, resolution){
@@ -37,6 +38,7 @@ export class Whiteboard {
     this.isActive = false;
     this.isBackgroundActive = false;
     this.pencil = new LineTool();
+    this.eraser = new EraserTool();
     this.lineTool = new LineTool();
     this.squareTool = new SquareTool();
     this.ellipseTool = new EllipseTool();
@@ -55,14 +57,14 @@ export class Whiteboard {
 
     // on mousemove with mode set point2 & draw on MainCanvas
     document.addEventListener('mousemove', this.handleMove);
-    document.addEventListener('touchstart', (tm)=>{
+    document.addEventListener('touchmove', (tm)=>{
       tm.preventDefault();
       this.handleMove();
     });
       
     // on mouseup draw on whiteboard 
     document.addEventListener('mouseup', this.handleEnd);
-    document.addEventListener('touchstart', (te)=>{
+    document.addEventListener('touchend', (te)=>{
       te.preventDefault();
       this.handleEnd();
     });
@@ -86,6 +88,9 @@ export class Whiteboard {
           break;
         case 'ellipse':
           this.ellipseTool.setPoint1(newCoords);
+          break;
+        case 'erase':
+          this.eraser.setCenter(newCoords);
           break;
         default:
           break;
@@ -113,6 +118,9 @@ export class Whiteboard {
           break;
         case 'text' :
           this.setTextToolPosition(newCoords);
+        case 'erase':
+          this.eraser.setCenter(newCoords);
+          break;
         default:
           break;
       }
@@ -142,6 +150,9 @@ export class Whiteboard {
           this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
           this.ellipseTool.setPoint1([]);
           this.ellipseTool.setPoint2([]);
+        case 'erase':
+          this.eraser.setCenter(newCoords);
+          break;
         default:
           break;
       }
@@ -282,6 +293,9 @@ export class Whiteboard {
             case 'ellipse':
               this.ellipseTool.draw(mCtx, this.shapeStyle);
             case 'text':
+              break;
+            case 'erase':
+              this.eraser.draw(ctx, this.strokeSize);
               break;
             default:
               break;

@@ -23,6 +23,7 @@ export class UIHandler{
     this.wbToolbarContainer = document.querySelector('.whiteboard-tools-container');
     this.wbToolbar = {
       pencilBtn: document.getElementById('pencil-tool'),
+      eraserBtn: document.getElementById('eraser-tool'),
       lineBtn: document.getElementById('line-tool'),
       textBtn: document.getElementById('text-tool'),
       squareBtn: document.getElementById('square-tool'),
@@ -148,6 +149,12 @@ export class UIHandler{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.pencilBtn.classList.add('active');
       if(app.whiteboard.mode != 'drawing') app.whiteboard.mode = 'drawing';
+    });
+
+    this.wbToolbar.eraserBtn.addEventListener('click', ()=>{
+      this.removeActiveClass(this.wbToolbar);
+      this.wbToolbar.eraserBtn.classList.add('active');
+      if(app.whiteboard.mode != 'erase') app.whiteboard.mode = 'erase';
     });
   
     this.wbToolbar.textBtn.addEventListener('click', ()=>{

@@ -463,7 +463,15 @@ h4{
 
 .pencil-btn::after{
   content: 'Pencil Tool';
-} 
+}
+
+.eraser-btn::before{
+  content: url('../images/eraser-icon.svg');
+}
+
+.eraser-btn::after{
+  content: 'Eraser Tool';
+}
 
 .text-tool-btn::before{
   content: url('../images/text-icon.svg');

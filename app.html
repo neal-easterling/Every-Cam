@@ -16,24 +16,27 @@
         <title>Every Cam</title> 
         
         <!-- Analytics Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMKT7CYM8J"></script>
+        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMKT7CYM8J"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
         gtag('config', 'G-QMKT7CYM8J');
-        </script>
+        </script> -->
 
         <link rel="stylesheet" href="./styles/everycam.css">
-        <link rel="icon" href="https://apps4everyone.tech/img/Apps4logo.ico" sizes="any">
-        <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml"> 
+        <!-- <link rel="icon" href="https://apps4everyone.tech/img/Apps4logo.ico" sizes="any">
+        <link rel="icon" href="https://apps4everyone.tech/img/Apps4Logo.svg" type="image/svg+xml">  -->
     </head>
     <body>
         <header class="titleheader">
-            <h2 class="align-left">Apps4Everyone.tech </h2>
-            <h1 class="align-center">Every Cam</h1>
+            <div class="brand-container">
+                <img src="./images/appslogo.svg" width="40" height="40" />
+                <h1>Every Cam</h1>
+            </div>
             <div class="fullscreen-container align-right">
+                <button id="help-btn" class="btn help-btn tooltip-bottom"></button>
                 <button id="fullscreen-btn" class="btn fullscreen-btn tooltip-bottom"></button>
                 <button id="take-photo" class="btn take-photo-btn tooltip-bottom"></button>
                 <button id="record-video" class="btn record-video-btn tooltip-bottom"></button> 
@@ -105,7 +108,10 @@
                 <h3>Sponsor:</h3>
             </section>
         </aside>
-        <footer class="main-footer">&copy;2024 by Neal Easterling</footer>
+        <footer class="main-footer">
+            <a href="https://apps4everyone.tech">Apps4Everyone.tech</a>
+            <p>&copy;2024 by Neal Easterling</p>
+        </footer>
             
         <script type="module" src="./everycam.js"></script> 
     </body>

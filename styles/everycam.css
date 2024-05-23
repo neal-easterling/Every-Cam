@@ -46,18 +46,20 @@ header, footer{
 
 header{
   grid-area: header;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   padding: calc(var(--padding)/2);
   border-bottom: 1px solid var(--clr-button-border);
 }
 
 footer{
   grid-area: footer;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
   font-size: 0.8rem;
   padding: var(--padding);
   border-top: var(--border);
+  
 }
 
 aside{
@@ -77,6 +79,32 @@ h3{
 }
 h4{
   font-size: 0.8em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-available);
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+a:hover {
+  color: var(--clr-button);
+}
+
+.brand-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap);
+  height: 100%;
+}
+
+.help-container{
+  position: absolute;
+  z-index: 2000;
+  background-color: var(--clr-white);
+  color: var(--clr-dark);
 }
 
 .main-canvas{
@@ -368,6 +396,13 @@ h4{
   margin-left: 5px;
 }
 
+.help-btn::before{
+  content: url('../images/info-icon.svg');
+}
+
+.help-btn::after{
+  content: 'See Tutorial';
+}
 
 .fullscreen-btn::before{
   content: url('../images/fullscreen.svg');

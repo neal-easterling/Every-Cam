@@ -27,6 +27,7 @@
 }
 
 body{
+  position: relative;
   font-family: 'Poppins', sans-serif;
   background-color: var(--clr-dark);
   color: var(--clr-white);
@@ -56,6 +57,7 @@ footer{
   grid-area: footer;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.8rem;
   padding: var(--padding);
   border-top: var(--border);
@@ -103,8 +105,39 @@ a:hover {
 .help-container{
   position: absolute;
   z-index: 2000;
+  right: 25%;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--clr-available);
   background-color: var(--clr-white);
   color: var(--clr-dark);
+  --scale: 0;
+  transform: scale(var(--scale));
+  transform-origin: top right;
+  transition: transform 300ms ease;
+}
+
+.help-container.active{
+  --scale: 1;
+}
+
+.donation-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap);
+  font-size: 0.8em;
+
+  button{
+    padding: 5px 15px;
+  }
+
+  p{
+    max-width: 250px;
+  }
 }
 
 .main-canvas{
@@ -235,6 +268,19 @@ a:hover {
 
 .ad-container{
   width: 100%;
+  border-top: 1px solid var(--clr-button-border);
+  margin-top: var(--gap);
+  padding-top: var(--gap);
+
+  .sponsor-ad{
+    width: 90%;
+  }
+  p{
+    width: 90%;
+    text-align: center;
+    font-size: 0.5em;
+    color: var(--clr-white);
+  }
 }
 
 .media-container{

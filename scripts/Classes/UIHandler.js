@@ -19,6 +19,9 @@ export class UIHandler{
     };
     this.capsContainer = document.querySelector('#captures-container');
 
+    this.helpBtn = document.querySelector('#help-btn');
+    this.helpModal = document.querySelector('#help-modal');
+
     //Whiteboard container and Toolbars
     this.wbToolbarContainer = document.querySelector('.whiteboard-tools-container');
     this.wbToolbar = {
@@ -40,6 +43,7 @@ export class UIHandler{
     }
 
     // init Eventlisteners
+    this.initHelpModal(app);
     this.initMainToolbar(app);
     this.initWBToolbar(app);
   }
@@ -49,6 +53,13 @@ export class UIHandler{
     for(const btn in btnsObj){
       btnsObj[btn].classList.remove('active');
     }
+  }
+
+  initHelpModal = (app) =>{
+    this.helpBtn.addEventListener('click', ()=>{
+      this.helpModal.classList.toggle('active');
+      this.helpBtn.classList.toggle('active');
+    });
   }
 
   initMainToolbar = (app) =>{

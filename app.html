@@ -41,8 +41,14 @@
                 <button id="take-photo" class="btn take-photo-btn tooltip-bottom"></button>
                 <button id="record-video" class="btn record-video-btn tooltip-bottom"></button> 
             </div>
-            
         </header>
+
+        <div id="help-modal" class="help-container">
+            <h1>Tutorial</h1>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/o6gImhnP-7M?si=1uFWr8bpdBznLpZh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <a href="#">Learn More...</a>
+        </div>
+
         <aside class="toolbar" id="toolbar">
             <!--All the tools and buttons to operate camera-->
             <h3>Tools</h3>
@@ -103,13 +109,20 @@
                     <button id="clear-captures-btn" class="btn clear-captures-btn tooltip-bottom" disabled></button>
                 </div>
             </section>
-            <section id="captures-container" class="captures-container"></section>
             <section id="ad-container" class="ad-container">
-                <h3>Sponsor:</h3>
+                <a href="https://www.n-by-se.com/" target="_blank">
+                    <p>Sponsor</p>
+                    <img class="sponsor-ad" src="./images/sponsor-banner.png" alt="North by SouthEast Sponsor" />
+                </a>
             </section>
+            <section id="captures-container" class="captures-container"></section>
         </aside>
         <footer class="main-footer">
             <a href="https://apps4everyone.tech">Apps4Everyone.tech</a>
+            <div class="donation-container">
+                <a href="https://patreon.com/Apps4Everyone" target="_blank"><button class="text-btn">Donate</button></a>
+                <p>Every Cam operates on the generosity of donors and the support of our community.</p>
+            </div>
             <p>&copy;2024 by Neal Easterling</p>
         </footer>
             

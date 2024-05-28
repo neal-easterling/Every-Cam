@@ -56,14 +56,18 @@ export class UIHandler{
   }
 
   initHelpModal = (app) =>{
-    this.helpBtn.addEventListener('click', ()=>{
+    const init = ()=>{
       this.helpModal.classList.toggle('active');
       this.helpBtn.classList.toggle('active');
-    });
+    }
+
+    this.helpBtn.addEventListener('click', init);
+    this.helpBtn.addEventListener('touchstart', init);
   }
 
   initMainToolbar = (app) =>{
-    this.mainToolbar.webcamBtn.addEventListener('click', async()=>{
+
+    const initWebcamBtn = async ()=>{
       if (app.webcam.available){
         app.webcam.available = false;
       } else {
@@ -71,18 +75,22 @@ export class UIHandler{
       }
       this.mainToolbar.webcamBtn.classList.toggle('active');
       this.mainToolbar.invertBtn.toggleAttribute('disabled');
-    });
+    }
+    this.mainToolbar.webcamBtn.addEventListener('click', initWebcamBtn);
+    this.mainToolbar.webcamBtn.addEventListener('touchstart', initWebcamBtn);
   
-    this.mainToolbar.invertBtn.addEventListener('click', ()=>{
+    const initInvertBtn = ()=> {
       if (app.camInverted) {
         app.camInverted = false;
       } else {
         app.camInverted = true;
       }
       this.mainToolbar.invertBtn.classList.toggle('active');
-    });
-  
-    this.mainToolbar.displayBtn.addEventListener('click', async()=>{
+    }
+    this.mainToolbar.invertBtn.addEventListener('click', initInvertBtn);
+    this.mainToolbar.invertBtn.addEventListener('touchstart', initInvertBtn);
+
+    const initDisplayBtn = async()=>{
       if(app.display.available){
         app.display.available = false;
       } else {
@@ -92,9 +100,11 @@ export class UIHandler{
         }
       }
       this.mainToolbar.displayBtn.classList.toggle('active');
-    });
+    }
+    this.mainToolbar.displayBtn.addEventListener('click', initDisplayBtn);
+    this.mainToolbar.displayBtn.addEventListener('touchstart', initDisplayBtn);
   
-    this.mainToolbar.setWBbtn.addEventListener('click', ()=>{
+    const initSetWBbtn = ()=>{
       if(app.mainCanvas.mode != 'whiteboard'){
         app.mainCanvas.mode = 'whiteboard';
       }else{
@@ -102,14 +112,18 @@ export class UIHandler{
       }
       console.log(app.mainCanvas.mode);
       this.mainToolbar.setWBbtn.classList.toggle('active');
-    });
-  
-    this.mainToolbar.photoBtn.addEventListener('click', ()=>{
+    }
+    this.mainToolbar.setWBbtn.addEventListener('click', initSetWBbtn);
+    this.mainToolbar.setWBbtn.addEventListener('touchstart', initSetWBbtn);
+    
+    const initPhotoBtn = ()=>{
       app.takeScreenshot();
       this.mainToolbar.clearCapsBtn.disabled = false;
-    });
+    }
+    this.mainToolbar.photoBtn.addEventListener('click', initPhotoBtn);
+    this.mainToolbar.photoBtn.addEventListener('touchstart', initPhotoBtn);
   
-    this.mainToolbar.micBtn.addEventListener('click', async()=>{
+    const initMicBtn = async()=>{
       if(app.microphone.available){
         app.microphone.available = false;
       } else {
@@ -117,9 +131,11 @@ export class UIHandler{
         app.microphone.available = true;
       }
       this.mainToolbar.micBtn.classList.toggle('active');
-    });
-  
-    this.mainToolbar.recordBtn.addEventListener('click', ()=>{
+    }
+    this.mainToolbar.micBtn.addEventListener('click', initMicBtn);
+    this.mainToolbar.micBtn.addEventListener('touchstart', initMicBtn);
+
+    const initRecordBtn = ()=>{
       if(app.isRecording){
         app.stopRecording();
         app.isRecording = false;
@@ -129,18 +145,24 @@ export class UIHandler{
         app.isRecording = true;
       }
       this.mainToolbar.recordBtn.classList.toggle('active');
-    });
-  
-    this.mainToolbar.clearCapsBtn.addEventListener('click', ()=>{
+    }
+    this.mainToolbar.recordBtn.addEventListener('click', initRecordBtn);
+    this.mainToolbar.recordBtn.addEventListener('touchstart', initRecordBtn);
+
+    const initClearCapsBtn = ()=>{
       this.capsContainer.innerHTML = '';
       this.mainToolbar.clearCapsBtn.disabled = true;
-    });
-  
-    this.mainToolbar.fullscreenBtn.addEventListener('click', ()=>{
-      app.requestFullScreen();
-    });
+    }
+    this.mainToolbar.clearCapsBtn.addEventListener('click', initClearCapsBtn);
+    this.mainToolbar.clearCapsBtn.addEventListener('touchstart', initClearCapsBtn);
 
-    this.mainToolbar.togWBToolsBtn.addEventListener('click', ()=>{
+    const initFullscreenBtn = ()=>{
+      app.requestFullScreen();
+    }
+    this.mainToolbar.fullscreenBtn.addEventListener('click', initFullscreenBtn);
+    this.mainToolbar.fullscreenBtn.addEventListener('touchstart', initFullscreenBtn);
+
+    const initTogWBToolsBtn = ()=>{
       this.wbToolbarContainer.classList.toggle('active');
       this.mainToolbar.togWBToolsBtn.classList.toggle('active');
       if(app.whiteboard.isActive){
@@ -152,76 +174,112 @@ export class UIHandler{
         app.mainCanvas.overlayCam.isDraggable = false;
       }
       console.log(app.whiteboard.isActive);
-    });
+    }
+    this.mainToolbar.togWBToolsBtn.addEventListener('click', initTogWBToolsBtn);
+    this.mainToolbar.togWBToolsBtn.addEventListener('touchstart', initTogWBToolsBtn);
   }
 
   initWBToolbar = (app)=>{
-    this.wbToolbar.pencilBtn.addEventListener('click', ()=>{
+
+    const initPencilBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.pencilBtn.classList.add('active');
       if(app.whiteboard.mode != 'drawing') app.whiteboard.mode = 'drawing';
-    });
+    }
+    this.wbToolbar.pencilBtn.addEventListener('click', initPencilBtn);
+    this.wbToolbar.pencilBtn.addEventListener('touchstart', initPencilBtn);
 
-    this.wbToolbar.eraserBtn.addEventListener('click', ()=>{
+    const initEraserBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.eraserBtn.classList.add('active');
       if(app.whiteboard.mode != 'erase') app.whiteboard.mode = 'erase';
-    });
+    }
+    this.wbToolbar.eraserBtn.addEventListener('click', initEraserBtn);
+    this.wbToolbar.eraserBtn.addEventListener('touchstart', initEraserBtn);
   
-    this.wbToolbar.textBtn.addEventListener('click', ()=>{
+    const initTextBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.textBtn.classList.add('active');
       this.wbToolbar.textBar.classList.add('active');
       if(app.whiteboard.mode != 'text') app.whiteboard.mode = 'text';
-    });
-  
-    this.textToolBar.textInp.addEventListener('input', e => {
-      app.whiteboard.textTool.setText(e.target.value);
-    });
-  
-    this.textToolBar.placeTextBtn.addEventListener('click', ()=>{
+    }
+    this.wbToolbar.textBtn.addEventListener('click', initTextBtn);
+    this.wbToolbar.textBtn.addEventListener('touchstart', initTextBtn);
+
+    const initPlaceTextBtn = ()=>{
       app.whiteboard.placeText();
       this.textToolBar.textInp.value = '';
       app.whiteboard.textTool.reset();
-    });
+    }
+    this.textToolBar.placeTextBtn.addEventListener('click', initPlaceTextBtn);
+    this.textToolBar.placeTextBtn.addEventListener('touchstart', initPlaceTextBtn);
   
-    this.wbToolbar.lineBtn.addEventListener('click', ()=>{
+    const initLineBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.lineBtn.classList.add('active');
       if(app.whiteboard.mode != 'line') app.whiteboard.mode = 'line'; 
-    });
+    }
+    this.wbToolbar.lineBtn.addEventListener('click', initLineBtn);
+    this.wbToolbar.lineBtn.addEventListener('touchstart', initLineBtn);
   
-    this.wbToolbar.squareBtn.addEventListener('click', ()=>{
+    const initSquareBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.squareBtn.classList.add('active');
       if(app.whiteboard.mode != 'square') app.whiteboard.mode = 'square'; 
-    });
+    }
+    this.wbToolbar.squareBtn.addEventListener('click', initSquareBtn);
+    this.wbToolbar.squareBtn.addEventListener('touchstart', initSquareBtn);
   
-    this.wbToolbar.ellipseBtn.addEventListener('click', ()=>{
+    const initEllipseBtn = ()=>{
       this.removeActiveClass(this.wbToolbar);
       this.wbToolbar.ellipseBtn.classList.add('active');
       if(app.whiteboard.mode != 'ellipse') app.whiteboard.mode = 'ellipse'; 
-    });
+    }
+    this.wbToolbar.ellipseBtn.addEventListener('click', initEllipseBtn);
+    this.wbToolbar.ellipseBtn.addEventListener('touchstart', initEllipseBtn);
+
+    const initClearWhiteboardBtn = ()=>{
+      app.whiteboard.clearCanvas();
+    }
+    this.wbToolbar.clearWhiteboardBtn.addEventListener('click', initClearWhiteboardBtn);
+    this.wbToolbar.clearWhiteboardBtn.addEventListener('touchstart', initClearWhiteboardBtn);
   
+    const addFocus = (el)=>{
+      el.focus();
+    }
+
+    this.textToolBar.textInp.addEventListener('input', e => {
+      app.whiteboard.textTool.setText(e.target.value);
+    });
+    this.textToolBar.textInp.addEventListener('touchstart', ()=>{
+      addFocus(this.textToolBar.textInp);
+    })
   
     this.wbToolbar.colorSelect.addEventListener('input',(e)=>{
       app.whiteboard.color = e.target.value;
-      console.log(e.target.value);
+      //console.log(e.target.value);
+    });
+    this.wbToolbar.colorSelect.addEventListener('touchstart', ()=>{
+      addFocus(this.wbToolbar.colorSelect);
     });
   
     this.wbToolbar.colorStyleSelect.addEventListener('change',(e)=>{
       app.whiteboard.shapeStyle = e.target.value;
-      console.log(e.target.value);
+      //console.log(e.target.value);
+    });
+    this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
+      addFocus(this.wbToolbar.colorStyleSelect);
     });
   
     this.wbToolbar.strokeSizeSelect.addEventListener('change', (e)=>{
       app.whiteboard.strokeSize = e.target.value;
-      console.log(e.target.value);
+      //console.log(e.target.value);
+    });
+    this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
+      addFocus(this.wbToolbar.strokeSizeSelect);
     });
   
-    this.wbToolbar.clearWhiteboardBtn.addEventListener('click', ()=>{
-      app.whiteboard.clearCanvas();
-    });
+    
   }
 
 }

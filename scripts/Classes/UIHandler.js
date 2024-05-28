@@ -246,6 +246,7 @@ export class UIHandler{
   
     const addFocus = (el)=>{
       el.focus();
+      el.select();
     }
 
     this.textToolBar.textInp.addEventListener('input', e => {

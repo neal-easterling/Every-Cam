@@ -246,8 +246,8 @@ export class UIHandler{
   
     const addFocus = (el)=>{
       el.focus();
-      el.select();
     }
+
 
     this.textToolBar.textInp.addEventListener('input', e => {
       app.whiteboard.textTool.setText(e.target.value);
@@ -260,9 +260,9 @@ export class UIHandler{
       app.whiteboard.color = e.target.value;
       //console.log(e.target.value);
     });
-    this.wbToolbar.colorSelect.addEventListener('touchstart', ()=>{
-      addFocus(this.wbToolbar.colorSelect);
-      this.wbToolbar.colorSelect.showPicker();
+    this.wbToolbar.colorSelect.addEventListener('touchstart', (e)=>{
+      console.log(e.target);
+      e.target.focus();
     });
   
     this.wbToolbar.colorStyleSelect.addEventListener('change',(e)=>{
@@ -270,8 +270,8 @@ export class UIHandler{
       //console.log(e.target.value);
     });
     this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
-      addFocus(this.wbToolbar.colorStyleSelect);
-      this.wbToolbar.colorStyleSelect.showPicker();
+      console.log(e.target);
+      e.target.focus();
     });
   
     this.wbToolbar.strokeSizeSelect.addEventListener('change', (e)=>{
@@ -279,8 +279,8 @@ export class UIHandler{
       //console.log(e.target.value);
     });
     this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
-      addFocus(this.wbToolbar.strokeSizeSelect);
-      this.wbToolbar.strokeSizeSelect.showPicker();
+      console.log(e.target);
+      e.target.focus();
     });
   
     

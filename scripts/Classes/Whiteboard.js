@@ -51,7 +51,7 @@ export class Whiteboard {
     // on mousedown with mode set point1
     document.addEventListener('mousedown', this.handleStart);
     document.addEventListener('touchstart', (ts)=>{
-      ts.preventDefault();
+      //ts.preventDefault();
       this.handleStart();
     });
 
@@ -65,7 +65,7 @@ export class Whiteboard {
     // on mouseup draw on whiteboard 
     document.addEventListener('mouseup', this.handleEnd);
     document.addEventListener('touchend', (te)=>{
-      te.preventDefault();
+      //te.preventDefault();
       this.handleEnd();
     });
 
@@ -128,6 +128,7 @@ export class Whiteboard {
   }
 
   handleEnd = ()=> {
+    const newCoords = this.getScaledCoords();
     if(this.isActive){
       switch(this.mode) {
         case 'none':
@@ -150,6 +151,7 @@ export class Whiteboard {
           this.ellipseTool.draw(this.canvas.ctx, this.shapeStyle);
           this.ellipseTool.setPoint1([]);
           this.ellipseTool.setPoint2([]);
+          break;
         case 'erase':
           this.eraser.setCenter(newCoords);
           break;

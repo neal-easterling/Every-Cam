@@ -262,6 +262,7 @@ export class UIHandler{
     });
     this.wbToolbar.colorSelect.addEventListener('touchstart', ()=>{
       addFocus(this.wbToolbar.colorSelect);
+      this.wbToolbar.colorSelect.showPicker();
     });
   
     this.wbToolbar.colorStyleSelect.addEventListener('change',(e)=>{
@@ -270,6 +271,7 @@ export class UIHandler{
     });
     this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
       addFocus(this.wbToolbar.colorStyleSelect);
+      this.wbToolbar.colorStyleSelect.showPicker();
     });
   
     this.wbToolbar.strokeSizeSelect.addEventListener('change', (e)=>{
@@ -278,6 +280,7 @@ export class UIHandler{
     });
     this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
       addFocus(this.wbToolbar.strokeSizeSelect);
+      this.wbToolbar.strokeSizeSelect.showPicker();
     });
   
     

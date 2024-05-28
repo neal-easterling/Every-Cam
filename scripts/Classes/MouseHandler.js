@@ -12,6 +12,7 @@ export class MouseHandler {
     });
 
     document.addEventListener('touchstart', (ts)=>{
+      ts.preventDefault();
       this.mouseDown = true;
     });
 

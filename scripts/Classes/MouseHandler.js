@@ -12,7 +12,6 @@ export class MouseHandler {
     });
 
     document.addEventListener('touchstart', (ts)=>{
-      //ts.preventDefault();
       this.mouseDown = true;
     });
 
@@ -23,7 +22,6 @@ export class MouseHandler {
     });
 
     document.addEventListener('touchmove', (tm)=>{
-      tm.preventDefault();
       this.x = tm.touches[0].clientX;
       this.y = tm.touches[0].clientY;
     });
@@ -34,7 +32,7 @@ export class MouseHandler {
     });
 
     document.addEventListener('touchend', (te)=>{
-      te.preventDefault();
+      te.stopImmediatePropagation();
       this.mouseDown = false;
     });
 

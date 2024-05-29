@@ -63,9 +63,18 @@ export class UIHandler{
 
     this.helpBtn.addEventListener('click', init);
     this.helpBtn.addEventListener('touchstart', init);
+    this.helpBtn.addEventListener('touchend', (e)=>{
+      e.preventDefault();
+    });
   }
 
   initMainToolbar = (app) =>{
+
+    for(let btn in this.mainToolbar){
+      this.mainToolbar[btn].addEventListener('touchend', (e)=>{
+        e.preventDefault();
+      });
+    }
 
     const initWebcamBtn = async ()=>{
       if (app.webcam.available){
@@ -260,28 +269,28 @@ export class UIHandler{
       app.whiteboard.color = e.target.value;
       //console.log(e.target.value);
     });
-    this.wbToolbar.colorSelect.addEventListener('touchstart', (e)=>{
-      console.log(e.target);
-      e.target.focus();
-    });
+    // this.wbToolbar.colorSelect.addEventListener('touchstart', (e)=>{
+    //   console.log(e.target);
+    //   e.target.focus();
+    // });
   
     this.wbToolbar.colorStyleSelect.addEventListener('change',(e)=>{
       app.whiteboard.shapeStyle = e.target.value;
       //console.log(e.target.value);
     });
-    this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
-      console.log(e.target);
-      e.target.focus();
-    });
+    // this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
+    //   console.log(e.target);
+    //   e.target.focus();
+    // });
   
     this.wbToolbar.strokeSizeSelect.addEventListener('change', (e)=>{
       app.whiteboard.strokeSize = e.target.value;
       //console.log(e.target.value);
     });
-    this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
-      console.log(e.target);
-      e.target.focus();
-    });
+    // this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
+    //   console.log(e.target);
+    //   e.target.focus();
+    // });
   
     
   }

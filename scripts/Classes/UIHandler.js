@@ -257,7 +257,6 @@ export class UIHandler{
       el.focus();
     }
 
-
     this.textToolBar.textInp.addEventListener('input', e => {
       app.whiteboard.textTool.setText(e.target.value);
     });
@@ -269,28 +268,17 @@ export class UIHandler{
       app.whiteboard.color = e.target.value;
       //console.log(e.target.value);
     });
-    // this.wbToolbar.colorSelect.addEventListener('touchstart', (e)=>{
-    //   console.log(e.target);
-    //   e.target.focus();
-    // });
-  
+
     this.wbToolbar.colorStyleSelect.addEventListener('change',(e)=>{
       app.whiteboard.shapeStyle = e.target.value;
       //console.log(e.target.value);
     });
-    // this.wbToolbar.colorStyleSelect.addEventListener('touchstart',(e)=>{
-    //   console.log(e.target);
-    //   e.target.focus();
-    // });
-  
+
     this.wbToolbar.strokeSizeSelect.addEventListener('change', (e)=>{
       app.whiteboard.strokeSize = e.target.value;
       //console.log(e.target.value);
     });
-    // this.wbToolbar.strokeSizeSelect.addEventListener('touchstart', (e)=>{
-    //   console.log(e.target);
-    //   e.target.focus();
-    // });
+
   
     
   }

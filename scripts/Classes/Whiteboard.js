@@ -43,6 +43,7 @@ export class Whiteboard {
     this.squareTool = new SquareTool();
     this.ellipseTool = new EllipseTool();
     this.textTool = new TextTool(resolution);
+    this.isFullScreen = false;
 
     this.handleResize();
 
@@ -170,6 +171,12 @@ export class Whiteboard {
     this.canvas.el.style.width = `${this.mirrorEl.boundingRect.width}px`;
   }
 
+  setFullScreenPosition(){
+    this.canvas.el.style.left = `${this.left}px`;
+    this.canvas.el.style.top = `${this.top}px`;
+    this.canvas.el.style.width = `${this.mirrorEl.boundingRect.width}px`;
+  }
+
   setSizesOnChange(){
     const newBoundingRect = this.mirrorEl.el.getBoundingClientRect();
     this.mirrorEl.boundingRect = newBoundingRect;
@@ -180,9 +187,14 @@ export class Whiteboard {
   }
 
   handleResize(){
+    if(!this.isFullScreen){
+      this.setCanvasPosition();
+    }else{
+      this.setFullScreenPosition();
+    }
     this.setSizesOnChange();
     this.setCanvasElSize();
-    this.setCanvasPosition();
+    
   }
 
   getScaledCoords(){

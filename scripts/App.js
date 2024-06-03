@@ -36,6 +36,7 @@ export class App {
     this.storage.initStorage();
     this.mainCanvas.setMainCanvasResolution(this.resolution.width, this.resolution.height);
     this.mainContainer.addEventListener('fullscreenchange', ()=>{
+      this.whiteboard.isFullScreen = this.whiteboard.isFullScreen ? false : true;
       this.whiteboard.handleResize();
     });
 

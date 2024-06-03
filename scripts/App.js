@@ -36,7 +36,7 @@ export class App {
     this.storage.initStorage();
     this.mainCanvas.setMainCanvasResolution(this.resolution.width, this.resolution.height);
     this.mainContainer.addEventListener('fullscreenchange', ()=>{
-      this.whiteboard.setSizesOnChange();
+      this.whiteboard.handleResize();
     });
 
     this.offscreen = new OffscreenCanvasHandler(this.storage.hiddenCanvas,this.resolution);
@@ -84,6 +84,7 @@ export class App {
   async requestFullScreen(){
     try{
       this.mainContainer.requestFullscreen();
+      this.whiteboard.handleResize();
     }catch(err){
       console.log(err);
     }

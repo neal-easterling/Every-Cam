@@ -632,3 +632,7 @@ a:hover {
 .delete:enabled{
   background-color: var(--clr-delete);
 }
+
+#whiteboard-canvas {
+  border: 2px solid red;
+}

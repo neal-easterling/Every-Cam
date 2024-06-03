@@ -44,9 +44,7 @@ export class Whiteboard {
     this.ellipseTool = new EllipseTool();
     this.textTool = new TextTool(resolution);
 
-    this.setCanvasElSize();
-    this.setCanvasPosition();
-    this.setSizesOnChange();
+    this.handleResize();
 
     // on mousedown with mode set point1
     document.addEventListener('mousedown', this.handleStart);
@@ -179,6 +177,12 @@ export class Whiteboard {
     this.top = this.mirrorEl.boundingRect.top;
     this.right = this.mirrorEl.boundingRect.right;
     this.bottom = this.mirrorEl.boundingRect.bottom;
+  }
+
+  handleResize(){
+    this.setSizesOnChange();
+    this.setCanvasElSize();
+    this.setCanvasPosition();
   }
 
   getScaledCoords(){
